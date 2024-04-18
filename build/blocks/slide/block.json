@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "crowdify/slide",
+  "version": "0.1.0",
+  "title": "Slide",
+  "category": "crowdify",
+  "icon": "smiley",
+  "keywords": [
+    "slider",
+    "slideshow",
+    "carousel"
+  ],
+  "description": "Add slides to a slider",
+  "example": {},
+  "parent": [
+    "crowdify/slider"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "textdomain": "crowdify-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

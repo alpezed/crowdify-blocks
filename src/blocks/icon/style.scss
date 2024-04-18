@@ -1,0 +1,13 @@
+.wp-block-crowdify-icon {
+	display: flex;
+	line-height: 0;
+
+	svg {
+		width: 100%;
+		height: 100%;
+
+		path {
+			stroke: currentColor !important;
+		}
+	}
+}
