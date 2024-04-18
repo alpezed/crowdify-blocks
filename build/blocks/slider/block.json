@@ -23,7 +23,7 @@
     },
     "pagination": {
       "type": "boolean",
-      "default": true
+      "default": false
     }
   },
   "example": {},

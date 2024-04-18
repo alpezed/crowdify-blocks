@@ -1,3 +1,6 @@
+import { __ } from '@wordpress/i18n';
+import { TEXT_DOMAIN } from '../../utils/text-domain';
+
 /**
  * These are the block we'll allow to be inserted
  * as a slide.
@@ -60,6 +63,7 @@ export const DEFAULT_INNERBLOCK = 'core/paragraph';
  */
 export const DEFAULT_INNERBLOCK_ATTRIBUTES = {
 	fontSize: 'large',
+	align: 'center',
 	style: {
 		color: {
 			text: '#ffffff',
@@ -81,6 +85,20 @@ export const SLIDE_TEMPLATE = [
 		{
 			className: 'swiper-slide',
 		},
+		[
+			[
+				'core/paragraph',
+				{
+					fontSize: 'large',
+					style: {
+						color: {
+							text: '#ffffff',
+						},
+					},
+				},
+				'Welcome to the Crowdify platform!',
+			],
+		],
 	],
 	[
 		'crowdify/slide',
@@ -93,5 +111,35 @@ export const SLIDE_TEMPLATE = [
 		{
 			className: 'swiper-slide',
 		},
+	],
+];
+
+export const DEFAULT_TEMPLATE = [
+	[
+		DEFAULT_BLOCK,
+		{},
+		[
+			[
+				DEFAULT_INNERBLOCK,
+				{
+					placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+					...DEFAULT_INNERBLOCK_ATTRIBUTES,
+				},
+			],
+		],
+	],
+
+	[
+		DEFAULT_BLOCK,
+		{},
+		[
+			[
+				DEFAULT_INNERBLOCK,
+				{
+					placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+					...DEFAULT_INNERBLOCK_ATTRIBUTES,
+				},
+			],
+		],
 	],
 ];

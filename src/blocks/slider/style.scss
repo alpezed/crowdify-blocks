@@ -4,6 +4,40 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+@import "swiper/css";
+@import "swiper/css/a11y";
+@import "swiper/css/autoplay";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
-.wp-block-crowdify-slider {
+.swiper {
+	&-pagination-bullet {
+		background-color: var(--wp--preset--color--gray-400);
+
+		&-active {
+			background-color: var(--wp--preset--color--blue-700);
+		}
+	}
+
+	&-button-prev,
+	&-button-next {
+		width: 60px;
+		height: 60px;
+
+		svg {
+			width: 100%;
+		}
+
+		&:after,
+		&:after {
+			content: none;
+		}
+	}
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+	--swiper-pagination-bottom: 0;
 }

@@ -26,11 +26,12 @@ export function SwiperInit( container, options = {} ) {
 		keyboard: true,
 		modules: [ Autoplay, Keyboard, Navigation, Pagination ],
 		navigation: options?.navigation ?? false,
-		// navigation: {
-		// 	nextEl: '.swiper-button-next',
-		// 	prevEl: '.swiper-button-prev',
-		// },
 		pagination: options?.pagination ?? false,
+		// pagination: {
+		// 	el: '.swiper-custom-pagination',
+		// 	type: 'bullets',
+		// 	clickable: true,
+		// },
 		simulateTouch: options?.simulateTouch ?? true,
 	};
 
