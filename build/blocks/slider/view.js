@@ -41,7 +41,7 @@ function SwiperInit(container, options = {}) {
     grabCursor: (_options$grabCursor = options?.grabCursor) !== null && _options$grabCursor !== void 0 ? _options$grabCursor : true,
     initialSlide: 0,
     keyboard: true,
-    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Autoplay, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Keyboard, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination],
+    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Autoplay, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Keyboard, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFlip, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectCube, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectCreative],
     navigation: (_options$navigation = options?.navigation) !== null && _options$navigation !== void 0 ? _options$navigation : false,
     pagination: (_options$pagination = options?.pagination) !== null && _options$pagination !== void 0 ? _options$pagination : false,
     // pagination: {
@@ -49,8 +49,36 @@ function SwiperInit(container, options = {}) {
     // 	type: 'bullets',
     // 	clickable: true,
     // },
-    simulateTouch: (_options$simulateTouc = options?.simulateTouch) !== null && _options$simulateTouc !== void 0 ? _options$simulateTouc : true
+    simulateTouch: (_options$simulateTouc = options?.simulateTouch) !== null && _options$simulateTouc !== void 0 ? _options$simulateTouc : true,
+    ...options
   };
+  if (options?.effect === 'fade') {
+    parameters.fadeEffect = {
+      crossFade: true
+    };
+  }
+  if (options?.effect === 'cube') {
+    parameters.cubeEffect = {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94
+    };
+  }
+  if (options?.effect === 'creative') {
+    parameters.creativeEffect = {
+      prev: {
+        shadow: true,
+        translate: [0, 0, -400]
+      },
+      next: {
+        translate: ['100%', 0, 0]
+      }
+    };
+  }
+  console.log({
+    parameters
+  });
   return new swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper(container, parameters);
 }
 

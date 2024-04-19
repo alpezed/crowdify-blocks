@@ -17,8 +17,7 @@ export const DEFAULT_BLOCK = 'crowdify/slide';
  */
 export const DEFAULT_BLOCK_ATTRIBUTES = {
 	align: 'center',
-	className: 'swiper-slide',
-	contentPosition: 'bottom left',
+	contentPosition: 'center center',
 	customOverlayColor: '#000000',
 	dimRatio: 20,
 	layout: {
@@ -55,7 +54,7 @@ export const DEFAULT_BLOCK_ATTRIBUTES = {
  * These are the default inner blocks we'll use
  * when our DEFAULT_BLOCK is inserted.
  */
-export const DEFAULT_INNERBLOCK = 'core/paragraph';
+export const DEFAULT_INNERBLOCK = 'core/cover';
 
 /**
  * These are the attributes we assign for our default
@@ -79,41 +78,6 @@ export const PLACEHOLDER_IMG_1 = 'https://source.unsplash.com/kdl8xDDD6iA';
 export const PLACEHOLDER_IMG_2 = 'https://source.unsplash.com/cRUZICCU_Xg';
 export const PLACEHOLDER_IMG_3 = 'https://source.unsplash.com/lUF3cqG6n7s';
 
-export const SLIDE_TEMPLATE = [
-	[
-		'crowdify/slide',
-		{
-			className: 'swiper-slide',
-		},
-		[
-			[
-				'core/paragraph',
-				{
-					fontSize: 'large',
-					style: {
-						color: {
-							text: '#ffffff',
-						},
-					},
-				},
-				'Welcome to the Crowdify platform!',
-			],
-		],
-	],
-	[
-		'crowdify/slide',
-		{
-			className: 'swiper-slide',
-		},
-	],
-	[
-		'crowdify/slide',
-		{
-			className: 'swiper-slide',
-		},
-	],
-];
-
 export const DEFAULT_TEMPLATE = [
 	[
 		DEFAULT_BLOCK,
@@ -122,13 +86,21 @@ export const DEFAULT_TEMPLATE = [
 			[
 				DEFAULT_INNERBLOCK,
 				{
-					placeholder: __( 'Slide title…', TEXT_DOMAIN ),
-					...DEFAULT_INNERBLOCK_ATTRIBUTES,
+					url: `${ PLACEHOLDER_IMG_1 }`,
+					...DEFAULT_BLOCK_ATTRIBUTES,
 				},
+				[
+					[
+						'core/paragraph',
+						{
+							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							...DEFAULT_INNERBLOCK_ATTRIBUTES,
+						},
+					],
+				],
 			],
 		],
 	],
-
 	[
 		DEFAULT_BLOCK,
 		{},
@@ -136,9 +108,40 @@ export const DEFAULT_TEMPLATE = [
 			[
 				DEFAULT_INNERBLOCK,
 				{
-					placeholder: __( 'Slide title…', TEXT_DOMAIN ),
-					...DEFAULT_INNERBLOCK_ATTRIBUTES,
+					url: `${ PLACEHOLDER_IMG_2 }`,
+					...DEFAULT_BLOCK_ATTRIBUTES,
 				},
+				[
+					[
+						'core/paragraph',
+						{
+							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							...DEFAULT_INNERBLOCK_ATTRIBUTES,
+						},
+					],
+				],
+			],
+		],
+	],
+	[
+		DEFAULT_BLOCK,
+		{},
+		[
+			[
+				DEFAULT_INNERBLOCK,
+				{
+					url: `${ PLACEHOLDER_IMG_3 }`,
+					...DEFAULT_BLOCK_ATTRIBUTES,
+				},
+				[
+					[
+						'core/paragraph',
+						{
+							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							...DEFAULT_INNERBLOCK_ATTRIBUTES,
+						},
+					],
+				],
 			],
 		],
 	],

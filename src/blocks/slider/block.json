@@ -20,6 +20,54 @@
 		"pagination": {
 			"type": "boolean",
 			"default": false
+		},
+		"autoheight": {
+			"type": "boolean",
+			"default": true
+		},
+		"effect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"speed": {
+			"type": "number",
+			"default": 500
+		},
+		"direction": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"clickablePagination": {
+			"type": "boolean",
+			"default": true
+		},
+		"paginationType": {
+			"type": "string",
+			"default": "bullets"
+		},
+		"slidesPerView": {
+			"type": "number",
+			"default": 1
+		},
+		"spaceBetween": {
+			"type": "number",
+			"default": 10
+		},
+		"delay": {
+			"type": "number",
+			"default": 3000
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"freeMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"sticky": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"example": {},

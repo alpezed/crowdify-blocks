@@ -15,6 +15,10 @@
 	 'autoplay'   => $autoplay,
 	 'navigation' => $navigation,
 	 'pagination' => $pagination,
+	 'effect' => $attributes['effect'],
+	 'speed' => $attributes['speed'],
+	 'slidesPerView' => $attributes['slidesPerView'],
+	 'spaceBetween' => $attributes['spaceBetween'],
  );
  $swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
 

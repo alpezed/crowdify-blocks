@@ -4,7 +4,16 @@
  * @see https://swiperjs.com/get-started
  */
 import { Swiper } from 'swiper';
-import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
+import {
+	Autoplay,
+	EffectFade,
+	EffectFlip,
+	EffectCube,
+	EffectCreative,
+	Keyboard,
+	Navigation,
+	Pagination,
+} from 'swiper/modules';
 
 /**
  * Initialize the slider.
@@ -24,7 +33,16 @@ export function SwiperInit( container, options = {} ) {
 		grabCursor: options?.grabCursor ?? true,
 		initialSlide: 0,
 		keyboard: true,
-		modules: [ Autoplay, Keyboard, Navigation, Pagination ],
+		modules: [
+			Autoplay,
+			Keyboard,
+			Navigation,
+			Pagination,
+			EffectFade,
+			EffectFlip,
+			EffectCube,
+			EffectCreative,
+		],
 		navigation: options?.navigation ?? false,
 		pagination: options?.pagination ?? false,
 		// pagination: {
@@ -33,7 +51,37 @@ export function SwiperInit( container, options = {} ) {
 		// 	clickable: true,
 		// },
 		simulateTouch: options?.simulateTouch ?? true,
+		...options,
 	};
+
+	if ( options?.effect === 'fade' ) {
+		parameters.fadeEffect = {
+			crossFade: true,
+		};
+	}
+
+	if ( options?.effect === 'cube' ) {
+		parameters.cubeEffect = {
+			shadow: true,
+			slideShadows: true,
+			shadowOffset: 20,
+			shadowScale: 0.94,
+		};
+	}
+
+	if ( options?.effect === 'creative' ) {
+		parameters.creativeEffect = {
+			prev: {
+				shadow: true,
+				translate: [ 0, 0, -400 ],
+			},
+			next: {
+				translate: [ '100%', 0, 0 ],
+			},
+		};
+	}
+
+	console.log( { parameters } );
 
 	return new Swiper( container, parameters );
 }

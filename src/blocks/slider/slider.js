@@ -14,12 +14,7 @@ import { select, subscribe } from '@wordpress/data';
  * Internal Dependencies
  */
 import { SwiperInit } from './swiper-init';
-import {
-	ALLOWED_BLOCKS,
-	DEFAULT_BLOCK,
-	DEFAULT_TEMPLATE,
-	SLIDE_TEMPLATE,
-} from './constants';
+import { ALLOWED_BLOCKS, DEFAULT_BLOCK, DEFAULT_TEMPLATE } from './constants';
 
 const Navigation = () => {
 	return (
@@ -63,7 +58,7 @@ const Navigation = () => {
 };
 
 export const Slider = ( { clientId, attributes } ) => {
-	const { navigation, pagination } = attributes;
+	const { navigation } = attributes;
 
 	const selectedBlock = select( blockEditorStore ).getSelectedBlock();
 

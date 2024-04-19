@@ -18,8 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   DEFAULT_TEMPLATE: () => (/* binding */ DEFAULT_TEMPLATE),
 /* harmony export */   PLACEHOLDER_IMG_1: () => (/* binding */ PLACEHOLDER_IMG_1),
 /* harmony export */   PLACEHOLDER_IMG_2: () => (/* binding */ PLACEHOLDER_IMG_2),
-/* harmony export */   PLACEHOLDER_IMG_3: () => (/* binding */ PLACEHOLDER_IMG_3),
-/* harmony export */   SLIDE_TEMPLATE: () => (/* binding */ SLIDE_TEMPLATE)
+/* harmony export */   PLACEHOLDER_IMG_3: () => (/* binding */ PLACEHOLDER_IMG_3)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -43,8 +42,7 @@ const DEFAULT_BLOCK = 'crowdify/slide';
  */
 const DEFAULT_BLOCK_ATTRIBUTES = {
   align: 'center',
-  className: 'swiper-slide',
-  contentPosition: 'bottom left',
+  contentPosition: 'center center',
   customOverlayColor: '#000000',
   dimRatio: 20,
   layout: {
@@ -81,7 +79,7 @@ const DEFAULT_BLOCK_ATTRIBUTES = {
  * These are the default inner blocks we'll use
  * when our DEFAULT_BLOCK is inserted.
  */
-const DEFAULT_INNERBLOCK = 'core/paragraph';
+const DEFAULT_INNERBLOCK = 'core/cover';
 
 /**
  * These are the attributes we assign for our default
@@ -104,27 +102,25 @@ const DEFAULT_INNERBLOCK_ATTRIBUTES = {
 const PLACEHOLDER_IMG_1 = 'https://source.unsplash.com/kdl8xDDD6iA';
 const PLACEHOLDER_IMG_2 = 'https://source.unsplash.com/cRUZICCU_Xg';
 const PLACEHOLDER_IMG_3 = 'https://source.unsplash.com/lUF3cqG6n7s';
-const SLIDE_TEMPLATE = [['crowdify/slide', {
-  className: 'swiper-slide'
-}, [['core/paragraph', {
-  fontSize: 'large',
-  style: {
-    color: {
-      text: '#ffffff'
-    }
-  }
-}, 'Welcome to the Crowdify platform!']]], ['crowdify/slide', {
-  className: 'swiper-slide'
-}], ['crowdify/slide', {
-  className: 'swiper-slide'
-}]];
 const DEFAULT_TEMPLATE = [[DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
+  url: `${PLACEHOLDER_IMG_1}`,
+  ...DEFAULT_BLOCK_ATTRIBUTES
+}, [['core/paragraph', {
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_text_domain__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
   ...DEFAULT_INNERBLOCK_ATTRIBUTES
-}]]], [DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
+}]]]]], [DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
+  url: `${PLACEHOLDER_IMG_2}`,
+  ...DEFAULT_BLOCK_ATTRIBUTES
+}, [['core/paragraph', {
   placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_text_domain__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
   ...DEFAULT_INNERBLOCK_ATTRIBUTES
-}]]]];
+}]]]]], [DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
+  url: `${PLACEHOLDER_IMG_3}`,
+  ...DEFAULT_BLOCK_ATTRIBUTES
+}, [['core/paragraph', {
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_text_domain__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
+  ...DEFAULT_INNERBLOCK_ATTRIBUTES
+}]]]]]];
 
 /***/ }),
 
@@ -146,8 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/slider/editor.scss");
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./slider */ "./src/blocks/slider/slider.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inspector */ "./src/blocks/slider/inspector.js");
 
 /**
  * Wordpress dependencies
@@ -160,40 +155,12 @@ __webpack_require__.r(__webpack_exports__);
 function Edit(props) {
   const {
     clientId,
-    attributes,
-    setAttributes
+    attributes
   } = props;
-  const {
-    autoplay,
-    navigation,
-    pagination
-  } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-  const inspectorControls = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', 'wpe')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Autoplay', 'wpe'),
-    checked: autoplay,
-    onChange: value => setAttributes({
-      autoplay: value
-    }),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.')
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Navigation', 'wpe'),
-    checked: navigation,
-    onChange: value => setAttributes({
-      navigation: value
-    }),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Navigation” will display arrows so user can navigate forward/backward.')
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination', 'wpe'),
-    checked: pagination,
-    onChange: value => setAttributes({
-      pagination: value
-    }),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Pagination” will display dots along the bottom for user to click through slides.')
-  }))));
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, inspectorControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_5__.Inspector, {
+    ...props
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_slider__WEBPACK_IMPORTED_MODULE_4__.Slider, {
     clientId: clientId,
@@ -232,6 +199,232 @@ __webpack_require__.r(__webpack_exports__);
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
+
+/***/ }),
+
+/***/ "./src/blocks/slider/inspector.js":
+/*!****************************************!*\
+  !*** ./src/blocks/slider/inspector.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Inspector: () => (/* binding */ Inspector)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/text-domain */ "./src/utils/text-domain.js");
+
+/**
+ * Wordpress dependencies
+ */
+
+
+
+
+const Inspector = props => {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const {
+    autoplay,
+    loop,
+    delay,
+    navigation,
+    pagination,
+    effect,
+    speed,
+    direction,
+    autoheight,
+    clickablePagination,
+    paginationType,
+    spaceBetween,
+    slidesPerView,
+    freeMode,
+    sticky
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Navigation', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: navigation,
+    onChange: value => setAttributes({
+      navigation: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Navigation” will display arrows so user can navigate forward/backward.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Height', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: autoheight,
+    onChange: value => setAttributes({
+      autoheight: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set to true and slider wrapper will adapt its height to the height of the currently active slide', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction Settings', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    value: direction,
+    options: [{
+      label: 'Horizontal',
+      value: 'horizontal'
+    }, {
+      label: 'Vertical',
+      value: 'vertical'
+    }],
+    onChange: value => setAttributes({
+      direction: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('For vertical slider, Slides Per View should be set to 1', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Settings', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: pagination,
+    onChange: value => setAttributes({
+      pagination: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Pagination” will display dots along the bottom for user to click through slides.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Type', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    value: paginationType,
+    options: [{
+      label: 'Progress Bar',
+      value: 'progressbar'
+    }, {
+      label: 'Bullets',
+      value: 'bullets'
+    }, {
+      label: 'Fraction',
+      value: 'fraction'
+    }],
+    onChange: value => setAttributes({
+      paginationType: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select type of pagination.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Clickable Pagination', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: clickablePagination,
+    onChange: value => setAttributes({
+      clickablePagination: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If enabled then clicking on pagination button will cause transition to appropriate slide. Only for bullets pagination type', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    value: direction,
+    options: [{
+      label: 'Horizontal',
+      value: 'horizontal'
+    }, {
+      label: 'Vertical',
+      value: 'vertical'
+    }],
+    onChange: value => setAttributes({
+      direction: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('For vertical slider, Slides Per View should be set to 1', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slider Settings', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Space Between', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    value: spaceBetween,
+    onChange: value => setAttributes({
+      spaceBetween: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Distance between slides in px.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
+    label: "Slider Per View",
+    value: slidesPerView,
+    onChange: value => setAttributes({
+      slidesPerView: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Number of slides per view (slides visible at the same time on slider's container). Can be a number or auto", _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Animation', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Autoplay', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: autoplay,
+    onChange: value => setAttributes({
+      autoplay: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loop', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: loop,
+    onChange: value => setAttributes({
+      loop: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set to true to enable continuous loop mode', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
+    label: "Delay",
+    value: delay,
+    onChange: value => setAttributes({
+      delay: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Delay between transitions (in ms). If this parameter is not specified, auto play will be disabled', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Effect', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    value: effect,
+    options: [{
+      label: 'Slide',
+      value: 'slide'
+    }, {
+      label: 'Fade',
+      value: 'fade'
+    }, {
+      label: 'Cube',
+      value: 'cube'
+    }, {
+      label: 'Cover Flow',
+      value: 'coverflow'
+    }, {
+      label: 'Flip',
+      value: 'flip'
+    }, {
+      label: 'Creative',
+      value: 'creative'
+    }, {
+      label: 'Cards',
+      value: 'cards'
+    }],
+    onChange: value => setAttributes({
+      effect: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the main animation effect for transitioning between slides', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: "Transition Speed",
+    value: speed,
+    min: 0,
+    max: 2000,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Duration of transition between slides (in ms)', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    initialPosition: 50,
+    onChange: value => setAttributes({
+      speed: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Free Mode', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: freeMode,
+    onChange: value => setAttributes({
+      freeMode: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enables free mode functionality.', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sticky', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    checked: sticky,
+    disabled: !freeMode,
+    onChange: value => setAttributes({
+      sticky: value
+    }),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set to enabled to enable snap to slides positions in free mode', _utils_text_domain__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+  })));
+};
 
 /***/ }),
 
@@ -329,8 +522,7 @@ const Slider = ({
   attributes
 }) => {
   const {
-    navigation,
-    pagination
+    navigation
   } = attributes;
   const selectedBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.select)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.store).getSelectedBlock();
   const sliderRef = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.useRefEffect)(element => {
@@ -458,7 +650,7 @@ function SwiperInit(container, options = {}) {
     grabCursor: (_options$grabCursor = options?.grabCursor) !== null && _options$grabCursor !== void 0 ? _options$grabCursor : true,
     initialSlide: 0,
     keyboard: true,
-    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Autoplay, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Keyboard, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination],
+    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Autoplay, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Keyboard, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFade, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectFlip, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectCube, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.EffectCreative],
     navigation: (_options$navigation = options?.navigation) !== null && _options$navigation !== void 0 ? _options$navigation : false,
     pagination: (_options$pagination = options?.pagination) !== null && _options$pagination !== void 0 ? _options$pagination : false,
     // pagination: {
@@ -466,8 +658,36 @@ function SwiperInit(container, options = {}) {
     // 	type: 'bullets',
     // 	clickable: true,
     // },
-    simulateTouch: (_options$simulateTouc = options?.simulateTouch) !== null && _options$simulateTouc !== void 0 ? _options$simulateTouc : true
+    simulateTouch: (_options$simulateTouc = options?.simulateTouch) !== null && _options$simulateTouc !== void 0 ? _options$simulateTouc : true,
+    ...options
   };
+  if (options?.effect === 'fade') {
+    parameters.fadeEffect = {
+      crossFade: true
+    };
+  }
+  if (options?.effect === 'cube') {
+    parameters.cubeEffect = {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94
+    };
+  }
+  if (options?.effect === 'creative') {
+    parameters.creativeEffect = {
+      prev: {
+        shadow: true,
+        translate: [0, 0, -400]
+      },
+      next: {
+        translate: ['100%', 0, 0]
+      }
+    };
+  }
+  console.log({
+    parameters
+  });
   return new swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper(container, parameters);
 }
 
@@ -10943,7 +11163,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/slider","version":"0.1.0","title":"Slider","category":"crowdify","keywords":["slider","slideshow","carousel"],"icon":"smiley","description":"Display a slider.","attributes":{"autoplay":{"type":"boolean","default":true},"navigation":{"type":"boolean","default":true},"pagination":{"type":"boolean","default":false}},"example":{},"supports":{"html":false,"align":["wide","full"],"className":true,"color":{"background":true,"gradients":true,"link":true,"text":true},"spacing":{"padding":true,"margin":["top","bottom"]}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/slider","version":"0.1.0","title":"Slider","category":"crowdify","keywords":["slider","slideshow","carousel"],"icon":"smiley","description":"Display a slider.","attributes":{"autoplay":{"type":"boolean","default":true},"navigation":{"type":"boolean","default":true},"pagination":{"type":"boolean","default":false},"autoheight":{"type":"boolean","default":true},"effect":{"type":"string","default":"slide"},"speed":{"type":"number","default":500},"direction":{"type":"string","default":"horizontal"},"clickablePagination":{"type":"boolean","default":true},"paginationType":{"type":"string","default":"bullets"},"slidesPerView":{"type":"number","default":1},"spaceBetween":{"type":"number","default":10},"delay":{"type":"number","default":3000},"loop":{"type":"boolean","default":true},"freeMode":{"type":"boolean","default":false},"sticky":{"type":"boolean","default":false}},"example":{},"supports":{"html":false,"align":["wide","full"],"className":true,"color":{"background":true,"gradients":true,"link":true,"text":true},"spacing":{"padding":true,"margin":["top","bottom"]}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","render":"file:./render.php","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 
