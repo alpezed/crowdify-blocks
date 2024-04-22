@@ -5,6 +5,8 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+@import "../slider/style.scss";
+
 .wp-block-crowdify-post-filters {
 	list-style: none;
 	padding-left: 0;
@@ -45,6 +47,14 @@
 			height: 2px;
 			background-color: #fff;
 			transition: width cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+		}
+	}
+}
+
+.wp-block-post-template {
+	&.is-slider {
+		li {
+			margin-top: 0;
 		}
 	}
 }

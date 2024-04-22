@@ -7,3 +7,7 @@
 .wp-block-crowdify-post-filters {
 	gap: var(--wp--style--block-gap);
 }
+
+.crowdify-toolbar__query-layout + .components-toolbar-group {
+	display: none;
+}

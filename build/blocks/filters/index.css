@@ -10,4 +10,8 @@
   gap: var(--wp--style--block-gap);
 }
 
+.crowdify-toolbar__query-layout + .components-toolbar-group {
+  display: none;
+}
+
 /*# sourceMappingURL=index.css.map*/
