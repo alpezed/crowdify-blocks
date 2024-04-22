@@ -28,8 +28,24 @@ function crowdify_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/icon' );
 	register_block_type( __DIR__ . '/build/blocks/slider' );
 	register_block_type( __DIR__ . '/build/blocks/slide' );
+	register_block_type( __DIR__ . '/build/blocks/filters' );
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
+
+add_action( 'enqueue_block_editor_assets', 'crowdify_enqueue_block_editor_assets' );
+function crowdify_enqueue_block_editor_assets() {
+	$variations_file = plugin_dir_path( __FILE__ ) . '/build/variations.asset.php';
+	if ( file_exists( $variations_file ) ) {
+		$assets = include $variations_file;
+		wp_enqueue_script(
+			'block-variations',
+			plugin_dir_url( __FILE__ ) . '/build/variations.js',
+			$assets['dependencies'],
+			$assets['version'],
+			true
+		);
+	}
+}
 
 function crowdify_block_categories( $categories )
 {

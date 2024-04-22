@@ -1,0 +1,50 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-crowdify-post-filters {
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	align-items: center;
+	margin-bottom: 60px;
+	font-weight: 600;
+	gap: var(--wp--style--block-gap);
+
+	li {
+		margin: 0;
+		position: relative;
+		padding-bottom: 12px;
+	}
+
+	a {
+		color: white;
+		transition: color cubic-bezier(0.075, 0.82, 0.165, 1) 300ms;
+
+		&.is-selected {
+			&:before {
+				width: 100%;
+			}
+		}
+
+		&:hover {
+			&:before {
+				width: 100%;
+			}
+		}
+
+		&:before {
+			content: "";
+			width: 0;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 2px;
+			background-color: #fff;
+			transition: width cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+		}
+	}
+}

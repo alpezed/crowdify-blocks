@@ -81,7 +81,5 @@ export function SwiperInit( container, options = {} ) {
 		};
 	}
 
-	console.log( { parameters } );
-
 	return new Swiper( container, parameters );
 }

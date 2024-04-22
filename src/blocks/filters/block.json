@@ -1,0 +1,78 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "crowdify/post-filters",
+	"version": "0.1.0",
+	"title": "Post Filters",
+	"category": "crowdify",
+	"parent": [ "core/query" ],
+	"icon": "smiley",
+	"description": "Display a list of all selected post terms.",
+	"example": {},
+	"attributes": {
+		"term": {
+			"type": "string"
+		},
+		"textAlign": {
+			"type": "string"
+		},
+		"separator": {
+			"type": "string",
+			"default": ", "
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"suffix": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [ "queryId", "query" ],
+	"supports": {
+		"align": true,
+		"html": false,
+		"layout": true,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true,
+				"link": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": {
+				"__experimentalDefault": "1.25em"
+			},
+			"__experimentalDefaultControls": {
+				"margin": true,
+				"padding": true,
+				"blockGap": true
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
+	},
+	"textdomain": "crowdify-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

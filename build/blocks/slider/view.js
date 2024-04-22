@@ -76,9 +76,6 @@ function SwiperInit(container, options = {}) {
       }
     };
   }
-  console.log({
-    parameters
-  });
   return new swiper__WEBPACK_IMPORTED_MODULE_0__.Swiper(container, parameters);
 }
 
