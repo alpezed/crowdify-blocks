@@ -46,6 +46,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/slide/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/slide/save.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/slide/block.json");
+/* harmony import */ var _utils_block__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/block */ "./src/utils/block.js");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -69,19 +70,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  /**
-   * @see ./edit.js
-   */
+  icon: _utils_block__WEBPACK_IMPORTED_MODULE_5__.sliderIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  /**
-   * @see ./save.js
-   */
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
@@ -126,6 +123,50 @@ function save() {
     })
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
 }
+
+/***/ }),
+
+/***/ "./src/utils/block.js":
+/*!****************************!*\
+  !*** ./src/utils/block.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   sliderIcon: () => (/* binding */ sliderIcon)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const sliderIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  fill: "none",
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  "aria-hidden": "true",
+  focusable: "false"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m6 4.75h12c.6904 0 1.25.55964 1.25 1.25v12c0 .6904-.5596 1.25-1.25 1.25h-12c-.69036 0-1.25-.5596-1.25-1.25v-12c0-.69036.55964-1.25 1.25-1.25z",
+  stroke: "currentColor",
+  strokeWidth: "1.5",
+  fill: "none"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+  fill: "currentColor"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m7 9h2v2h-2z"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m7 13h2v2h-2z"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m10 9h7v2h-7z"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m10 13h7v2h-7z"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m23 18c-.8284 0-1.5-.6716-1.5-1.5v-9c0-.82843.6716-1.5 1.5-1.5z"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "m1 6c.82843 0 1.5.67157 1.5 1.5v9c0 .8284-.67157 1.5-1.500001 1.5z"
+})));
 
 /***/ }),
 

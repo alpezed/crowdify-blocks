@@ -2,7 +2,7 @@ import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 import defaultIcons from './untitled-ui';
-import { TEXT_DOMAIN } from '../../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../../utils/constants';
 
 const icons = [
 	{

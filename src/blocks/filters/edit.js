@@ -23,7 +23,7 @@ import { select, useSelect, useDispatch } from '@wordpress/data';
 /**
  * Internal dependencies
  */
-import { TEXT_DOMAIN } from '../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../utils/constants';
 import { useTaxonomies } from './use-taxonomies';
 
 /**

@@ -4,6 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { starEmpty as icon } from '@wordpress/icons';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -20,7 +21,6 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { lightningIcon } from './icons/lightning';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -28,7 +28,7 @@ import { lightningIcon } from './icons/lightning';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
-	icon: lightningIcon,
+	icon,
 	edit: Edit,
 	save,
 } );

@@ -228,13 +228,6 @@ const PostTemplateCustomToolbar = ({
     }),
     isActive: displayLayout?.type === 'carousel'
   }];
-
-  // const setDisplayLayout = ( newDisplayLayout ) => {
-  // 	setAttributes( {
-  // 		layout: { ...layout, ...newDisplayLayout },
-  // 	} );
-  // };
-
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
     group: "default"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToolbarGroup, {

@@ -59,7 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils_text_domain__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/text-domain */ "./src/utils/text-domain.js");
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/constants */ "./src/utils/constants.js");
 /* harmony import */ var _use_taxonomies__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./use-taxonomies */ "./src/blocks/filters/use-taxonomies.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/filters/editor.scss");
 
@@ -217,7 +217,7 @@ function Edit(props) {
       'is-selected': !parentAttributes.query?.taxQuery?.category || parentAttributes.query?.taxQuery?.category?.length === 0
     }),
     onClick: e => onUpdateParentAttributes(e, 'all')
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View All', _utils_text_domain__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN))), categories?.map(category => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View All', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN))), categories?.map(category => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: category.id
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: category.link,
@@ -312,18 +312,20 @@ const useTaxonomies = postType => {
 
 /***/ }),
 
-/***/ "./src/utils/text-domain.js":
-/*!**********************************!*\
-  !*** ./src/utils/text-domain.js ***!
-  \**********************************/
+/***/ "./src/utils/constants.js":
+/*!********************************!*\
+  !*** ./src/utils/constants.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CATEGORY: () => (/* binding */ CATEGORY),
 /* harmony export */   TEXT_DOMAIN: () => (/* binding */ TEXT_DOMAIN)
 /* harmony export */ });
 const TEXT_DOMAIN = 'crowdify-blocks';
+const CATEGORY = 'crowdify';
 
 /***/ }),
 

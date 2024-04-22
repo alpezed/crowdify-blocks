@@ -32,7 +32,14 @@ function crowdify_blocks_block_init() {
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
 
-add_action( 'enqueue_block_editor_assets', 'crowdify_enqueue_block_editor_assets' );
+/**
+ * Enqueues the block editor assets for the Crowdify Blocks plugin.
+ *
+ * This function checks if the variations.asset.php and hooks.asset.php files exist in the build directory.
+ * If they do, it includes their contents and enqueues the corresponding JavaScript and CSS files.
+ *
+ * @return void
+ */
 function crowdify_enqueue_block_editor_assets() {
 	$variations_file = plugin_dir_path( __FILE__ ) . '/build/variations.asset.php';
 	if ( file_exists( $variations_file ) ) {
@@ -59,7 +66,14 @@ function crowdify_enqueue_block_editor_assets() {
 		);
 	}
 }
+add_action( 'enqueue_block_editor_assets', 'crowdify_enqueue_block_editor_assets' );
 
+/**
+ * Merges the given array of block categories with the 'Crowdify' category.
+ *
+ * @param array $categories The array of block categories to merge with.
+ * @return array The merged array of block categories.
+ */
 function crowdify_block_categories( $categories )
 {
 	return array_merge(
@@ -72,4 +86,53 @@ function crowdify_block_categories( $categories )
 		]
 	);
 }
+
 add_action( 'block_categories', 'crowdify_block_categories', 10, 2 );
+
+/**
+ * Wraps the given block content with a Swiper wrapper if the block is a Crowdify block with a carousel layout.
+ *
+ * @param string $block_content The content of the block.
+ * @param array $block The block data.
+ * @return string The wrapped block content.
+ */
+function crowdify_block_wrapper( $block_content, $block ) {
+	/**
+	 * Processes the block content to add Swiper classes and attributes.
+	 */
+	$tag_processor = new WP_HTML_Tag_Processor( $block_content );
+
+	// Check if the block is a Crowdify block with a carousel layout, otherwise return the original content.
+	if ( ( isset ( $block['attrs']['crowdify'] ) && $block['attrs']['crowdify']['layout']['type'] !== 'carousel' ) || ! isset ( $block['attrs']['crowdify'] ) ) {
+		return $block_content;
+	}
+
+	// Swiper attributes.
+	$swiper_attr = array(
+		'autoplay'   => true,
+		'navigation' => true,
+		'pagination' => true,
+		// 'effect' => $attributes['effect'],
+		'speed' => 500,
+		'slidesPerView' => 3,
+		'spaceBetween' => 30,
+	);
+	$swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
+
+	// Process the UL and LI tags to add Swiper classes.
+	while( $tag_processor->next_tag( array( 'tag_name' => 'UL' ) ) ) {
+		$tag_processor->add_class( 'swiper-wrapper' );
+		while( $tag_processor->next_tag( array( 'tag_name' => 'LI' ) ) ) {
+			$tag_processor->add_class( 'swiper-slide' );
+		}
+	}
+
+	// Build the Swiper wrapper.
+	$content = '<div class="swiper" data-swiper="' . esc_attr( $swiper_attr ) . '">';
+	$content .= $tag_processor->get_updated_html();
+	$content .= '</div>';
+
+	return $content;
+}
+
+add_filter( 'render_block_core/post-template', 'crowdify_block_wrapper', 10, 2 );

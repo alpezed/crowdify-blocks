@@ -59,12 +59,6 @@ export const PostTemplateCustomToolbar = ( {
 		},
 	];
 
-	// const setDisplayLayout = ( newDisplayLayout ) => {
-	// 	setAttributes( {
-	// 		layout: { ...layout, ...newDisplayLayout },
-	// 	} );
-	// };
-
 	return (
 		<BlockControls group="default">
 			<ToolbarGroup

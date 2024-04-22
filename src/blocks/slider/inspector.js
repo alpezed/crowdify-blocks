@@ -12,7 +12,7 @@ import {
 	__experimentalUnitControl as UnitControl,
 	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
-import { TEXT_DOMAIN } from '../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../utils/constants';
 
 export const Inspector = ( props ) => {
 	const { attributes, setAttributes } = props;

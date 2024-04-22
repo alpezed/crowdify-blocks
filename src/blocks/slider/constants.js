@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { TEXT_DOMAIN } from '../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../utils/constants';
 
 /**
  * These are the block we'll allow to be inserted

@@ -13,7 +13,7 @@ import { useState } from '@wordpress/element';
 
 import getIcons from '../icons';
 import { flattenIconsArray, simplifyCategories } from '../../../utils/icons';
-import { TEXT_DOMAIN } from '../../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../../utils/constants';
 
 export default function IconsModal( {
 	isInserterOpen,

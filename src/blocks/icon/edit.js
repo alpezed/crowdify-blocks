@@ -23,7 +23,7 @@ import {
 import { more } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 
-import { TEXT_DOMAIN } from '../../utils/text-domain';
+import { TEXT_DOMAIN } from '../../utils/constants';
 import { flattenIconsArray, parseIcon } from '../../utils/icons';
 import IconsModal from './components/icons-modal';
 import getIcons from './icons';
