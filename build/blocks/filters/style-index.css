@@ -725,8 +725,4 @@ button.swiper-pagination-bullet {
   transition: width cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 
-.wp-block-post-template.is-slider li {
-  margin-top: 0;
-}
-
 /*# sourceMappingURL=style-index.css.map*/

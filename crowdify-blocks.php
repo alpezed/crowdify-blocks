@@ -38,12 +38,13 @@ function crowdify_enqueue_block_editor_assets() {
 	if ( file_exists( $variations_file ) ) {
 		$assets = include $variations_file;
 		wp_enqueue_script(
-			'crowdify-block-variations',
+			'crowdify-block-variations-js',
 			plugin_dir_url( __FILE__ ) . '/build/variations.js',
 			$assets['dependencies'],
 			$assets['version'],
 			true
 		);
+		wp_enqueue_style( 'crowdify-block-variations-css', plugin_dir_url( __FILE__ ) . '/build/style-variations.css', [], $assets['version'] );
 	}
 
 	$hooks_file = plugin_dir_path( __FILE__ ) . '/build/hooks.asset.php';

@@ -6,12 +6,15 @@ import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 import { useRefEffect } from '@wordpress/compose';
 import { createHigherOrderComponent } from '@wordpress/compose';
+import { useDispatch, useSelect } from '@wordpress/data';
+import { store as blockEditorStore } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
 import { PostTemplateCustomToolbar } from '../components/post-template-custom-toolbar';
 import { SwiperInit } from '../blocks/slider/swiper-init';
+import classnames from 'classnames';
 
 /**
  * Higher-order component that wraps the given `BlockListBlock` component with a Swiper slider.
@@ -58,12 +61,6 @@ const withSwiperSlider = ( BlockListBlock ) => ( props ) => {
 		// Initialize slider.
 		let slider = SwiperInit( element, options );
 
-		slider.destroy();
-		window.requestAnimationFrame( () => {
-			// Initialize slider.
-			slider = SwiperInit( element, options );
-		} );
-
 		return () => {
 			slider?.destroy();
 		};
@@ -71,7 +68,12 @@ const withSwiperSlider = ( BlockListBlock ) => ( props ) => {
 
 	return (
 		<div ref={ sliderRef } className="swiper">
-			<BlockListBlock { ...props } className="swiper-wrapper" />
+			<BlockListBlock
+				{ ...props }
+				className={ classnames( 'swiper-wrapper', {
+					'is-carousel': layout?.type === 'carousel',
+				} ) }
+			/>
 		</div>
 	);
 };
@@ -87,7 +89,7 @@ addFilter( 'editor.BlockListBlock', 'crowdify/add-slider', withSwiperSlider );
  */
 export const withPostTemplateControls = createHigherOrderComponent(
 	( BlockEdit ) => ( props ) => {
-		const { name, isSelected, attributes, setAttributes } = props;
+		const { name, isSelected, attributes, setAttributes, clientId } = props;
 
 		const { layout = {}, crowdify } = attributes;
 
@@ -96,6 +98,18 @@ export const withPostTemplateControls = createHigherOrderComponent(
 		if ( name !== 'core/post-template' ) {
 			return <BlockEdit { ...props } />;
 		}
+
+		const { selectBlock } = useDispatch( blockEditorStore );
+		const { rootClientId } = useSelect( ( select ) => {
+			const { getBlockHierarchyRootClientId } =
+				select( blockEditorStore );
+
+			const rootClientId = getBlockHierarchyRootClientId( clientId );
+
+			return {
+				rootClientId,
+			};
+		}, [] );
 
 		const layoutType = crowdifyLayout?.type ?? layout?.type ?? 'default';
 
@@ -107,7 +121,7 @@ export const withPostTemplateControls = createHigherOrderComponent(
 			};
 
 			// A little hack to render carousel preview.
-			// selectBlock( coreQueryId );
+			selectBlock( rootClientId );
 			// selectBlock( props.clientId );
 
 			if ( newDisplayLayout?.type === 'grid' ) {

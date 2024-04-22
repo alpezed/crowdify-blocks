@@ -10,6 +10,8 @@ import { __ } from '@wordpress/i18n';
  */
 import { TEXT_DOMAIN } from '../utils/text-domain';
 
+import './style.scss';
+
 const CROWDIFY_POSTS = 'crowdify/posts';
 
 registerBlockVariation( 'core/query', {
