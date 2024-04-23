@@ -1,0 +1,27 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon-list-item/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-crowdify-icon-list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 0;
+}
+.wp-block-crowdify-icon-list-item .list-item-icon {
+  line-height: 0;
+}
+.wp-block-crowdify-icon-list-item svg {
+  width: 1.2em;
+  height: 1.2em;
+}
+.wp-block-crowdify-icon-list-item svg path {
+  stroke: currentColor !important;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

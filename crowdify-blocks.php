@@ -29,6 +29,8 @@ function crowdify_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/slider' );
 	register_block_type( __DIR__ . '/build/blocks/slide' );
 	register_block_type( __DIR__ . '/build/blocks/filters' );
+	register_block_type( __DIR__ . '/build/blocks/icon-list' );
+	register_block_type( __DIR__ . '/build/blocks/icon-list-item' );
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
 
