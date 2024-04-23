@@ -10925,7 +10925,8 @@ __webpack_require__.r(__webpack_exports__);
 const withSwiperSlider = BlockListBlock => props => {
   const {
     name,
-    attributes
+    attributes,
+    clientId
   } = props;
   const {
     crowdify
@@ -10962,7 +10963,21 @@ const withSwiperSlider = BlockListBlock => props => {
 
     // Initialize slider.
     let slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
+    const unsubscribeSliderUpdateListener = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.subscribe)(() => {
+      const selectedBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.select)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store).getSelectedBlock();
+      if (selectedBlock?.clientId === clientId) {
+        slider?.destroy();
+
+        // Disable the auto play.
+        options.autoplay = false;
+
+        // Initialize slider.
+        slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
+        slider.slideTo(0, 0);
+      }
+    });
     return () => {
+      unsubscribeSliderUpdateListener();
       slider?.destroy();
     };
   });

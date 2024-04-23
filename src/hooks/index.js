@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 import { useRefEffect } from '@wordpress/compose';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { select, subscribe, useDispatch, useSelect } from '@wordpress/data';
 import { store as blockEditorStore } from '@wordpress/block-editor';
 
 /**
@@ -23,7 +23,7 @@ import classnames from 'classnames';
  * @return {React.ComponentType} The wrapped component with the Swiper slider functionality.
  */
 const withSwiperSlider = ( BlockListBlock ) => ( props ) => {
-	const { name, attributes } = props;
+	const { name, attributes, clientId } = props;
 
 	const { crowdify } = attributes;
 	const { layout } = crowdify || {};
@@ -61,7 +61,24 @@ const withSwiperSlider = ( BlockListBlock ) => ( props ) => {
 		// Initialize slider.
 		let slider = SwiperInit( element, options );
 
+		const unsubscribeSliderUpdateListener = subscribe( () => {
+			const selectedBlock = select( blockEditorStore ).getSelectedBlock();
+
+			if ( selectedBlock?.clientId === clientId ) {
+				slider?.destroy();
+
+				// Disable the auto play.
+				options.autoplay = false;
+
+				// Initialize slider.
+				slider = SwiperInit( element, options );
+
+				slider.slideTo( 0, 0 );
+			}
+		} );
+
 		return () => {
+			unsubscribeSliderUpdateListener();
 			slider?.destroy();
 		};
 	} );
