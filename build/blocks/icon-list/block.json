@@ -32,6 +32,13 @@
     },
     "iconSize": {
       "type": "number"
+    },
+    "align": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
     }
   },
   "providesContext": {
@@ -42,8 +49,8 @@
   },
   "supports": {
     "anchor": true,
+    "align": false,
     "html": false,
-    "className": false,
     "typography": {
       "fontSize": true,
       "lineHeight": true,

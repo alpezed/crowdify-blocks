@@ -8,7 +8,18 @@
  * Replace them with your own styles or remove the file completely.
  */
 .wp-block-crowdify-icon-list {
+  padding-left: 0;
+  display: flex;
   list-style: none;
+}
+.wp-block-crowdify-icon-list:not(.is-inline-layout) {
+  flex-direction: column;
+}
+.wp-block-crowdify-icon-list.items-align-right {
+  align-items: end;
+}
+.wp-block-crowdify-icon-list.items-align-center {
+  align-items: center;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

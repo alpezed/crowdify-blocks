@@ -6,5 +6,20 @@
  */
 
 .wp-block-crowdify-icon-list {
+	padding-left: 0;
+	display: flex;
 	list-style: none;
+
+	&:not(.is-inline-layout) {
+		flex-direction: column;
+	}
+
+	&.items-align {
+		&-right {
+			align-items: end;
+		}
+		&-center {
+			align-items: center;
+		}
+	}
 }
