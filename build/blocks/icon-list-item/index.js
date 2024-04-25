@@ -293,9 +293,6 @@ function Edit(props) {
     'has-icon-color': iconColorValue || fallbackIconColorValue,
     [`has-${themeIconColor}-color`]: themeIconColor
   });
-  console.log({
-    fallbackIconLineWidth
-  });
   const iconStyle = {
     fontSize: `${iconSize !== null && iconSize !== void 0 ? iconSize : fallbackIconSize}px`,
     color: iconColorValue,

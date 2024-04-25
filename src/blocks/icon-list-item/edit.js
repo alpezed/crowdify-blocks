@@ -86,8 +86,6 @@ function Edit( props ) {
 		[ `has-${ themeIconColor }-color` ]: themeIconColor,
 	} );
 
-	console.log( { fallbackIconLineWidth } );
-
 	const iconStyle = {
 		fontSize: `${ iconSize ?? fallbackIconSize }px`,
 		color: iconColorValue,

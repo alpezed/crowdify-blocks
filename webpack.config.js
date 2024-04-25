@@ -16,6 +16,7 @@ module.exports = {
 	resolve: {
 		...defaultConfig.resolve,
 		alias: {
+			...defaultConfig.resolve.alias,
 			'~': path.resolve( __dirname, 'src/' ),
 		},
 	},
