@@ -217,7 +217,7 @@ function Edit(props) {
       'is-selected': !parentAttributes.query?.taxQuery?.category || parentAttributes.query?.taxQuery?.category?.length === 0
     }),
     onClick: e => onUpdateParentAttributes(e, 'all')
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View All', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN))), categories?.map(category => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('View All', 'crowdify-blocks'))), categories?.map(category => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: category.id
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: category.link,

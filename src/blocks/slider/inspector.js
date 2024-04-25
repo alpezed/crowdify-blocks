@@ -36,9 +36,9 @@ export const Inspector = ( props ) => {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={ __( 'Settings', TEXT_DOMAIN ) }>
+			<PanelBody title={ __( 'Settings', 'crowdify-blocks' ) }>
 				<ToggleControl
-					label={ __( 'Navigation', TEXT_DOMAIN ) }
+					label={ __( 'Navigation', 'crowdify-blocks' ) }
 					checked={ navigation }
 					onChange={ ( value ) =>
 						setAttributes( { navigation: value } )
@@ -49,7 +49,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<ToggleControl
-					label={ __( 'Auto Height', TEXT_DOMAIN ) }
+					label={ __( 'Auto Height', 'crowdify-blocks' ) }
 					checked={ autoheight }
 					onChange={ ( value ) =>
 						setAttributes( { autoheight: value } )
@@ -60,9 +60,9 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Direction Settings', TEXT_DOMAIN ) }>
+			<PanelBody title={ __( 'Direction Settings', 'crowdify-blocks' ) }>
 				<SelectControl
-					label={ __( 'Direction', TEXT_DOMAIN ) }
+					label={ __( 'Direction', 'crowdify-blocks' ) }
 					value={ direction }
 					options={ [
 						{ label: 'Horizontal', value: 'horizontal' },
@@ -77,9 +77,9 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Pagination Settings', TEXT_DOMAIN ) }>
+			<PanelBody title={ __( 'Pagination Settings', 'crowdify-blocks' ) }>
 				<ToggleControl
-					label={ __( 'Pagination', TEXT_DOMAIN ) }
+					label={ __( 'Pagination', 'crowdify-blocks' ) }
 					checked={ pagination }
 					onChange={ ( value ) =>
 						setAttributes( { pagination: value } )
@@ -90,7 +90,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<SelectControl
-					label={ __( 'Pagination Type', TEXT_DOMAIN ) }
+					label={ __( 'Pagination Type', 'crowdify-blocks' ) }
 					value={ paginationType }
 					options={ [
 						{ label: 'Progress Bar', value: 'progressbar' },
@@ -100,10 +100,13 @@ export const Inspector = ( props ) => {
 					onChange={ ( value ) =>
 						setAttributes( { paginationType: value } )
 					}
-					help={ __( 'Select type of pagination.', TEXT_DOMAIN ) }
+					help={ __(
+						'Select type of pagination.',
+						'crowdify-blocks'
+					) }
 				/>
 				<ToggleControl
-					label={ __( 'Clickable Pagination', TEXT_DOMAIN ) }
+					label={ __( 'Clickable Pagination', 'crowdify-blocks' ) }
 					checked={ clickablePagination }
 					onChange={ ( value ) =>
 						setAttributes( { clickablePagination: value } )
@@ -114,7 +117,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<SelectControl
-					label={ __( 'Direction', TEXT_DOMAIN ) }
+					label={ __( 'Direction', 'crowdify-blocks' ) }
 					value={ direction }
 					options={ [
 						{ label: 'Horizontal', value: 'horizontal' },
@@ -129,14 +132,17 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Slider Settings', TEXT_DOMAIN ) }>
+			<PanelBody title={ __( 'Slider Settings', 'crowdify-blocks' ) }>
 				<NumberControl
-					label={ __( 'Space Between', TEXT_DOMAIN ) }
+					label={ __( 'Space Between', 'crowdify-blocks' ) }
 					value={ spaceBetween }
 					onChange={ ( value ) =>
 						setAttributes( { spaceBetween: value } )
 					}
-					help={ __( 'Distance between slides in px.', TEXT_DOMAIN ) }
+					help={ __(
+						'Distance between slides in px.',
+						'crowdify-blocks'
+					) }
 				/>
 				<NumberControl
 					label="Slider Per View"
@@ -150,9 +156,9 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 			</PanelBody>
-			<PanelBody title={ __( 'Animation', TEXT_DOMAIN ) }>
+			<PanelBody title={ __( 'Animation', 'crowdify-blocks' ) }>
 				<ToggleControl
-					label={ __( 'Autoplay', TEXT_DOMAIN ) }
+					label={ __( 'Autoplay', 'crowdify-blocks' ) }
 					checked={ autoplay }
 					onChange={ ( value ) =>
 						setAttributes( { autoplay: value } )
@@ -163,7 +169,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<ToggleControl
-					label={ __( 'Loop', TEXT_DOMAIN ) }
+					label={ __( 'Loop', 'crowdify-blocks' ) }
 					checked={ loop }
 					onChange={ ( value ) => setAttributes( { loop: value } ) }
 					help={ __(
@@ -181,7 +187,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<SelectControl
-					label={ __( 'Effect', TEXT_DOMAIN ) }
+					label={ __( 'Effect', 'crowdify-blocks' ) }
 					value={ effect }
 					options={ [
 						{ label: 'Slide', value: 'slide' },
@@ -211,7 +217,7 @@ export const Inspector = ( props ) => {
 					onChange={ ( value ) => setAttributes( { speed: value } ) }
 				/>
 				<ToggleControl
-					label={ __( 'Free Mode', TEXT_DOMAIN ) }
+					label={ __( 'Free Mode', 'crowdify-blocks' ) }
 					checked={ freeMode }
 					onChange={ ( value ) =>
 						setAttributes( { freeMode: value } )
@@ -222,7 +228,7 @@ export const Inspector = ( props ) => {
 					) }
 				/>
 				<ToggleControl
-					label={ __( 'Sticky', TEXT_DOMAIN ) }
+					label={ __( 'Sticky', 'crowdify-blocks' ) }
 					checked={ sticky }
 					disabled={ ! freeMode }
 					onChange={ ( value ) => setAttributes( { sticky: value } ) }

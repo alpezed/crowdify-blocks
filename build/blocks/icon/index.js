@@ -246,10 +246,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../icons */ "./src/blocks/icon/icons/index.js");
 /* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
-/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../utils/constants */ "./src/utils/constants.js");
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_icons__WEBPACK_IMPORTED_MODULE_6__]);
 _icons__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
 
 
 
@@ -261,8 +259,8 @@ _icons__WEBPACK_IMPORTED_MODULE_6__ = (__webpack_async_dependencies__.then ? (aw
 function IconsModal({
   isInserterOpen,
   setInserterOpen,
-  attributes,
-  setAttributes
+  icon: iconName,
+  onSelect
 }) {
   const [searchInput, setSearchInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)();
   const [selectedCategory, setSelectedCategory] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)('all__untitled-ui');
@@ -275,8 +273,8 @@ function IconsModal({
   if (searchInput) {
     shownIcons = iconsAll.filter(icon => {
       const input = searchInput.toLowerCase();
-      const iconName = icon.title.toLowerCase();
-      if (iconName.includes(input)) {
+      const iconTitle = icon.title.toLowerCase();
+      if (iconTitle.includes(input)) {
         return true;
       }
       return false;
@@ -313,7 +311,7 @@ function IconsModal({
       categories.sort().unshift(allCategory);
       categoriesFull.unshift({
         name: allCategory,
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('All', _utils_constants__WEBPACK_IMPORTED_MODULE_8__.TEXT_DOMAIN)
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('All', 'crowdify-blocks')
       });
     }
     preparedTypes.push({
@@ -325,12 +323,13 @@ function IconsModal({
     });
   });
   function updateIconAttributes(name) {
-    const iconsAll = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_7__.flattenIconsArray)(iconsByType);
-    const selectedIcon = iconsAll.find(icon => icon.name === name);
-    setAttributes({
-      icon: '',
-      iconName: name
-    });
+    // const iconsAll = flattenIconsArray( iconsByType );
+
+    onSelect(name);
+    // setAttributes( {
+    // 	icon: '',
+    // 	iconName: name,
+    // } );
     setInserterOpen(false);
   }
   function onClickCategory(category) {
@@ -349,10 +348,6 @@ function IconsModal({
         return icon.type === type.type && iconCats.includes(category);
       });
       const categoryTitle = (_type$categoriesFull$ = type.categoriesFull.filter(c => c.name === category)[0]?.title) !== null && _type$categoriesFull$ !== void 0 ? _type$categoriesFull$ : category;
-      console.log({
-        type,
-        categoryTitle
-      });
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.MenuItem, {
         key: `category-${category}`,
         className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({
@@ -367,11 +362,12 @@ function IconsModal({
     className: "icons-list"
   }, shownIcons.map(icon => {
     var _icon$title;
-    const Icon = icon?.icon;
+    // const Icon = icon?.icon;
+
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       key: `icon-${icon.name}`,
       className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('icons-list__item', 'block-editor-block-types-list__item', {
-        'is-active': icon.name === attributes?.iconName
+        'is-active': icon.name === iconName
         // 'has-no-icon-fill': icon?.hasNoIconFill,
       }),
       onClick: () => updateIconAttributes(icon.name)
@@ -383,10 +379,10 @@ function IconsModal({
   }));
   const noResults = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "block-editor-inserter__no-results"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('No results found.', _utils_constants__WEBPACK_IMPORTED_MODULE_8__.TEXT_DOMAIN)));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('No results found.', 'crowdify-blocks')));
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
     className: "wp-block-crowdify-block-icon-inserter__modal",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Icon Library', _utils_constants__WEBPACK_IMPORTED_MODULE_8__.TEXT_DOMAIN),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Icon Library', 'crowdify-blocks'),
     onRequestClose: () => setInserterOpen(false),
     isFullScreen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -436,19 +432,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/more.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/more.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/constants */ "./src/utils/constants.js");
-/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/icons */ "./src/utils/icons.js");
-/* harmony import */ var _components_icons_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/icons-modal */ "./src/blocks/icon/components/icons-modal.js");
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./icons */ "./src/blocks/icon/icons/index.js");
-/* harmony import */ var _components_justify_content_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/justify-content-control */ "./src/components/justify-content-control/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon/editor.scss");
-/* harmony import */ var _icons_lightning__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./icons/lightning */ "./src/blocks/icon/icons/lightning.js");
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_icons_modal__WEBPACK_IMPORTED_MODULE_9__, _icons__WEBPACK_IMPORTED_MODULE_10__]);
-([_components_icons_modal__WEBPACK_IMPORTED_MODULE_9__, _icons__WEBPACK_IMPORTED_MODULE_10__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/icons */ "./src/utils/icons.js");
+/* harmony import */ var _components_icons_modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/icons-modal */ "./src/blocks/icon/components/icons-modal.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./icons */ "./src/blocks/icon/icons/index.js");
+/* harmony import */ var _components_justify_content_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/justify-content-control */ "./src/components/justify-content-control/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon/editor.scss");
+/* harmony import */ var _icons_lightning__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./icons/lightning */ "./src/blocks/icon/icons/lightning.js");
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_icons_modal__WEBPACK_IMPORTED_MODULE_8__, _icons__WEBPACK_IMPORTED_MODULE_9__]);
+([_components_icons_modal__WEBPACK_IMPORTED_MODULE_8__, _icons__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -480,13 +474,15 @@ function Edit(props) {
     gradientValue
   } = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalUseGradient)();
   const [isInserterOpen, setInserterOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)();
-  const iconsAll = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_8__.flattenIconsArray)((0,_icons__WEBPACK_IMPORTED_MODULE_10__["default"])());
-  const namedIcon = iconsAll.find(icon => icon.name === iconName);
+  const iconsAll = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_7__.flattenIconsArray)((0,_icons__WEBPACK_IMPORTED_MODULE_9__["default"])());
+  const namedIcon = iconsAll.find(({
+    name
+  }) => name === iconName);
   let printedIcon = namedIcon ? namedIcon.icon : '';
 
   // Icons provided by third-parties are generally strings.
   if (typeof printedIcon === 'string') {
-    printedIcon = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_8__.parseIcon)(printedIcon);
+    printedIcon = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_7__.parseIcon)(printedIcon);
   }
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
   const borderProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalGetBorderClassesAndStyles)(attributes);
@@ -517,8 +513,8 @@ function Edit(props) {
       setInserterOpen(true);
       onClose(true);
     },
-    icon: _icons_lightning__WEBPACK_IMPORTED_MODULE_13__.lightningIcon
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Browse icon library', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.MenuGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {
+    icon: _icons_lightning__WEBPACK_IMPORTED_MODULE_12__.lightningIcon
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Browse icon library', 'crowdify-blocks'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.MenuGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {
     onClick: () => {
       setAttributes({
         icon: undefined,
@@ -526,10 +522,10 @@ function Edit(props) {
       });
       onClose(true);
     }
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Clear icon', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN)))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Clear icon', 'crowdify-blocks')))));
   const blockControls = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, {
     group: "block"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_justify_content_control__WEBPACK_IMPORTED_MODULE_11__.JustifyToolbar, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarGroup, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_justify_content_control__WEBPACK_IMPORTED_MODULE_10__.JustifyToolbar, {
     allowedControls: ['left', 'center', 'right'],
     value: justifyContent,
     onChange: value => setAttributes({
@@ -541,7 +537,7 @@ function Edit(props) {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Settings')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Width', 'crowdify-blocks'),
     value: width,
     onChange: value => setAttributes({
       width: value
@@ -549,7 +545,7 @@ function Edit(props) {
     step: 1,
     max: 1000
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Height', 'crowdify-blocks'),
     value: height,
     onChange: value => setAttributes({
       height: value
@@ -558,13 +554,13 @@ function Edit(props) {
     max: 1000
   }))));
   const iconMarkup = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !icon && !iconName ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Placeholder, {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
     label: "Icon",
-    instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Choose an icon from the library, pick one from your media library.', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN)
+    instructions: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Choose an icon from the library, pick one from your media library.', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
     variant: "primary",
     onClick: () => setInserterOpen(true)
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icon Library', _utils_constants__WEBPACK_IMPORTED_MODULE_7__.TEXT_DOMAIN))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Icon Library', 'crowdify-blocks'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: iconClasses,
     style: iconStyles
   }, printedIcon));
@@ -578,7 +574,7 @@ function Edit(props) {
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, blockControls, inspectorControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...modifiedBlockProps
-  }, iconMarkup), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_icons_modal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, iconMarkup), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_icons_modal__WEBPACK_IMPORTED_MODULE_8__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     isInserterOpen: isInserterOpen,
@@ -608,33 +604,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _untitled_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./untitled-ui */ "./src/blocks/icon/icons/untitled-ui/index.js");
-/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/constants */ "./src/utils/constants.js");
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_untitled_ui__WEBPACK_IMPORTED_MODULE_2__]);
 _untitled_ui__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
 
 
 
 const icons = [{
   isDefault: false,
   type: 'untitled-ui',
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Untitled UI', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Untitled UI', 'crowdify-blocks'),
   icons: [].concat(_untitled_ui__WEBPACK_IMPORTED_MODULE_2__["default"]),
   categories: [{
     name: 'general',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('General', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('General', 'crowdify-blocks')
   }, {
     name: 'layout',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout', 'crowdify-blocks')
   }, {
     name: 'development',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Development', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Development', 'crowdify-blocks')
   }, {
     name: 'charts',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Charts', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Charts', 'crowdify-blocks')
   }, {
     name: 'media',
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Media & Devices', _utils_constants__WEBPACK_IMPORTED_MODULE_3__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Media & Devices', 'crowdify-blocks')
   }]
 }];
 function getIcons() {
@@ -1020,23 +1014,6 @@ function JustifyContentUI({
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JustifyContentUI);
-
-/***/ }),
-
-/***/ "./src/utils/constants.js":
-/*!********************************!*\
-  !*** ./src/utils/constants.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CATEGORY: () => (/* binding */ CATEGORY),
-/* harmony export */   TEXT_DOMAIN: () => (/* binding */ TEXT_DOMAIN)
-/* harmony export */ });
-const TEXT_DOMAIN = 'crowdify-blocks';
-const CATEGORY = 'crowdify';
 
 /***/ }),
 

@@ -1,0 +1,111 @@
+.editor-icon-control {
+	padding: 0;
+}
+
+.editor-icon-control .components-spinner {
+	left: 50%;
+	margin-left: -9px;
+	margin-top: -9px;
+	position: absolute;
+	top: 50%;
+}
+
+.editor-icon-control .components-responsive-wrapper__content {
+	max-width: 100%;
+	width: auto;
+}
+
+.editor-icon-control__container {
+	position: relative;
+	margin-bottom: 24px;
+}
+
+.editor-icon-control__container:focus .editor-icon-control__actions,
+.editor-icon-control__container:focus-within .editor-icon-control__actions,
+.editor-icon-control__container:hover .editor-icon-control__actions {
+	opacity: 1;
+}
+
+.editor-icon-control__preview,
+.editor-icon-control__toggle {
+	box-shadow: 0 0 0 0 var(--wp-admin-theme-color);
+	display: flex;
+	justify-content: center;
+	max-height: 120px;
+	overflow: hidden;
+	padding: 0;
+	transition: all 0.1s ease-out;
+	width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.editor-icon-control__preview,
+	.editor-icon-control__toggle {
+		transition-delay: 0s;
+		transition-duration: 0s;
+	}
+}
+
+.editor-icon-control__preview {
+	height: 150px;
+	box-shadow: 0 0 0 0 var(--wp-admin-theme-color);
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	padding: 0;
+	transition: all 0.1s ease-out;
+	width: 100%;
+	background: #f0f0f0;
+
+	svg {
+		width: 80px;
+		height: 80px;
+		fill: none;
+
+		path {
+			stroke: currentColor !important;
+		}
+	}
+}
+
+.editor-icon-control__preview .components-responsive-wrapper {
+	background: #f0f0f0;
+	width: 100%;
+}
+
+.editor-icon-control__toggle {
+	background-color: #f0f0f0;
+	border-radius: 2px;
+	line-height: 20px;
+	min-height: 90px;
+	padding: 8px 0;
+	text-align: center;
+}
+
+.editor-icon-control__toggle:hover {
+	background: #ddd;
+	color: #1e1e1e;
+}
+
+.editor-icon-control__actions {
+	bottom: 0;
+	opacity: 0;
+	padding: 8px;
+	position: absolute;
+	transition: opacity 50ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.editor-icon-control__actions {
+		transition-delay: 0s;
+		transition-duration: 0s;
+	}
+}
+
+.editor-icon-control__action {
+	-webkit-backdrop-filter: blur(16px) saturate(180%);
+	backdrop-filter: blur(16px) saturate(180%);
+	background: #ffffffbf;
+	flex-grow: 1;
+	justify-content: center;
+}

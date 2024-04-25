@@ -1,5 +1,6 @@
 // Import the original config from the @wordpress/scripts package.
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const path = require( 'path' );
 
 // Import the helper to find and generate the entry points in the src directory
 const { getWebpackEntryPoints } = require( '@wordpress/scripts/utils/config' );
@@ -11,5 +12,11 @@ module.exports = {
 		...getWebpackEntryPoints(),
 		hooks: './src/hooks/index.js',
 		variations: './src/variations/index.js',
+	},
+	resolve: {
+		...defaultConfig.resolve,
+		alias: {
+			'~': path.resolve( __dirname, 'src/' ),
+		},
 	},
 };

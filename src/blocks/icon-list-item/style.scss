@@ -10,6 +10,7 @@
 	align-items: center;
 	position: relative;
 	padding-left: 0;
+	stroke-width: 2;
 
 	.list-item-icon {
 		line-height: 0;
@@ -21,6 +22,7 @@
 
 		path {
 			stroke: currentColor !important;
+			stroke-width: inherit;
 		}
 	}
 }

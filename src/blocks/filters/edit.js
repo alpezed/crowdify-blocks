@@ -166,7 +166,7 @@ export default function Edit( props ) {
 							onUpdateParentAttributes( e, 'all' )
 						}
 					>
-						{ __( 'View All', TEXT_DOMAIN ) }
+						{ __( 'View All', 'crowdify-blocks' ) }
 					</a>
 				</li>
 				{ categories?.map( ( category ) => (

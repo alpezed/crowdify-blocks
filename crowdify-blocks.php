@@ -30,9 +30,19 @@ function crowdify_blocks_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/slide' );
 	register_block_type( __DIR__ . '/build/blocks/filters' );
 	register_block_type( __DIR__ . '/build/blocks/icon-list' );
-	register_block_type( __DIR__ . '/build/blocks/icon-list-item' );
+	register_block_type( __DIR__ . '/build/blocks/icon-list-item');
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
+
+function crowdify_icon_list_item_render_callback ( $attributes, $content, $block_instance ) {
+	if ( isset( $block_instance ) && is_object( $block_instance ) && isset( $block_instance->context['iconName'] ) ) {
+		$parent_default = $block_instance->context['iconName'];
+
+		$content = str_replace( 'USE_PARENT_DEFAULT_ICON', $parent_default, $content );
+	}
+
+	return $content;
+}
 
 /**
  * Enqueues the block editor assets for the Crowdify Blocks plugin.

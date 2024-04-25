@@ -13,13 +13,12 @@ import { useState } from '@wordpress/element';
 
 import getIcons from '../icons';
 import { flattenIconsArray, simplifyCategories } from '../../../utils/icons';
-import { TEXT_DOMAIN } from '../../../utils/constants';
 
 export default function IconsModal( {
 	isInserterOpen,
 	setInserterOpen,
-	attributes,
-	setAttributes,
+	icon: iconName,
+	onSelect,
 } ) {
 	const [ searchInput, setSearchInput ] = useState();
 	const [ selectedCategory, setSelectedCategory ] =
@@ -37,9 +36,9 @@ export default function IconsModal( {
 	if ( searchInput ) {
 		shownIcons = iconsAll.filter( ( icon ) => {
 			const input = searchInput.toLowerCase();
-			const iconName = icon.title.toLowerCase();
+			const iconTitle = icon.title.toLowerCase();
 
-			if ( iconName.includes( input ) ) {
+			if ( iconTitle.includes( input ) ) {
 				return true;
 			}
 
@@ -78,7 +77,7 @@ export default function IconsModal( {
 			categories.sort().unshift( allCategory );
 			categoriesFull.unshift( {
 				name: allCategory,
-				title: __( 'All', TEXT_DOMAIN ),
+				title: __( 'All', 'crowdify-blocks' ),
 			} );
 		}
 
@@ -92,13 +91,13 @@ export default function IconsModal( {
 	} );
 
 	function updateIconAttributes( name ) {
-		const iconsAll = flattenIconsArray( iconsByType );
-		const selectedIcon = iconsAll.find( ( icon ) => icon.name === name );
+		// const iconsAll = flattenIconsArray( iconsByType );
 
-		setAttributes( {
-			icon: '',
-			iconName: name,
-		} );
+		onSelect( name );
+		// setAttributes( {
+		// 	icon: '',
+		// 	iconName: name,
+		// } );
 		setInserterOpen( false );
 	}
 
@@ -130,8 +129,6 @@ export default function IconsModal( {
 							( c ) => c.name === category
 						)[ 0 ]?.title ?? category;
 
-					console.log( { type, categoryTitle } );
-
 					return (
 						<MenuItem
 							key={ `category-${ category }` }
@@ -157,7 +154,7 @@ export default function IconsModal( {
 	const searchResults = (
 		<div className="icons-list">
 			{ shownIcons.map( ( icon ) => {
-				const Icon = icon?.icon;
+				// const Icon = icon?.icon;
 
 				return (
 					<Button
@@ -166,7 +163,7 @@ export default function IconsModal( {
 							'icons-list__item',
 							'block-editor-block-types-list__item',
 							{
-								'is-active': icon.name === attributes?.iconName,
+								'is-active': icon.name === iconName,
 								// 'has-no-icon-fill': icon?.hasNoIconFill,
 							}
 						) }
@@ -186,14 +183,14 @@ export default function IconsModal( {
 
 	const noResults = (
 		<div className="block-editor-inserter__no-results">
-			<p>{ __( 'No results found.', TEXT_DOMAIN ) }</p>
+			<p>{ __( 'No results found.', 'crowdify-blocks' ) }</p>
 		</div>
 	);
 
 	return (
 		<Modal
 			className="wp-block-crowdify-block-icon-inserter__modal"
-			title={ __( 'Icon Library', TEXT_DOMAIN ) }
+			title={ __( 'Icon Library', 'crowdify-blocks' ) }
 			onRequestClose={ () => setInserterOpen( false ) }
 			isFullScreen
 		>

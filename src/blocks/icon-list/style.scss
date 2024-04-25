@@ -12,14 +12,23 @@
 
 	&:not(.is-inline-layout) {
 		flex-direction: column;
+
+		&.items-align {
+			&-right {
+				align-items: end;
+			}
+			&-center {
+				align-items: center;
+			}
+		}
 	}
 
-	&.items-align {
-		&-right {
-			align-items: end;
+	&.is-inline-layout {
+		&.items-align-right {
+			justify-content: end;
 		}
-		&-center {
-			align-items: center;
+		&.items-align-center {
+			justify-content: center;
 		}
 	}
 }

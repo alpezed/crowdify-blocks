@@ -106,19 +106,19 @@ const DEFAULT_TEMPLATE = [[DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
   url: `${PLACEHOLDER_IMG_1}`,
   ...DEFAULT_BLOCK_ATTRIBUTES
 }, [['core/paragraph', {
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_constants__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', 'crowdify-blocks'),
   ...DEFAULT_INNERBLOCK_ATTRIBUTES
 }]]]]], [DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
   url: `${PLACEHOLDER_IMG_2}`,
   ...DEFAULT_BLOCK_ATTRIBUTES
 }, [['core/paragraph', {
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_constants__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', 'crowdify-blocks'),
   ...DEFAULT_INNERBLOCK_ATTRIBUTES
 }]]]]], [DEFAULT_BLOCK, {}, [[DEFAULT_INNERBLOCK, {
   url: `${PLACEHOLDER_IMG_3}`,
   ...DEFAULT_BLOCK_ATTRIBUTES
 }, [['core/paragraph', {
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', _utils_constants__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Slide title…', 'crowdify-blocks'),
   ...DEFAULT_INNERBLOCK_ATTRIBUTES
 }]]]]]];
 
@@ -264,25 +264,25 @@ const Inspector = props => {
     sticky
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Navigation', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Navigation', 'crowdify-blocks'),
     checked: navigation,
     onChange: value => setAttributes({
       navigation: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Navigation” will display arrows so user can navigate forward/backward.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Height', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Height', 'crowdify-blocks'),
     checked: autoheight,
     onChange: value => setAttributes({
       autoheight: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set to true and slider wrapper will adapt its height to the height of the currently active slide', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction Settings', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction Settings', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', 'crowdify-blocks'),
     value: direction,
     options: [{
       label: 'Horizontal',
@@ -296,16 +296,16 @@ const Inspector = props => {
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('For vertical slider, Slides Per View should be set to 1', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Settings', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Settings', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination', 'crowdify-blocks'),
     checked: pagination,
     onChange: value => setAttributes({
       pagination: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Pagination” will display dots along the bottom for user to click through slides.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Type', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Pagination Type', 'crowdify-blocks'),
     value: paginationType,
     options: [{
       label: 'Progress Bar',
@@ -320,16 +320,16 @@ const Inspector = props => {
     onChange: value => setAttributes({
       paginationType: value
     }),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select type of pagination.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select type of pagination.', 'crowdify-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Clickable Pagination', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Clickable Pagination', 'crowdify-blocks'),
     checked: clickablePagination,
     onChange: value => setAttributes({
       clickablePagination: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('If enabled then clicking on pagination button will cause transition to appropriate slide. Only for bullets pagination type', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Direction', 'crowdify-blocks'),
     value: direction,
     options: [{
       label: 'Horizontal',
@@ -343,14 +343,14 @@ const Inspector = props => {
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('For vertical slider, Slides Per View should be set to 1', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slider Settings', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slider Settings', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Space Between', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Space Between', 'crowdify-blocks'),
     value: spaceBetween,
     onChange: value => setAttributes({
       spaceBetween: value
     }),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Distance between slides in px.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Distance between slides in px.', 'crowdify-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
     label: "Slider Per View",
     value: slidesPerView,
@@ -359,16 +359,16 @@ const Inspector = props => {
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Number of slides per view (slides visible at the same time on slider's container). Can be a number or auto", _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Animation', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Animation', 'crowdify-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Autoplay', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Autoplay', 'crowdify-blocks'),
     checked: autoplay,
     onChange: value => setAttributes({
       autoplay: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('“Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loop', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loop', 'crowdify-blocks'),
     checked: loop,
     onChange: value => setAttributes({
       loop: value
@@ -382,7 +382,7 @@ const Inspector = props => {
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Delay between transitions (in ms). If this parameter is not specified, auto play will be disabled', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Effect', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Effect', 'crowdify-blocks'),
     value: effect,
     options: [{
       label: 'Slide',
@@ -421,14 +421,14 @@ const Inspector = props => {
       speed: value
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Free Mode', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Free Mode', 'crowdify-blocks'),
     checked: freeMode,
     onChange: value => setAttributes({
       freeMode: value
     }),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enables free mode functionality.', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sticky', _utils_constants__WEBPACK_IMPORTED_MODULE_4__.TEXT_DOMAIN),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Sticky', 'crowdify-blocks'),
     checked: sticky,
     disabled: !freeMode,
     onChange: value => setAttributes({

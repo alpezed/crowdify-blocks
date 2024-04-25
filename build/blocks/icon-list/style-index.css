@@ -15,11 +15,17 @@
 .wp-block-crowdify-icon-list:not(.is-inline-layout) {
   flex-direction: column;
 }
-.wp-block-crowdify-icon-list.items-align-right {
+.wp-block-crowdify-icon-list:not(.is-inline-layout).items-align-right {
   align-items: end;
 }
-.wp-block-crowdify-icon-list.items-align-center {
+.wp-block-crowdify-icon-list:not(.is-inline-layout).items-align-center {
   align-items: center;
+}
+.wp-block-crowdify-icon-list.is-inline-layout.items-align-right {
+  justify-content: end;
+}
+.wp-block-crowdify-icon-list.is-inline-layout.items-align-center {
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

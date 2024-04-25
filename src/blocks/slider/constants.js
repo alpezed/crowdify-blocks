@@ -93,7 +93,10 @@ export const DEFAULT_TEMPLATE = [
 					[
 						'core/paragraph',
 						{
-							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							placeholder: __(
+								'Slide title…',
+								'crowdify-blocks'
+							),
 							...DEFAULT_INNERBLOCK_ATTRIBUTES,
 						},
 					],
@@ -115,7 +118,10 @@ export const DEFAULT_TEMPLATE = [
 					[
 						'core/paragraph',
 						{
-							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							placeholder: __(
+								'Slide title…',
+								'crowdify-blocks'
+							),
 							...DEFAULT_INNERBLOCK_ATTRIBUTES,
 						},
 					],
@@ -137,7 +143,10 @@ export const DEFAULT_TEMPLATE = [
 					[
 						'core/paragraph',
 						{
-							placeholder: __( 'Slide title…', TEXT_DOMAIN ),
+							placeholder: __(
+								'Slide title…',
+								'crowdify-blocks'
+							),
 							...DEFAULT_INNERBLOCK_ATTRIBUTES,
 						},
 					],

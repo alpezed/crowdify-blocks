@@ -21,16 +21,32 @@
       "selector": "li",
       "__experimentalRole": "content"
     },
-    "iconName": {
-      "type": "string",
-      "default": "untitled-ui-check"
+    "horizontalSpace": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    },
+    "iconColorValue": {
+      "type": "string"
+    },
+    "iconSize": {
+      "type": "number"
     }
   },
   "usesContext": [
     "iconName",
     "iconSize",
     "horizontalSpace",
-    "verticalSpace"
+    "verticalSpace",
+    "iconColor",
+    "iconColorValue",
+    "iconBackgroundColor",
+    "iconBackgroundColorValue",
+    "iconLineWidth"
   ],
   "supports": {
     "className": false,
@@ -56,6 +72,14 @@
         "fontSize": true
       }
     },
+    "color": {
+      "gradients": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "link": true,
+        "text": true
+      }
+    },
     "interactivity": {
       "clientNavigation": true
     }
@@ -64,5 +88,6 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "render": "file:./render.php",
   "viewScript": "file:./view.js"
 }

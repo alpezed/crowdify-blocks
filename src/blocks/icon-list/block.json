@@ -20,6 +20,21 @@
 			"type": "string",
 			"default": "untitled-ui-check"
 		},
+		"iconBackgroundColor": {
+			"type": "string"
+		},
+		"iconBackgroundColorValue": {
+			"type": "string"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"iconColorValue": {
+			"type": "string"
+		},
+		"gradient": {
+			"type": "string"
+		},
 		"horizontalSpace": {
 			"type": "number",
 			"default": 5
@@ -29,6 +44,9 @@
 			"default": 10
 		},
 		"iconSize": {
+			"type": "number"
+		},
+		"iconLineWidth": {
 			"type": "number"
 		},
 		"align": {
@@ -43,7 +61,12 @@
 		"iconName": "iconName",
 		"iconSize": "iconSize",
 		"horizontalSpace": "horizontalSpace",
-		"verticalSpace": "verticalSpace"
+		"verticalSpace": "verticalSpace",
+		"iconColor": "iconColor",
+		"iconColorValue": "iconColorValue",
+		"iconBackgroundColor": "iconBackgroundColor",
+		"iconBackgroundColorValue": "iconBackgroundColorValue",
+		"iconLineWidth": "iconLineWidth"
 	},
 	"supports": {
 		"anchor": true,
@@ -66,7 +89,7 @@
 			"gradients": true,
 			"link": true,
 			"__experimentalDefaultControls": {
-				"background": true,
+				"link": true,
 				"text": true
 			}
 		},

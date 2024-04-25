@@ -1,22 +1,17 @@
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
+ * External Dependencies
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ */
+import classnames from 'classnames';
+
+/**
+ * WordPress Dependencies
+ *
  */
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {Element} Element to render.
- */
 export default function save( { attributes } ) {
-	const { verticalSpace } = attributes;
+	const { layout, align, verticalSpace } = attributes;
 
 	return (
 		<ul
@@ -24,6 +19,10 @@ export default function save( { attributes } ) {
 				style: {
 					gap: `${ verticalSpace }px`,
 				},
+				className: classnames( {
+					[ `items-align-${ align }` ]: align,
+					[ `is-${ layout }-layout` ]: layout,
+				} ),
 			} ) }
 		>
 			<InnerBlocks.Content />

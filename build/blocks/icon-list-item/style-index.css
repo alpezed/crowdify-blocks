@@ -12,6 +12,7 @@
   align-items: center;
   position: relative;
   padding-left: 0;
+  stroke-width: 2;
 }
 .wp-block-crowdify-icon-list-item .list-item-icon {
   line-height: 0;
@@ -22,6 +23,7 @@
 }
 .wp-block-crowdify-icon-list-item svg path {
   stroke: currentColor !important;
+  stroke-width: inherit;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

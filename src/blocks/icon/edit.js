@@ -6,9 +6,9 @@ import {
 	BlockControls,
 	InspectorControls,
 	useBlockProps,
-	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
-	__experimentalUseGradient as useGradient,
-	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
+	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles, // eslint-disable-line
+	__experimentalUseGradient as useGradient, // eslint-disable-line
+	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles, // eslint-disable-line
 } from '@wordpress/block-editor';
 import {
 	DropdownMenu,
@@ -23,7 +23,6 @@ import {
 import { more } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 
-import { TEXT_DOMAIN } from '../../utils/constants';
 import { flattenIconsArray, parseIcon } from '../../utils/icons';
 import IconsModal from './components/icons-modal';
 import getIcons from './icons';
@@ -41,7 +40,7 @@ export function Edit( props ) {
 	const [ isInserterOpen, setInserterOpen ] = useState();
 
 	const iconsAll = flattenIconsArray( getIcons() );
-	const namedIcon = iconsAll.find( ( icon ) => icon.name === iconName );
+	const namedIcon = iconsAll.find( ( { name } ) => name === iconName );
 	let printedIcon = namedIcon ? namedIcon.icon : '';
 
 	// Icons provided by third-parties are generally strings.
@@ -86,7 +85,7 @@ export function Edit( props ) {
 							} }
 							icon={ lightningIcon }
 						>
-							{ __( 'Browse icon library', TEXT_DOMAIN ) }
+							{ __( 'Browse icon library', 'crowdify-blocks' ) }
 						</MenuItem>
 					</MenuGroup>
 					<MenuGroup>
@@ -99,7 +98,7 @@ export function Edit( props ) {
 								onClose( true );
 							} }
 						>
-							{ __( 'Clear icon', TEXT_DOMAIN ) }
+							{ __( 'Clear icon', 'crowdify-blocks' ) }
 						</MenuItem>
 					</MenuGroup>
 				</>
@@ -131,7 +130,7 @@ export function Edit( props ) {
 			<InspectorControls style="settings">
 				<PanelBody title={ __( 'Settings' ) }>
 					<RangeControl
-						label={ __( 'Width', TEXT_DOMAIN ) }
+						label={ __( 'Width', 'crowdify-blocks' ) }
 						value={ width }
 						onChange={ ( value ) =>
 							setAttributes( { width: value } )
@@ -140,7 +139,7 @@ export function Edit( props ) {
 						max={ 1000 }
 					/>
 					<RangeControl
-						label={ __( 'Height', TEXT_DOMAIN ) }
+						label={ __( 'Height', 'crowdify-blocks' ) }
 						value={ height }
 						onChange={ ( value ) =>
 							setAttributes( { height: value } )
@@ -161,14 +160,14 @@ export function Edit( props ) {
 					label="Icon"
 					instructions={ __(
 						'Choose an icon from the library, pick one from your media library.',
-						TEXT_DOMAIN
+						'crowdify-blocks'
 					) }
 				>
 					<Button
 						variant="primary"
 						onClick={ () => setInserterOpen( true ) }
 					>
-						{ __( 'Icon Library', TEXT_DOMAIN ) }
+						{ __( 'Icon Library', 'crowdify-blocks' ) }
 					</Button>
 				</Placeholder>
 			) : (

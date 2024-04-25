@@ -91,7 +91,7 @@ const CROWDIFY_POSTS = 'crowdify/posts';
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockVariation)('core/query', {
   name: CROWDIFY_POSTS,
   icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
-  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Posts', _utils_constants__WEBPACK_IMPORTED_MODULE_2__.TEXT_DOMAIN),
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Posts', 'crowdify-blocks'),
   category: _utils_constants__WEBPACK_IMPORTED_MODULE_2__.CATEGORY,
   attributes: {
     namespace: CROWDIFY_POSTS,

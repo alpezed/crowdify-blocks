@@ -33,4 +33,3 @@ if ( ! empty( $taxonomies ) && isset( $taxonomies ) ) {
 
 
 echo implode( "", $items );
-?>

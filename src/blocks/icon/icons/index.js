@@ -2,34 +2,33 @@ import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 import defaultIcons from './untitled-ui';
-import { TEXT_DOMAIN } from '../../../utils/constants';
 
 const icons = [
 	{
 		isDefault: false,
 		type: 'untitled-ui',
-		title: __( 'Untitled UI', TEXT_DOMAIN ),
+		title: __( 'Untitled UI', 'crowdify-blocks' ),
 		icons: [].concat( defaultIcons ),
 		categories: [
 			{
 				name: 'general',
-				title: __( 'General', TEXT_DOMAIN ),
+				title: __( 'General', 'crowdify-blocks' ),
 			},
 			{
 				name: 'layout',
-				title: __( 'Layout', TEXT_DOMAIN ),
+				title: __( 'Layout', 'crowdify-blocks' ),
 			},
 			{
 				name: 'development',
-				title: __( 'Development', TEXT_DOMAIN ),
+				title: __( 'Development', 'crowdify-blocks' ),
 			},
 			{
 				name: 'charts',
-				title: __( 'Charts', TEXT_DOMAIN ),
+				title: __( 'Charts', 'crowdify-blocks' ),
 			},
 			{
 				name: 'media',
-				title: __( 'Media & Devices', TEXT_DOMAIN ),
+				title: __( 'Media & Devices', 'crowdify-blocks' ),
 			},
 		],
 	},

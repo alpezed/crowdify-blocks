@@ -9,7 +9,7 @@ import { customPostType as icon } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-import { CATEGORY, TEXT_DOMAIN } from '../utils/constants';
+import { CATEGORY } from '../utils/constants';
 
 import './style.scss';
 
@@ -18,7 +18,7 @@ const CROWDIFY_POSTS = 'crowdify/posts';
 registerBlockVariation( 'core/query', {
 	name: CROWDIFY_POSTS,
 	icon,
-	title: __( 'Posts', TEXT_DOMAIN ),
+	title: __( 'Posts', 'crowdify-blocks' ),
 	category: CATEGORY,
 	attributes: {
 		namespace: CROWDIFY_POSTS,
