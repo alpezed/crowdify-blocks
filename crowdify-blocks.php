@@ -25,12 +25,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function crowdify_blocks_block_init() {
-	register_block_type( __DIR__ . '/build/blocks/icon' );
-	register_block_type( __DIR__ . '/build/blocks/slider' );
-	register_block_type( __DIR__ . '/build/blocks/slide' );
-	register_block_type( __DIR__ . '/build/blocks/filters' );
-	register_block_type( __DIR__ . '/build/blocks/icon-list' );
-	register_block_type( __DIR__ . '/build/blocks/icon-list-item');
+	$block_paths = [
+		'icon',
+		'slider',
+		'slide',
+		'filters',
+		'icon-list',
+		'icon-list-item'
+	];
+
+	foreach ( $block_paths as $path ) {
+		register_block_type( __DIR__ . '/build/blocks/' . $path );
+	}
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
 
@@ -53,7 +59,12 @@ function crowdify_enqueue_block_editor_assets() {
 			$assets['version'],
 			true
 		);
-		wp_enqueue_style( 'crowdify-block-variations-css', plugin_dir_url( __FILE__ ) . '/build/style-variations.css', [], $assets['version'] );
+		wp_enqueue_style(
+			'crowdify-block-variations-css',
+			plugin_dir_url( __FILE__ ) . '/build/style-variations.css',
+			[],
+			$assets['version']
+		);
 	}
 
 	$hooks_file = plugin_dir_path( __FILE__ ) . '/build/hooks.asset.php';
@@ -68,6 +79,7 @@ function crowdify_enqueue_block_editor_assets() {
 		);
 	}
 }
+
 add_action( 'enqueue_block_editor_assets', 'crowdify_enqueue_block_editor_assets' );
 
 /**
@@ -122,9 +134,9 @@ function crowdify_block_wrapper( $block_content, $block ) {
 	$swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
 
 	// Process the UL and LI tags to add Swiper classes.
-	while( $tag_processor->next_tag( array( 'tag_name' => 'UL' ) ) ) {
+	while ( $tag_processor->next_tag( array( 'tag_name' => 'UL' ) ) ) {
 		$tag_processor->add_class( 'swiper-wrapper' );
-		while( $tag_processor->next_tag( array( 'tag_name' => 'LI' ) ) ) {
+		while ( $tag_processor->next_tag( array( 'tag_name' => 'LI' ) ) ) {
 			$tag_processor->add_class( 'swiper-slide' );
 		}
 	}
