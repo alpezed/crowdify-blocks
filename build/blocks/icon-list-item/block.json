@@ -16,13 +16,13 @@
       "type": "string"
     },
     "content": {
-      "type": "rich-text",
-      "source": "rich-text",
-      "selector": "li",
+      "type": "string",
+      "default": "",
       "__experimentalRole": "content"
     },
     "horizontalSpace": {
-      "type": "number"
+      "type": "number",
+      "default": ""
     },
     "icon": {
       "type": "string"
@@ -34,11 +34,12 @@
       "type": "string"
     },
     "iconSize": {
-      "type": "number"
+      "type": "number",
+      "default": ""
     }
   },
   "usesContext": [
-    "iconName",
+    "icon",
     "iconSize",
     "horizontalSpace",
     "verticalSpace",
@@ -55,8 +56,8 @@
       "margin": true,
       "padding": true,
       "__experimentalDefaultControls": {
-        "margin": false,
-        "padding": false
+        "margin": true,
+        "padding": true
       }
     },
     "typography": {

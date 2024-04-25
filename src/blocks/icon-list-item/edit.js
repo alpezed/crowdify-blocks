@@ -57,7 +57,7 @@ function Edit( props ) {
 		horizontalSpace,
 	} = attributes;
 	const {
-		iconName: fallbackIconName,
+		icon: fallbackIcon,
 		horizontalSpace: parentHorizontalSpace,
 		iconSize: fallbackIconSize,
 		iconColor: fallbackIconColor,
@@ -67,12 +67,21 @@ function Edit( props ) {
 
 	const { icon: printedIcon } = useIcon( {
 		iconName: icon,
-		fallbackIconName,
+		fallbackIcon,
 	} );
+
+	let hSpace;
+	if ( iconSize ) {
+		hSpace = `${ horizontalSpace }px`;
+	} else if ( parentHorizontalSpace ) {
+		hSpace = `${ parentHorizontalSpace }px`;
+	} else {
+		hSpace = undefined;
+	}
 
 	const blockProps = useBlockProps( {
 		style: {
-			gap: `${ horizontalSpace ?? parentHorizontalSpace }px`,
+			gap: hSpace,
 		},
 	} );
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
@@ -83,12 +92,21 @@ function Edit( props ) {
 	const themeIconColor = iconColor ?? fallbackIconColor;
 	const iconClasses = classnames( 'list-item-icon', {
 		'has-icon-color': iconColorValue || fallbackIconColorValue,
-		[ `has-${ themeIconColor }-color` ]: themeIconColor,
+		[ `has-${ themeIconColor?.slug }-color` ]: themeIconColor,
 	} );
 
+	let size;
+	if ( iconSize ) {
+		size = `${ iconSize }px`;
+	} else if ( fallbackIconSize ) {
+		size = `${ fallbackIconSize }px`;
+	} else {
+		size = undefined;
+	}
+
 	const iconStyle = {
-		fontSize: `${ iconSize ?? fallbackIconSize }px`,
-		color: iconColorValue,
+		fontSize: size,
+		color: !! iconColorValue ? iconColorValue : fallbackIconColorValue,
 		strokeWidth: fallbackIconLineWidth,
 	};
 
@@ -199,17 +217,18 @@ function Edit( props ) {
 		<>
 			{ inspectorControls }
 			<li { ...innerBlocksProps }>
-				{ printedIcon && (
+				{ icon || fallbackIcon ? (
 					<span className={ iconClasses } style={ iconStyle }>
 						{ printedIcon }
 					</span>
-				) }
+				) : null }
 				<RichText
 					identifier="content"
 					tagName="div"
 					onChange={ ( nextContent ) =>
 						setAttributes( { content: nextContent } )
 					}
+					className="list-item-text"
 					value={ content }
 					aria-label={ __( 'List text' ) }
 					placeholder={ placeholder || __( 'List' ) }

@@ -266,7 +266,7 @@ function Edit(props) {
     horizontalSpace
   } = attributes;
   const {
-    iconName: fallbackIconName,
+    icon: fallbackIcon,
     horizontalSpace: parentHorizontalSpace,
     iconSize: fallbackIconSize,
     iconColor: fallbackIconColor,
@@ -277,11 +277,19 @@ function Edit(props) {
     icon: printedIcon
   } = (0,_hooks_use_icon__WEBPACK_IMPORTED_MODULE_6__.useIcon)({
     iconName: icon,
-    fallbackIconName
+    fallbackIcon
   });
+  let hSpace;
+  if (iconSize) {
+    hSpace = `${horizontalSpace}px`;
+  } else if (parentHorizontalSpace) {
+    hSpace = `${parentHorizontalSpace}px`;
+  } else {
+    hSpace = undefined;
+  }
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
     style: {
-      gap: `${horizontalSpace !== null && horizontalSpace !== void 0 ? horizontalSpace : parentHorizontalSpace}px`
+      gap: hSpace
     }
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useInnerBlocksProps)(blockProps, {
@@ -291,11 +299,19 @@ function Edit(props) {
   const themeIconColor = iconColor !== null && iconColor !== void 0 ? iconColor : fallbackIconColor;
   const iconClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('list-item-icon', {
     'has-icon-color': iconColorValue || fallbackIconColorValue,
-    [`has-${themeIconColor}-color`]: themeIconColor
+    [`has-${themeIconColor?.slug}-color`]: themeIconColor
   });
+  let size;
+  if (iconSize) {
+    size = `${iconSize}px`;
+  } else if (fallbackIconSize) {
+    size = `${fallbackIconSize}px`;
+  } else {
+    size = undefined;
+  }
   const iconStyle = {
-    fontSize: `${iconSize !== null && iconSize !== void 0 ? iconSize : fallbackIconSize}px`,
-    color: iconColorValue,
+    fontSize: size,
+    color: !!iconColorValue ? iconColorValue : fallbackIconColorValue,
     strokeWidth: fallbackIconLineWidth
   };
   const colorSettings = [{
@@ -383,15 +399,16 @@ function Edit(props) {
   })));
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, inspectorControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     ...innerBlocksProps
-  }, printedIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, icon || fallbackIcon ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: iconClasses,
     style: iconStyle
-  }, printedIcon), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+  }, printedIcon) : null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
     identifier: "content",
     tagName: "div",
     onChange: nextContent => setAttributes({
       content: nextContent
     }),
+    className: "list-item-text",
     value: content,
     "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('List text'),
     placeholder: placeholder || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('List')
@@ -423,8 +440,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/icon-list-item/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/icon-list-item/save.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/icon-list-item/block.json");
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_edit__WEBPACK_IMPORTED_MODULE_2__, _save__WEBPACK_IMPORTED_MODULE_3__]);
-([_edit__WEBPACK_IMPORTED_MODULE_2__, _save__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_edit__WEBPACK_IMPORTED_MODULE_2__]);
+_edit__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -468,47 +485,68 @@ __webpack_async_result__();
 /*!*******************************************!*\
   !*** ./src/blocks/icon-list-item/save.js ***!
   \*******************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Save)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_use_icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ~/hooks/use-icon */ "./src/hooks/use-icon.js");
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_use_icon__WEBPACK_IMPORTED_MODULE_2__]);
-_hooks_use_icon__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+
+/**
+ * External Dependencies
+ *
+ */
+
 
 /**
  * WordPress dependencies
  */
 
-
 function Save({
   attributes
 }) {
   const {
-    iconName
+    iconName,
+    iconColor,
+    iconColorValue,
+    iconSize,
+    horizontalSpace
   } = attributes;
   const defaultIconName = !!iconName ? iconName : 'USE_PARENT_DEFAULT_ICON';
-  const {
-    icon: printedIcon
-  } = (0,_hooks_use_icon__WEBPACK_IMPORTED_MODULE_2__.useIcon)({
-    iconName: defaultIconName
+  const defaultHorizontalSpace = !!horizontalSpace ? `${horizontalSpace}px` : 'var(--cf-icon-list-default-h-space)';
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+    className: 'wp-block-crowdify-icon-list-item',
+    style: {
+      gap: defaultHorizontalSpace
+    }
+  });
+  const iconStyle = {
+    color: !!iconColorValue ? iconColorValue : 'var(--cf-icon-list-default-icon-color)',
+    fontSize: !!iconSize ? `${iconSize}px` : 'var(--cf-icon-list-default-icon-size)',
+    strokeWidth: 'var(--cf-icon-list-icon-stroke-width)'
+  };
+  const iconClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('list-item-icon', {
+    [`has-${iconColor}-color`]: iconColor
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, printedIcon, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    ...blockProps
+  }, !!defaultIconName && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: iconClasses,
+    "data-icon": defaultIconName,
+    style: iconStyle
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+    tagName: "span",
+    className: "list-item-text",
     value: attributes.content
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
+  }));
 }
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
 
 /***/ }),
 
@@ -766,6 +804,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/**
+ * Asynchronously imports icons from specified directories and returns them as an array.
+ *
+ * @param {Array<string>} directories - An array of directory names to import icons from.
+ * @return {Promise<Array<Object>>} - A promise that resolves to an array of objects representing the imported icons.
+ * Each object has the following properties:
+ * - `name` (string): The name of the icon file.
+ * - `title` (string): The title of the icon, converted to start case.
+ * - `icon` (Object): The imported icon object.
+ * - `categories` (Array<string>): An array containing the directory name the icon was imported from.
+ * @throws {Error} - If an error occurs during the import process, an empty array is returned.
+ */
 async function importIcons(directories) {
   try {
     const allIcons = await Promise.all(directories.map(async directory => {
@@ -780,15 +831,11 @@ async function importIcons(directories) {
     }));
     return allIcons.flat();
   } catch (error) {
-    console.error('Error importing icons:', error);
     return [];
   }
 }
 const directories = ['general', 'layout', 'media', 'development', 'charts'];
 const allIcons = await importIcons(directories);
-console.log({
-  allIcons
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (allIcons);
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
@@ -1068,14 +1115,14 @@ _blocks_icon_icons__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies_
 
 function useIcon({
   iconName,
-  fallbackIconName
+  fallbackIcon
 }) {
   const iconsAll = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.flattenIconsArray)((0,_blocks_icon_icons__WEBPACK_IMPORTED_MODULE_0__["default"])());
   const namedIcon = iconsAll.find(icon => {
-    if (iconName) {
+    if (!!iconName) {
       return icon.name === iconName;
     }
-    return icon.name === fallbackIconName;
+    return icon.name === fallbackIcon;
   });
   const icon = namedIcon ? namedIcon.icon : '';
   return {
@@ -8358,7 +8405,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/icon-list-item","version":"0.1.0","title":"Icon List Item","category":"crowdify","parent":["crowdify/icon-list"],"icon":"smiley","description":"Create a list item.","example":{},"attributes":{"placeholder":{"type":"string"},"content":{"type":"rich-text","source":"rich-text","selector":"li","__experimentalRole":"content"},"horizontalSpace":{"type":"number"},"icon":{"type":"string"},"iconColor":{"type":"string"},"iconColorValue":{"type":"string"},"iconSize":{"type":"number"}},"usesContext":["iconName","iconSize","horizontalSpace","verticalSpace","iconColor","iconColorValue","iconBackgroundColor","iconBackgroundColorValue","iconLineWidth"],"supports":{"className":false,"__experimentalSelector":"li","spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"link":true,"text":true}},"interactivity":{"clientNavigation":true}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/icon-list-item","version":"0.1.0","title":"Icon List Item","category":"crowdify","parent":["crowdify/icon-list"],"icon":"smiley","description":"Create a list item.","example":{},"attributes":{"placeholder":{"type":"string"},"content":{"type":"string","default":"","__experimentalRole":"content"},"horizontalSpace":{"type":"number","default":""},"icon":{"type":"string"},"iconColor":{"type":"string"},"iconColorValue":{"type":"string"},"iconSize":{"type":"number","default":""}},"usesContext":["icon","iconSize","horizontalSpace","verticalSpace","iconColor","iconColorValue","iconBackgroundColor","iconBackgroundColorValue","iconLineWidth"],"supports":{"className":false,"__experimentalSelector":"li","spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":true,"padding":true}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"link":true,"text":true}},"interactivity":{"clientNavigation":true}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

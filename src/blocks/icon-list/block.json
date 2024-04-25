@@ -16,7 +16,7 @@
 		"placeholder": {
 			"type": "string"
 		},
-		"iconName": {
+		"icon": {
 			"type": "string",
 			"default": "untitled-ui-check"
 		},
@@ -44,10 +44,12 @@
 			"default": 10
 		},
 		"iconSize": {
-			"type": "number"
+			"type": "number",
+			"default": ""
 		},
 		"iconLineWidth": {
-			"type": "number"
+			"type": "number",
+			"default": ""
 		},
 		"align": {
 			"type": "string"
@@ -58,7 +60,7 @@
 		}
 	},
 	"providesContext": {
-		"iconName": "iconName",
+		"icon": "icon",
 		"iconSize": "iconSize",
 		"horizontalSpace": "horizontalSpace",
 		"verticalSpace": "verticalSpace",

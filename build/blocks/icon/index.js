@@ -687,6 +687,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/**
+ * Asynchronously imports icons from specified directories and returns them as an array.
+ *
+ * @param {Array<string>} directories - An array of directory names to import icons from.
+ * @return {Promise<Array<Object>>} - A promise that resolves to an array of objects representing the imported icons.
+ * Each object has the following properties:
+ * - `name` (string): The name of the icon file.
+ * - `title` (string): The title of the icon, converted to start case.
+ * - `icon` (Object): The imported icon object.
+ * - `categories` (Array<string>): An array containing the directory name the icon was imported from.
+ * @throws {Error} - If an error occurs during the import process, an empty array is returned.
+ */
 async function importIcons(directories) {
   try {
     const allIcons = await Promise.all(directories.map(async directory => {
@@ -701,15 +714,11 @@ async function importIcons(directories) {
     }));
     return allIcons.flat();
   } catch (error) {
-    console.error('Error importing icons:', error);
     return [];
   }
 }
 const directories = ['general', 'layout', 'media', 'development', 'charts'];
 const allIcons = await importIcons(directories);
-console.log({
-  allIcons
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (allIcons);
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);

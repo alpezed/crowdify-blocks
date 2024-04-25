@@ -289,7 +289,7 @@ function Edit(props) {
   const {
     horizontalSpace,
     verticalSpace,
-    iconName,
+    icon,
     iconSize,
     iconLineWidth,
     align,
@@ -297,12 +297,10 @@ function Edit(props) {
     iconBackgroundColorValue,
     iconColorValue
   } = attributes;
-
-  // const { gradientValue, setGradient } = useGradient();
-
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
     style: {
-      gap: `${verticalSpace}px`
+      '--cf-icon-list-default-h-space': horizontalSpace ? `${horizontalSpace}px` : undefined,
+      gap: verticalSpace && `${verticalSpace}px`
     },
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
       [`items-align-${align}`]: align,
@@ -421,10 +419,10 @@ function Edit(props) {
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon Settings')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components__WEBPACK_IMPORTED_MODULE_6__.IconControl, {
-    value: iconName,
+    value: icon,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'crowdify-blocks'),
     onChange: value => setAttributes({
-      iconName: value
+      icon: value
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Size', 'crowdify-blocks'),
@@ -595,12 +593,20 @@ function save({
   const {
     layout,
     align,
+    iconColorValue,
+    iconSize,
+    iconLineWidth,
+    horizontalSpace,
     verticalSpace
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
       style: {
-        gap: `${verticalSpace}px`
+        '--cf-icon-list-default-icon-color': iconColorValue,
+        '--cf-icon-list-default-icon-size': iconSize,
+        '--cf-icon-list-icon-stroke-width': iconLineWidth,
+        '--cf-icon-list-default-h-space': `${horizontalSpace}px`,
+        gap: verticalSpace ? `${verticalSpace}px` : undefined
       },
       className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
         [`items-align-${align}`]: align,
@@ -866,6 +872,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/**
+ * Asynchronously imports icons from specified directories and returns them as an array.
+ *
+ * @param {Array<string>} directories - An array of directory names to import icons from.
+ * @return {Promise<Array<Object>>} - A promise that resolves to an array of objects representing the imported icons.
+ * Each object has the following properties:
+ * - `name` (string): The name of the icon file.
+ * - `title` (string): The title of the icon, converted to start case.
+ * - `icon` (Object): The imported icon object.
+ * - `categories` (Array<string>): An array containing the directory name the icon was imported from.
+ * @throws {Error} - If an error occurs during the import process, an empty array is returned.
+ */
 async function importIcons(directories) {
   try {
     const allIcons = await Promise.all(directories.map(async directory => {
@@ -880,15 +899,11 @@ async function importIcons(directories) {
     }));
     return allIcons.flat();
   } catch (error) {
-    console.error('Error importing icons:', error);
     return [];
   }
 }
 const directories = ['general', 'layout', 'media', 'development', 'charts'];
 const allIcons = await importIcons(directories);
-console.log({
-  allIcons
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (allIcons);
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
@@ -1168,14 +1183,14 @@ _blocks_icon_icons__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies_
 
 function useIcon({
   iconName,
-  fallbackIconName
+  fallbackIcon
 }) {
   const iconsAll = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.flattenIconsArray)((0,_blocks_icon_icons__WEBPACK_IMPORTED_MODULE_0__["default"])());
   const namedIcon = iconsAll.find(icon => {
-    if (iconName) {
+    if (!!iconName) {
       return icon.name === iconName;
     }
-    return icon.name === fallbackIconName;
+    return icon.name === fallbackIcon;
   });
   const icon = namedIcon ? namedIcon.icon : '';
   return {
@@ -8458,7 +8473,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/icon-list","version":"0.1.0","title":"Icon List","category":"crowdify","allowedBlocks":["crowdify/icon-list-item"],"icon":"smiley","description":"Create a icon list.","example":{},"attributes":{"reversed":{"type":"boolean"},"placeholder":{"type":"string"},"iconName":{"type":"string","default":"untitled-ui-check"},"iconBackgroundColor":{"type":"string"},"iconBackgroundColorValue":{"type":"string"},"iconColor":{"type":"string"},"iconColorValue":{"type":"string"},"gradient":{"type":"string"},"horizontalSpace":{"type":"number","default":5},"verticalSpace":{"type":"number","default":10},"iconSize":{"type":"number"},"iconLineWidth":{"type":"number"},"align":{"type":"string"},"layout":{"type":"string","default":"default"}},"providesContext":{"iconName":"iconName","iconSize":"iconSize","horizontalSpace":"horizontalSpace","verticalSpace":"verticalSpace","iconColor":"iconColor","iconColorValue":"iconColorValue","iconBackgroundColor":"iconBackgroundColor","iconBackgroundColorValue":"iconBackgroundColorValue","iconLineWidth":"iconLineWidth"},"supports":{"anchor":true,"align":false,"html":false,"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"link":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"__unstablePasteTextInline":true,"__experimentalSelector":"ol,ul","__experimentalOnMerge":true,"__experimentalSlashInserter":true,"interactivity":{"clientNavigation":true}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/icon-list","version":"0.1.0","title":"Icon List","category":"crowdify","allowedBlocks":["crowdify/icon-list-item"],"icon":"smiley","description":"Create a icon list.","example":{},"attributes":{"reversed":{"type":"boolean"},"placeholder":{"type":"string"},"icon":{"type":"string","default":"untitled-ui-check"},"iconBackgroundColor":{"type":"string"},"iconBackgroundColorValue":{"type":"string"},"iconColor":{"type":"string"},"iconColorValue":{"type":"string"},"gradient":{"type":"string"},"horizontalSpace":{"type":"number","default":5},"verticalSpace":{"type":"number","default":10},"iconSize":{"type":"number","default":""},"iconLineWidth":{"type":"number","default":""},"align":{"type":"string"},"layout":{"type":"string","default":"default"}},"providesContext":{"icon":"icon","iconSize":"iconSize","horizontalSpace":"horizontalSpace","verticalSpace":"verticalSpace","iconColor":"iconColor","iconColorValue":"iconColorValue","iconBackgroundColor":"iconBackgroundColor","iconBackgroundColorValue":"iconBackgroundColorValue","iconLineWidth":"iconLineWidth"},"supports":{"anchor":true,"align":false,"html":false,"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"gradients":true,"link":true,"__experimentalDefaultControls":{"link":true,"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":false,"padding":false}},"__unstablePasteTextInline":true,"__experimentalSelector":"ol,ul","__experimentalOnMerge":true,"__experimentalSlashInserter":true,"interactivity":{"clientNavigation":true}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

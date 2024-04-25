@@ -51,7 +51,7 @@ function Edit( props ) {
 	const {
 		horizontalSpace,
 		verticalSpace,
-		iconName,
+		icon,
 		iconSize,
 		iconLineWidth,
 		align,
@@ -60,11 +60,12 @@ function Edit( props ) {
 		iconColorValue,
 	} = attributes;
 
-	// const { gradientValue, setGradient } = useGradient();
-
 	const blockProps = useBlockProps( {
 		style: {
-			gap: `${ verticalSpace }px`,
+			'--cf-icon-list-default-h-space': horizontalSpace
+				? `${ horizontalSpace }px`
+				: undefined,
+			gap: verticalSpace && `${ verticalSpace }px`,
 		},
 		className: classnames( {
 			[ `items-align-${ align }` ]: align,
@@ -196,10 +197,10 @@ function Edit( props ) {
 				</PanelBody>
 				<PanelBody title={ __( 'Icon Settings' ) }>
 					<IconControl
-						value={ iconName }
+						value={ icon }
 						label={ __( 'Icon', 'crowdify-blocks' ) }
 						onChange={ ( value ) =>
-							setAttributes( { iconName: value } )
+							setAttributes( { icon: value } )
 						}
 					/>
 					<RangeControl

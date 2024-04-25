@@ -1,24 +1,58 @@
 /**
+ * External Dependencies
+ *
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
-import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
-
-import { useIcon } from '~/hooks/use-icon';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 export default function Save( { attributes } ) {
-	const { iconName } = attributes;
+	const { iconName, iconColor, iconColorValue, iconSize, horizontalSpace } =
+		attributes;
 
 	const defaultIconName = !! iconName ? iconName : 'USE_PARENT_DEFAULT_ICON';
+	const defaultHorizontalSpace = !! horizontalSpace
+		? `${ horizontalSpace }px`
+		: 'var(--cf-icon-list-default-h-space)';
 
-	const { icon: printedIcon } = useIcon( {
-		iconName: defaultIconName,
+	const blockProps = useBlockProps.save( {
+		className: 'wp-block-crowdify-icon-list-item',
+		style: {
+			gap: defaultHorizontalSpace,
+		},
+	} );
+
+	const iconStyle = {
+		color: !! iconColorValue
+			? iconColorValue
+			: 'var(--cf-icon-list-default-icon-color)',
+		fontSize: !! iconSize
+			? `${ iconSize }px`
+			: 'var(--cf-icon-list-default-icon-size)',
+		strokeWidth: 'var(--cf-icon-list-icon-stroke-width)',
+	};
+
+	const iconClasses = classnames( 'list-item-icon', {
+		[ `has-${ iconColor }-color` ]: iconColor,
 	} );
 
 	return (
-		<li { ...useBlockProps.save() }>
-			{ printedIcon }
-			<RichText.Content value={ attributes.content } />
-			<InnerBlocks.Content />
+		<li { ...blockProps }>
+			{ !! defaultIconName && (
+				<span
+					className={ iconClasses }
+					data-icon={ defaultIconName }
+					style={ iconStyle }
+				/>
+			) }
+			<RichText.Content
+				tagName="span"
+				className="list-item-text"
+				value={ attributes.content }
+			/>
 		</li>
 	);
 }

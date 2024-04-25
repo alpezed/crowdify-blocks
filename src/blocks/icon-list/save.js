@@ -11,13 +11,25 @@ import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { layout, align, verticalSpace } = attributes;
+	const {
+		layout,
+		align,
+		iconColorValue,
+		iconSize,
+		iconLineWidth,
+		horizontalSpace,
+		verticalSpace,
+	} = attributes;
 
 	return (
 		<ul
 			{ ...useBlockProps.save( {
 				style: {
-					gap: `${ verticalSpace }px`,
+					'--cf-icon-list-default-icon-color': iconColorValue,
+					'--cf-icon-list-default-icon-size': iconSize,
+					'--cf-icon-list-icon-stroke-width': iconLineWidth,
+					'--cf-icon-list-default-h-space': `${ horizontalSpace }px`,
+					gap: verticalSpace ? `${ verticalSpace }px` : undefined,
 				},
 				className: classnames( {
 					[ `items-align-${ align }` ]: align,

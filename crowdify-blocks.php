@@ -34,16 +34,6 @@ function crowdify_blocks_block_init() {
 }
 add_action( 'init', 'crowdify_blocks_block_init' );
 
-function crowdify_icon_list_item_render_callback ( $attributes, $content, $block_instance ) {
-	if ( isset( $block_instance ) && is_object( $block_instance ) && isset( $block_instance->context['iconName'] ) ) {
-		$parent_default = $block_instance->context['iconName'];
-
-		$content = str_replace( 'USE_PARENT_DEFAULT_ICON', $parent_default, $content );
-	}
-
-	return $content;
-}
-
 /**
  * Enqueues the block editor assets for the Crowdify Blocks plugin.
  *
