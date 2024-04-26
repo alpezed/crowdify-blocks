@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Crowdify Blocks
- * Description:       Example block scaffolded with Create Block tool.
+ * Description:       Elevate Your WordPress Theme Transform your Crowdify theme with Crowdify Blocks. Effortlessly create captivating blocks, streamline your workflow, and unleash your creativity with seamless integration.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
@@ -31,13 +31,15 @@ function crowdify_blocks_block_init() {
 		'slide',
 		'filters',
 		'icon-list',
-		'icon-list-item'
+		'icon-list-item',
+		'team'
 	];
 
 	foreach ( $block_paths as $path ) {
 		register_block_type( __DIR__ . '/build/blocks/' . $path );
 	}
 }
+
 add_action( 'init', 'crowdify_blocks_block_init' );
 
 /**
@@ -150,3 +152,30 @@ function crowdify_block_wrapper( $block_content, $block ) {
 }
 
 add_filter( 'render_block_core/post-template', 'crowdify_block_wrapper', 10, 2 );
+
+/**
+ * Wraps the given block content with a custom class if the block is forced to be full width.
+ *
+ * @param string $block_content The content of the block.
+ * @param array $block The block data.
+ * @return string The updated block content.
+ */
+function crowdify_image_force_full_width( $block_content, $block ) {
+	$force_full_width = isset( $block['attrs']['isForceFullWidth'] ) ? $block['attrs']['isForceFullWidth'] : false;
+
+	if ( ! $force_full_width ) {
+		return $block_content;
+	}
+
+	// Append the custom class to the block.
+	$p = new WP_HTML_Tag_Processor( $block_content );
+	if ( $p->next_tag() ) {
+		$p->add_class( 'is-force-full-width' );
+	}
+
+	$block_content = $p->get_updated_html();
+
+	return $block_content;
+}
+
+add_filter( 'render_block_core/image', 'crowdify_image_force_full_width', 10, 2 );

@@ -1,0 +1,1 @@
+{"version":3,"file":"./style-hooks.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://crowdify-blocks/./src/hooks/style.scss"],"sourcesContent":[".wp-block-image.is-force-full-width {\n\twidth: 100% !important;\n}\n"],"names":[],"sourceRoot":""}

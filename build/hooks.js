@@ -238,6 +238,401 @@ const PostTemplateCustomToolbar = ({
 
 /***/ }),
 
+/***/ "./src/hooks/core/image.js":
+/*!*********************************!*\
+  !*** ./src/hooks/core/image.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+/**
+ * Add the attribute needed for reversing column direction on mobile.
+ *
+ * @since 0.1.0
+ * @param {Object} settings
+ */
+function addAttributes(settings) {
+  if ('core/image' !== settings.name) {
+    return settings;
+  }
+
+  // Add the attribute.
+  const imageAttributes = {
+    isForceFullWidth: {
+      type: 'boolean',
+      default: false
+    }
+  };
+  const newSettings = {
+    ...settings,
+    attributes: {
+      ...settings.attributes,
+      ...imageAttributes
+    }
+  };
+  return newSettings;
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('blocks.registerBlockType', 'crowdify/enable-force-full-width/add-attributes', addAttributes);
+
+/**
+ * Filter the BlockEdit object and add icon inspector controls to button blocks.
+ *
+ * @since 0.1.0
+ * @param {Object} BlockEdit
+ */
+function addInspectorControls(BlockEdit) {
+  return props => {
+    if (props.name !== 'core/image') {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+        ...props
+      });
+    }
+    const {
+      attributes,
+      setAttributes
+    } = props;
+    const {
+      isForceFullWidth
+    } = attributes;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+      ...props
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "crowdify-force-full-width-container"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Force Full Width', 'crowdify-blocks'),
+      checked: isForceFullWidth,
+      onChange: () => {
+        setAttributes({
+          isForceFullWidth: !isForceFullWidth
+        });
+      }
+    }))));
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('editor.BlockEdit', 'crowdify/enable-column-direction/add-inspector-controls', addInspectorControls);
+
+/**
+ * Add icon and position classes in the Editor.
+ *
+ * @since 0.1.0
+ * @param {Object} BlockListBlock
+ */
+function addClasses(BlockListBlock) {
+  return props => {
+    const {
+      name,
+      attributes
+    } = props;
+    if ('core/image' !== name || !attributes?.isForceFullWidth) {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
+        ...props
+      });
+    }
+    const classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(props?.className, {
+      'is-force-full-width': attributes?.isForceFullWidth
+    });
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
+      ...props,
+      className: classes
+    });
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('editor.BlockListBlock', 'crowdify/enable-column-direction/add-classes', addClasses);
+
+/***/ }),
+
+/***/ "./src/hooks/core/query.js":
+/*!*********************************!*\
+  !*** ./src/hooks/core/query.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   withPostTemplateControls: () => (/* binding */ withPostTemplateControls)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_post_template_custom_toolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ~/components/post-template-custom-toolbar */ "./src/components/post-template-custom-toolbar.js");
+/* harmony import */ var _blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ~/blocks/slider/swiper-init */ "./src/blocks/slider/swiper-init.js");
+
+/**
+ * External Dependencies
+ */
+
+
+/**
+ * Wordpress Dependencies
+ *
+ */
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Higher-order component that wraps the given BlockListBlock component with a Swiper slider.
+ *
+ * @since 0.1.0
+ * @param {Function} BlockListBlock - The component to be wrapped.
+ */
+const withSwiperSlider = BlockListBlock => props => {
+  const {
+    name,
+    attributes,
+    clientId
+  } = props;
+  const {
+    crowdify
+  } = attributes;
+  const {
+    layout
+  } = crowdify || {};
+  if (name !== 'core/post-template' || layout?.type !== 'carousel') {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
+      ...props
+    });
+  }
+  const sliderRef = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.useRefEffect)(element => {
+    if (!element) {
+      return;
+    }
+    const templateEl = element.querySelector('ul');
+    if (!templateEl) {
+      return;
+    }
+    const list = templateEl?.querySelectorAll('li');
+    list?.forEach(li => li.classList?.add('swiper-slide'));
+    const options = {
+      // ...attributes,
+      ...{
+        autoplay: true,
+        grabCursor: false,
+        simulateTouch: false,
+        slidesPerView: 3,
+        spaceBetween: 20,
+        navigation: true
+      }
+    };
+
+    // Initialize slider.
+    let slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
+    const unsubscribeSliderUpdateListener = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.subscribe)(() => {
+      const selectedBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.select)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store).getSelectedBlock();
+      if (selectedBlock?.clientId === clientId) {
+        slider?.destroy();
+
+        // Disable the auto play.
+        options.autoplay = false;
+
+        // Initialize slider.
+        slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
+        slider.slideTo(0, 0);
+      }
+    });
+    return () => {
+      unsubscribeSliderUpdateListener();
+      slider?.destroy();
+    };
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: sliderRef,
+    className: "swiper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
+    ...props,
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('swiper-wrapper', {
+      'is-carousel': layout?.type === 'carousel'
+    })
+  }));
+};
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockListBlock', 'crowdify/add-slider', withSwiperSlider);
+
+/**
+ * Higher-order component that wraps the given BlockEdit component with InspectorControls
+ * if the active variation is crowdify/posts. Otherwise, it simply returns the BlockEdit component.
+ *
+ * @param {Function} BlockEdit - The component to be wrapped.
+ * @return {Function} The wrapped component.
+ */
+const withPostTemplateControls = BlockEdit => props => {
+  var _ref, _crowdifyLayout$type;
+  const {
+    name,
+    isSelected,
+    attributes,
+    setAttributes,
+    clientId
+  } = props;
+  const {
+    layout = {},
+    crowdify
+  } = attributes;
+  const {
+    layout: crowdifyLayout = {
+      type: 'default'
+    }
+  } = crowdify || {};
+  if (name !== 'core/post-template') {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+      ...props
+    });
+  }
+  const {
+    selectBlock
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store);
+  // eslint-disable-next-line no-shadow
+  const {
+    rootClientId
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
+    const {
+      getBlockHierarchyRootClientId
+    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store);
+    return {
+      rootClientId: getBlockHierarchyRootClientId(clientId)
+    };
+  }, []);
+  const layoutType = (_ref = (_crowdifyLayout$type = crowdifyLayout?.type) !== null && _crowdifyLayout$type !== void 0 ? _crowdifyLayout$type : layout?.type) !== null && _ref !== void 0 ? _ref : 'default';
+  const displayLayout = {
+    ...layout,
+    type: layoutType
+  };
+  const setDisplayLayout = newDisplayLayout => {
+    let updated = {
+      crowdify: {
+        ...crowdify,
+        layout: {
+          ...newDisplayLayout
+        }
+      }
+    };
+
+    // A little hack to render carousel preview.
+    selectBlock(rootClientId);
+    // selectBlock( props.clientId );
+
+    if (newDisplayLayout?.type === 'grid') {
+      updated = {
+        ...updated,
+        layout: {
+          ...layout,
+          type: newDisplayLayout.type
+        }
+      };
+    } else {
+      updated = {
+        ...updated,
+        layout: {
+          ...layout,
+          type: 'default'
+        }
+      };
+    }
+    setAttributes(updated);
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isSelected && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_post_template_custom_toolbar__WEBPACK_IMPORTED_MODULE_6__.PostTemplateCustomToolbar, {
+    displayLayout: displayLayout,
+    setDisplayLayout: setDisplayLayout
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+    key: "edit",
+    ...props
+  }));
+};
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'core/post-template', withPostTemplateControls);
+function addLayoutAttributes(settings, name) {
+  if (name !== 'core/post-template') {
+    return settings;
+  }
+  return {
+    ...settings,
+    attributes: {
+      ...settings.attributes,
+      crowdify: {
+        type: 'object',
+        layout: {
+          type: 'default'
+        }
+      }
+    }
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'crowdify/layout-attributes', addLayoutAttributes);
+
+/***/ }),
+
+/***/ "./src/hooks/index.js":
+/*!****************************!*\
+  !*** ./src/hooks/index.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/hooks/style.scss");
+/* harmony import */ var _core_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core/query */ "./src/hooks/core/query.js");
+/* harmony import */ var _core_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/image */ "./src/hooks/core/image.js");
+
+
+
+
+/***/ }),
+
+/***/ "./src/hooks/style.scss":
+/*!******************************!*\
+  !*** ./src/hooks/style.scss ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "React" ***!
@@ -10828,7 +11223,42 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -10869,249 +11299,68 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"hooks": 0,
+/******/ 			"./style-hooks": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkcrowdify_blocks"] = globalThis["webpackChunkcrowdify_blocks"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!****************************!*\
-  !*** ./src/hooks/index.js ***!
-  \****************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   withPostTemplateControls: () => (/* binding */ withPostTemplateControls)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_post_template_custom_toolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/post-template-custom-toolbar */ "./src/components/post-template-custom-toolbar.js");
-/* harmony import */ var _blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../blocks/slider/swiper-init */ "./src/blocks/slider/swiper-init.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
-
-/**
- * Wordpress Dependencies
- *
- */
-
-
-
-
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Higher-order component that wraps the given `BlockListBlock` component with a Swiper slider.
- *
- * @param {React.ComponentType} BlockListBlock - The component to wrap with the Swiper slider.
- * @return {React.ComponentType} The wrapped component with the Swiper slider functionality.
- */
-const withSwiperSlider = BlockListBlock => props => {
-  const {
-    name,
-    attributes,
-    clientId
-  } = props;
-  const {
-    crowdify
-  } = attributes;
-  const {
-    layout
-  } = crowdify || {};
-  if (name !== 'core/post-template' || layout?.type !== 'carousel') {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
-      ...props
-    });
-  }
-  const sliderRef = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.useRefEffect)(element => {
-    if (!element) {
-      return;
-    }
-    const templateEl = element.querySelector('ul');
-    if (!templateEl) {
-      return;
-    }
-    const list = templateEl?.querySelectorAll('li');
-    list?.forEach(li => li.classList?.add('swiper-slide'));
-    const options = {
-      // ...attributes,
-      ...{
-        autoplay: true,
-        grabCursor: false,
-        simulateTouch: false,
-        slidesPerView: 3,
-        spaceBetween: 20,
-        navigation: true
-      }
-    };
-
-    // Initialize slider.
-    let slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
-    const unsubscribeSliderUpdateListener = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.subscribe)(() => {
-      const selectedBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.select)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store).getSelectedBlock();
-      if (selectedBlock?.clientId === clientId) {
-        slider?.destroy();
-
-        // Disable the auto play.
-        options.autoplay = false;
-
-        // Initialize slider.
-        slider = (0,_blocks_slider_swiper_init__WEBPACK_IMPORTED_MODULE_7__.SwiperInit)(element, options);
-        slider.slideTo(0, 0);
-      }
-    });
-    return () => {
-      unsubscribeSliderUpdateListener();
-      slider?.destroy();
-    };
-  });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ref: sliderRef,
-    className: "swiper"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockListBlock, {
-    ...props,
-    className: classnames__WEBPACK_IMPORTED_MODULE_8___default()('swiper-wrapper', {
-      'is-carousel': layout?.type === 'carousel'
-    })
-  }));
-};
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockListBlock', 'crowdify/add-slider', withSwiperSlider);
-
-/**
- * Higher-order component that wraps the given BlockEdit component with InspectorControls
- * if the active variation is crowdify/posts. Otherwise, it simply returns the BlockEdit component.
- *
- * @param {Function} BlockEdit - The component to be wrapped.
- * @return {Function} The wrapped component.
- */
-const withPostTemplateControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(BlockEdit => props => {
-  var _ref, _crowdifyLayout$type;
-  const {
-    name,
-    isSelected,
-    attributes,
-    setAttributes,
-    clientId
-  } = props;
-  const {
-    layout = {},
-    crowdify
-  } = attributes;
-  const {
-    layout: crowdifyLayout = {
-      type: 'default'
-    }
-  } = crowdify || {};
-  if (name !== 'core/post-template') {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-      ...props
-    });
-  }
-  const {
-    selectBlock
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store);
-  const {
-    rootClientId
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
-    const {
-      getBlockHierarchyRootClientId
-    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store);
-    const rootClientId = getBlockHierarchyRootClientId(clientId);
-    return {
-      rootClientId
-    };
-  }, []);
-  const layoutType = (_ref = (_crowdifyLayout$type = crowdifyLayout?.type) !== null && _crowdifyLayout$type !== void 0 ? _crowdifyLayout$type : layout?.type) !== null && _ref !== void 0 ? _ref : 'default';
-  const displayLayout = {
-    ...layout,
-    type: layoutType
-  };
-  const setDisplayLayout = newDisplayLayout => {
-    let updated = {
-      crowdify: {
-        ...crowdify,
-        layout: {
-          ...newDisplayLayout
-        }
-      }
-    };
-
-    // A little hack to render carousel preview.
-    selectBlock(rootClientId);
-    // selectBlock( props.clientId );
-
-    if (newDisplayLayout?.type === 'grid') {
-      updated = {
-        ...updated,
-        layout: {
-          ...layout,
-          type: newDisplayLayout.type
-        }
-      };
-    } else {
-      updated = {
-        ...updated,
-        layout: {
-          ...layout,
-          type: 'default'
-        }
-      };
-    }
-    setAttributes(updated);
-  };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isSelected && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_post_template_custom_toolbar__WEBPACK_IMPORTED_MODULE_6__.PostTemplateCustomToolbar, {
-    displayLayout: displayLayout,
-    setDisplayLayout: setDisplayLayout
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-    key: "edit",
-    ...props
-  }));
-});
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'core/post-template', withPostTemplateControls);
-
-/**
- * Adds layout attributes to the settings object if the name is 'core/post-template'.
- *
- * @param {Object} settings - The settings object.
- * @param {string} name - The name of the template.
- * @returns {Object} - The updated settings object.
- */
-function addLayoutAttributes(settings, name) {
-  if (name !== 'core/post-template') {
-    return settings;
-  }
-  return {
-    ...settings,
-    attributes: {
-      ...settings.attributes,
-      crowdify: {
-        type: 'object',
-        layout: {
-          type: 'default'
-        }
-      }
-    }
-  };
-}
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'crowdify/layout-attributes', addLayoutAttributes);
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-hooks"], () => (__webpack_require__("./src/hooks/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=hooks.js.map
