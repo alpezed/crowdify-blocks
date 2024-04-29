@@ -77,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/constants */ "./src/utils/constants.js");
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ~/utils/constants */ "./src/utils/constants.js");
 /* harmony import */ var _constants_variation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ~/constants/variation */ "./src/constants/variation.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/variations/style.scss");
 
@@ -112,26 +112,32 @@ const icon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
 }));
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockVariation)('core/image', {
   name: _constants_variation__WEBPACK_IMPORTED_MODULE_4__.CROWDIFY_IMAGE_ZOOM,
+  isDefault: false,
   icon,
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Image Zoom', 'crowdify-blocks'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('The image zoom block adds an Image Zoom Effect when you click an image to your pages and posts.', 'crowdify-blocks'),
+  keywords: ['image', 'zoom'],
   category: _utils_constants__WEBPACK_IMPORTED_MODULE_3__.CATEGORY,
   attributes: {
-    namespace: _constants_variation__WEBPACK_IMPORTED_MODULE_4__.CROWDIFY_IMAGE_ZOOM,
-    margin: {
-      type: 'number',
-      default: 0
-    },
-    scrollOffset: {
-      type: 'number',
-      default: 0
-    },
-    background: {
-      type: 'string',
-      default: '#fff'
-    }
+    className: 'image-zoom'
+    // margin: {
+    // 	type: 'number',
+    // 	default: 0,
+    // },
+    // scrollOffset: {
+    // 	type: 'number',
+    // 	default: 0,
+    // },
+    // background: {
+    // 	type: 'string',
+    // 	default: '#fff',
+    // },
   },
-  isActive: ['namespace'],
-  scope: ['inserter', 'transform']
+  isActive: block => {
+    return block?.className?.includes('image-zoom');
+  },
+  scope: ['inserter', 'transform'],
+  viewScriptModule: 'file:./view.js'
 });
 
 /***/ }),

@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { CATEGORY } from '../utils/constants';
+import { CATEGORY } from '~/utils/constants';
 import { CROWDIFY_IMAGE_ZOOM } from '~/constants/variation';
 
 import './style.scss';
@@ -34,24 +34,33 @@ const icon = (
 
 registerBlockVariation( 'core/image', {
 	name: CROWDIFY_IMAGE_ZOOM,
+	isDefault: false,
 	icon,
 	title: __( 'Image Zoom', 'crowdify-blocks' ),
+	description: __(
+		'The image zoom block adds an Image Zoom Effect when you click an image to your pages and posts.',
+		'crowdify-blocks'
+	),
+	keywords: [ 'image', 'zoom' ],
 	category: CATEGORY,
 	attributes: {
-		namespace: CROWDIFY_IMAGE_ZOOM,
-		margin: {
-			type: 'number',
-			default: 0,
-		},
-		scrollOffset: {
-			type: 'number',
-			default: 0,
-		},
-		background: {
-			type: 'string',
-			default: '#fff',
-		},
+		className: 'image-zoom',
+		// margin: {
+		// 	type: 'number',
+		// 	default: 0,
+		// },
+		// scrollOffset: {
+		// 	type: 'number',
+		// 	default: 0,
+		// },
+		// background: {
+		// 	type: 'string',
+		// 	default: '#fff',
+		// },
 	},
-	isActive: [ 'namespace' ],
+	isActive: ( block ) => {
+		return block?.className?.includes( 'image-zoom' );
+	},
 	scope: [ 'inserter', 'transform' ],
+	viewScriptModule: 'file:./view.js',
 } );

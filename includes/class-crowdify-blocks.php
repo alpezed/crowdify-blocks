@@ -194,6 +194,7 @@ class Crowdify_Blocks {
 
 		$this->loader->add_action( 'init', $plugin_blocks, 'register_block_type' );
 		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_blocks, 'enqueue_block_editor_assets' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_blocks, 'enqueue_scripts' );
 		$this->loader->add_action( 'block_categories', $plugin_blocks, 'block_categories' );
 
 		$this->loader->add_filter( 'render_block_core/post-template', $plugin_blocks, 'slider_block_wrapper', 10, 2 );

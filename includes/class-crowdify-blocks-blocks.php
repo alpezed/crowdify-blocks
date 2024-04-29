@@ -89,6 +89,20 @@ class Crowdify_Blocks_Blocks {
 	}
 
 	/**
+	 * Enqueue scripts on block editor
+	 *
+	 * @since    1.0.0
+	 */
+	public function enqueue_scripts() {
+		$image_zoom_file = plugin_dir_path( dirname( __FILE__ ) ) . 'build/image-zoom.asset.php';
+		if ( file_exists( $image_zoom_file ) ) {
+			$assets = include $image_zoom_file;
+			wp_enqueue_script( "{$this->plugin_name}-image-zoom", plugin_dir_url( dirname( __FILE__ ) ) . 'build/image-zoom.js', $assets['dependencies'], $assets['version'], true );
+			wp_enqueue_style( "{$this->plugin_name}-image-zoom", plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-image-zoom.css', [], $assets['version'] );
+		}
+	}
+
+	/**
 	 * Merges the given array of block categories with the 'Crowdify' category.
 	 *
 	 * @param array $categories The array of block categories to merge with.
@@ -165,22 +179,52 @@ class Crowdify_Blocks_Blocks {
 	 *
 	 * @since    1.0.0
 	 */
-	public function core_image_block_force_full_width( $block_content, $block ) {
+	public function core_image_block_force_full_width( $content, $block ) {
 		$force_full_width = isset( $block['attrs']['isForceFullWidth'] ) ? $block['attrs']['isForceFullWidth'] : false;
 
+		$html = new WP_HTML_Tag_Processor( $content );
+
+		if ( false === stripos( $content, '<img' ) ) {
+			return '';
+		}
+
+		if ( strpos( $content, 'image-zoom') !== false ) {
+
+			// Perform a lookup for the anchor tag
+			$img = array(
+				'tag_name' => 'img',
+			);
+
+			$image_zoom_url = wp_get_attachment_image_url( $block['attrs']['id'], 'large' );
+
+			$html->next_tag( $img );
+			$html->set_attribute( 'data-zoomable', true );
+
+			if ( isset( $image_zoom_url ) ) {
+				$html->set_attribute( 'data-zoom-src', $image_zoom_url );
+			}
+
+			// Remove srcset, width, and height attributes
+			$html->set_attribute( 'srcset', '' );
+			$html->set_attribute( 'width', '' );
+			$html->set_attribute( 'height', '' );
+
+			return $html->get_updated_html();
+		}
+
 		if ( ! $force_full_width ) {
-			return $block_content;
+			return $content;
 		}
 
 		// Append the custom class to the block.
-		$p = new WP_HTML_Tag_Processor( $block_content );
-		if ( $p->next_tag() ) {
-			$p->add_class( 'is-force-full-width' );
+		if ( $html->next_tag() ) {
+			$html->add_class( 'is-force-full-width' );
 		}
 
-		$block_content = $p->get_updated_html();
 
-		return $block_content;
+		$content = $html->get_updated_html();
+
+		return $content;
 	}
 
 }

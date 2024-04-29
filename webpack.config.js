@@ -13,6 +13,7 @@ module.exports = {
 		hooks: './src/hooks/index.js',
 		variations: './src/variations/index.js',
 		constants: './src/constants/index.js',
+		'image-zoom': './src/blocks/image-zoom/index.js',
 	},
 	resolve: {
 		...defaultConfig.resolve,
