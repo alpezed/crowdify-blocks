@@ -12,6 +12,11 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { ToggleControl } from '@wordpress/components';
 
 /**
+ * Internal dependencies
+ */
+import { CROWDIFY_IMAGE_ZOOM } from '~/constants/variation';
+
+/**
  * Add the attribute needed for reversing column direction on mobile.
  *
  * @since 0.1.0
@@ -48,19 +53,32 @@ addFilter(
 );
 
 /**
+ * Determines if the active variation is this one
+ *
+ * @param {*} props
+ * @return {boolean} Is this the correct variation?
+ */
+const isImageZoom = ( props ) => {
+	const {
+		attributes: { namespace },
+	} = props;
+	return namespace && namespace === CROWDIFY_IMAGE_ZOOM;
+};
+
+/**
  * Filter the BlockEdit object and add icon inspector controls to button blocks.
  *
  * @since 0.1.0
  * @param {Object} BlockEdit
  */
-function addInspectorControls( BlockEdit ) {
+function withForceFullWidthControls( BlockEdit ) {
 	return ( props ) => {
-		if ( props.name !== 'core/image' ) {
-			return <BlockEdit { ...props } />;
-		}
-
 		const { attributes, setAttributes } = props;
 		const { isForceFullWidth } = attributes;
+
+		if ( isImageZoom( props ) || props.name !== 'core/image' ) {
+			return <BlockEdit { ...props } />;
+		}
 
 		return (
 			<>
@@ -86,11 +104,7 @@ function addInspectorControls( BlockEdit ) {
 	};
 }
 
-addFilter(
-	'editor.BlockEdit',
-	'crowdify/enable-column-direction/add-inspector-controls',
-	addInspectorControls
-);
+addFilter( 'editor.BlockEdit', 'core/image', withForceFullWidthControls );
 
 /**
  * Add icon and position classes in the Editor.

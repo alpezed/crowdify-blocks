@@ -51,6 +51,7 @@ const DEFAULT_TEAM_TEMPLATE = [['core/group', {
 }, [['core/heading', {
   placeholder: 'Team Name',
   align: 'center',
+  content: 'John Doe',
   style: {
     typography: {
       fontStyle: 'normal',
@@ -61,6 +62,7 @@ const DEFAULT_TEAM_TEMPLATE = [['core/group', {
 }], ['core/heading', {
   level: 3,
   placeholder: 'Position',
+  content: 'Designation',
   align: 'center',
   style: {
     typography: {
@@ -84,6 +86,7 @@ const DEFAULT_TEAM_TEMPLATE = [['core/group', {
   textColor: 'primary'
 }], ['core/paragraph', {
   placeholder: 'Description here...',
+  content: 'Former co-founder of Lorem Ipsum. Director at Lorem Ipsum',
   align: 'center',
   textColor: 'text-gray',
   style: {
@@ -263,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-function Edit(props) {
+function Edit() {
   // const { attributes, setAttributes } = props;
 
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {

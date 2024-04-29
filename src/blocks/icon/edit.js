@@ -48,6 +48,13 @@ export function Edit( props ) {
 		printedIcon = parseIcon( printedIcon );
 	}
 
+	const onSelectIcon = ( name ) => {
+		setAttributes( {
+			icon: '',
+			iconName: name,
+		} );
+	};
+
 	const blockProps = useBlockProps();
 	const borderProps = getBorderClassesAndStyles( attributes );
 
@@ -197,8 +204,8 @@ export function Edit( props ) {
 			{ inspectorControls }
 			<div { ...modifiedBlockProps }>{ iconMarkup }</div>
 			<IconsModal
-				attributes={ attributes }
-				setAttributes={ setAttributes }
+				icon={ iconName }
+				onSelect={ onSelectIcon }
 				isInserterOpen={ isInserterOpen }
 				setInserterOpen={ setInserterOpen }
 			/>

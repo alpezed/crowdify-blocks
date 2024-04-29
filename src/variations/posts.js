@@ -10,10 +10,9 @@ import { customPostType as icon } from '@wordpress/icons';
  * Internal dependencies
  */
 import { CATEGORY } from '../utils/constants';
+import { CROWDIFY_POSTS } from '~/constants/variation';
 
 import './style.scss';
-
-const CROWDIFY_POSTS = 'crowdify/posts';
 
 registerBlockVariation( 'core/query', {
 	name: CROWDIFY_POSTS,

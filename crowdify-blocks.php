@@ -1,181 +1,82 @@
 <?php
+
 /**
- * Plugin Name:       Crowdify Blocks
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
+ * @link              https://https://alpezed.vercel.app/
+ * @since             1.0.0
+ * @package           Crowdify_Blocks
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Crowdify Blocks: The Ultimate WordPress Block Theme Extension
+ * Plugin URI:        https://https://alpezed.vercel.app/
  * Description:       Elevate Your WordPress Theme Transform your Crowdify theme with Crowdify Blocks. Effortlessly create captivating blocks, streamline your workflow, and unleash your creativity with seamless integration.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            Ed Alpez
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author URI:        https://https://alpezed.vercel.app//
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       crowdify-blocks
- *
- * @package CreateBlock
+ * Domain Path:       /languages
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
 /**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
  */
-function crowdify_blocks_block_init() {
-	$block_paths = [
-		'icon',
-		'slider',
-		'slide',
-		'filters',
-		'icon-list',
-		'icon-list-item',
-		'team'
-	];
-
-	foreach ( $block_paths as $path ) {
-		register_block_type( __DIR__ . '/build/blocks/' . $path );
-	}
-}
-
-add_action( 'init', 'crowdify_blocks_block_init' );
+define( 'CROWDIFY_BLOCKS_VERSION', '1.0.0' );
 
 /**
- * Enqueues the block editor assets for the Crowdify Blocks plugin.
- *
- * This function checks if the variations.asset.php and hooks.asset.php files exist in the build directory.
- * If they do, it includes their contents and enqueues the corresponding JavaScript and CSS files.
- *
- * @return void
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-crowdify-blocks-activator.php
  */
-function crowdify_enqueue_block_editor_assets() {
-	$variations_file = plugin_dir_path( __FILE__ ) . '/build/variations.asset.php';
-	if ( file_exists( $variations_file ) ) {
-		$assets = include $variations_file;
-		wp_enqueue_script(
-			'crowdify-block-variations-js',
-			plugin_dir_url( __FILE__ ) . '/build/variations.js',
-			$assets['dependencies'],
-			$assets['version'],
-			true
-		);
-		wp_enqueue_style(
-			'crowdify-block-variations-css',
-			plugin_dir_url( __FILE__ ) . '/build/style-variations.css',
-			[],
-			$assets['version']
-		);
-	}
-
-	$hooks_file = plugin_dir_path( __FILE__ ) . '/build/hooks.asset.php';
-	if ( file_exists( $hooks_file ) ) {
-		$assets = include $hooks_file;
-		wp_enqueue_script(
-			'crowdify-block-hooks',
-			plugin_dir_url( __FILE__ ) . '/build/hooks.js',
-			$assets['dependencies'],
-			$assets['version'],
-			true
-		);
-	}
+function activate_crowdify_blocks() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-crowdify-blocks-activator.php';
+	Crowdify_Blocks_Activator::activate();
 }
-
-add_action( 'enqueue_block_editor_assets', 'crowdify_enqueue_block_editor_assets' );
 
 /**
- * Merges the given array of block categories with the 'Crowdify' category.
- *
- * @param array $categories The array of block categories to merge with.
- * @return array The merged array of block categories.
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-crowdify-blocks-deactivator.php
  */
-function crowdify_block_categories( $categories )
-{
-	return array_merge(
-		$categories,
-		[
-			[
-				'slug'  => 'crowdify',
-				'title' => __( 'Crowdify', 'crowdify' ),
-			],
-		]
-	);
+function deactivate_crowdify_blocks() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-crowdify-blocks-deactivator.php';
+	Crowdify_Blocks_Deactivator::deactivate();
 }
 
-add_action( 'block_categories', 'crowdify_block_categories', 10, 2 );
+register_activation_hook( __FILE__, 'activate_crowdify_blocks' );
+register_deactivation_hook( __FILE__, 'deactivate_crowdify_blocks' );
 
 /**
- * Wraps the given block content with a Swiper wrapper if the block is a Crowdify block with a carousel layout.
- *
- * @param string $block_content The content of the block.
- * @param array $block The block data.
- * @return string The wrapped block content.
+ * The core plugin class that is used to define internationalization,
+ * admin-specific hooks, and public-facing site hooks.
  */
-function crowdify_block_wrapper( $block_content, $block ) {
-	/**
-	 * Processes the block content to add Swiper classes and attributes.
-	 */
-	$tag_processor = new WP_HTML_Tag_Processor( $block_content );
-
-	// Check if the block is a Crowdify block with a carousel layout, otherwise return the original content.
-	if ( ( isset ( $block['attrs']['crowdify'] ) && $block['attrs']['crowdify']['layout']['type'] !== 'carousel' ) || ! isset ( $block['attrs']['crowdify'] ) ) {
-		return $block_content;
-	}
-
-	// Swiper attributes.
-	$swiper_attr = array(
-		'autoplay'   => true,
-		'navigation' => true,
-		'pagination' => true,
-		// 'effect' => $attributes['effect'],
-		'speed' => 500,
-		'slidesPerView' => 3,
-		'spaceBetween' => 30,
-	);
-	$swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
-
-	// Process the UL and LI tags to add Swiper classes.
-	while ( $tag_processor->next_tag( array( 'tag_name' => 'UL' ) ) ) {
-		$tag_processor->add_class( 'swiper-wrapper' );
-		while ( $tag_processor->next_tag( array( 'tag_name' => 'LI' ) ) ) {
-			$tag_processor->add_class( 'swiper-slide' );
-		}
-	}
-
-	// Build the Swiper wrapper.
-	$content = '<div class="swiper" data-swiper="' . esc_attr( $swiper_attr ) . '">';
-	$content .= $tag_processor->get_updated_html();
-	$content .= '</div>';
-
-	return $content;
-}
-
-add_filter( 'render_block_core/post-template', 'crowdify_block_wrapper', 10, 2 );
+require plugin_dir_path( __FILE__ ) . 'includes/class-crowdify-blocks.php';
 
 /**
- * Wraps the given block content with a custom class if the block is forced to be full width.
+ * Begins execution of the plugin.
  *
- * @param string $block_content The content of the block.
- * @param array $block The block data.
- * @return string The updated block content.
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    1.0.0
  */
-function crowdify_image_force_full_width( $block_content, $block ) {
-	$force_full_width = isset( $block['attrs']['isForceFullWidth'] ) ? $block['attrs']['isForceFullWidth'] : false;
+function run_crowdify_blocks() {
 
-	if ( ! $force_full_width ) {
-		return $block_content;
-	}
+	$plugin = new Crowdify_Blocks();
+	$plugin->run();
 
-	// Append the custom class to the block.
-	$p = new WP_HTML_Tag_Processor( $block_content );
-	if ( $p->next_tag() ) {
-		$p->add_class( 'is-force-full-width' );
-	}
-
-	$block_content = $p->get_updated_html();
-
-	return $block_content;
 }
-
-add_filter( 'render_block_core/image', 'crowdify_image_force_full_width', 10, 2 );
+run_crowdify_blocks();

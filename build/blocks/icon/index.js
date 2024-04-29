@@ -484,6 +484,12 @@ function Edit(props) {
   if (typeof printedIcon === 'string') {
     printedIcon = (0,_utils_icons__WEBPACK_IMPORTED_MODULE_7__.parseIcon)(printedIcon);
   }
+  const onSelectIcon = name => {
+    setAttributes({
+      icon: '',
+      iconName: name
+    });
+  };
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
   const borderProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalGetBorderClassesAndStyles)(attributes);
   const iconClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('crowdify-icon', {
@@ -575,8 +581,8 @@ function Edit(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, blockControls, inspectorControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...modifiedBlockProps
   }, iconMarkup), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_icons_modal__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    attributes: attributes,
-    setAttributes: setAttributes,
+    icon: iconName,
+    onSelect: onSelectIcon,
     isInserterOpen: isInserterOpen,
     setInserterOpen: setInserterOpen
   }));

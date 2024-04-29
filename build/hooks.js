@@ -238,6 +238,23 @@ const PostTemplateCustomToolbar = ({
 
 /***/ }),
 
+/***/ "./src/constants/variation.js":
+/*!************************************!*\
+  !*** ./src/constants/variation.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CROWDIFY_IMAGE_ZOOM: () => (/* binding */ CROWDIFY_IMAGE_ZOOM),
+/* harmony export */   CROWDIFY_POSTS: () => (/* binding */ CROWDIFY_POSTS)
+/* harmony export */ });
+const CROWDIFY_IMAGE_ZOOM = 'crowdify/image-zoom';
+const CROWDIFY_POSTS = 'crowdify/posts';
+
+/***/ }),
+
 /***/ "./src/hooks/core/image.js":
 /*!*********************************!*\
   !*** ./src/hooks/core/image.js ***!
@@ -258,6 +275,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _constants_variation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ~/constants/variation */ "./src/constants/variation.js");
 
 /**
  * External dependencies
@@ -270,6 +288,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/**
+ * Internal dependencies
+ */
 
 
 /**
@@ -302,18 +325,28 @@ function addAttributes(settings) {
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('blocks.registerBlockType', 'crowdify/enable-force-full-width/add-attributes', addAttributes);
 
 /**
+ * Determines if the active variation is this one
+ *
+ * @param {*} props
+ * @return {boolean} Is this the correct variation?
+ */
+const isImageZoom = props => {
+  const {
+    attributes: {
+      namespace
+    }
+  } = props;
+  return namespace && namespace === _constants_variation__WEBPACK_IMPORTED_MODULE_6__.CROWDIFY_IMAGE_ZOOM;
+};
+
+/**
  * Filter the BlockEdit object and add icon inspector controls to button blocks.
  *
  * @since 0.1.0
  * @param {Object} BlockEdit
  */
-function addInspectorControls(BlockEdit) {
+function withForceFullWidthControls(BlockEdit) {
   return props => {
-    if (props.name !== 'core/image') {
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-        ...props
-      });
-    }
     const {
       attributes,
       setAttributes
@@ -321,6 +354,11 @@ function addInspectorControls(BlockEdit) {
     const {
       isForceFullWidth
     } = attributes;
+    if (isImageZoom(props) || props.name !== 'core/image') {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
+        ...props
+      });
+    }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
       ...props
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -336,7 +374,7 @@ function addInspectorControls(BlockEdit) {
     }))));
   };
 }
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('editor.BlockEdit', 'crowdify/enable-column-direction/add-inspector-controls', addInspectorControls);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.addFilter)('editor.BlockEdit', 'core/image', withForceFullWidthControls);
 
 /**
  * Add icon and position classes in the Editor.

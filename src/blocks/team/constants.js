@@ -39,6 +39,7 @@ export const DEFAULT_TEAM_TEMPLATE = [
 				{
 					placeholder: 'Team Name',
 					align: 'center',
+					content: 'John Doe',
 					style: {
 						typography: {
 							fontStyle: 'normal',
@@ -53,6 +54,7 @@ export const DEFAULT_TEAM_TEMPLATE = [
 				{
 					level: 3,
 					placeholder: 'Position',
+					content: 'Designation',
 					align: 'center',
 					style: {
 						typography: {
@@ -76,6 +78,8 @@ export const DEFAULT_TEAM_TEMPLATE = [
 				'core/paragraph',
 				{
 					placeholder: 'Description here...',
+					content:
+						'Former co-founder of Lorem Ipsum. Director at Lorem Ipsum',
 					align: 'center',
 					textColor: 'text-gray',
 					style: {

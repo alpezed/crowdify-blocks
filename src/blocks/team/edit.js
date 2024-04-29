@@ -14,7 +14,7 @@ import './editor.scss';
 import { DEFAULT_TEAM_TEMPLATE } from './constants';
 import { useEffect } from '@wordpress/element';
 
-export default function Edit( props ) {
+export default function Edit() {
 	// const { attributes, setAttributes } = props;
 
 	useEffect( () => {
