@@ -77,14 +77,14 @@ class Crowdify_Blocks_Blocks {
 		$variations_file = plugin_dir_path( dirname( __FILE__ ) ) . 'build/variations.asset.php';
 		if ( file_exists( $variations_file ) ) {
 			$assets = include $variations_file;
-			wp_enqueue_script( "{$this->plugin_name}-variations-js", plugin_dir_path( dirname( __FILE__ ) ) . 'build/variations.js', $assets['dependencies'], $assets['version'], true );
-			wp_enqueue_style( "{$this->plugin_name}-variations-css", plugin_dir_path( dirname( __FILE__ ) ) . 'build/style-variations.css', [], $assets['version'] );
+			wp_enqueue_script( "{$this->plugin_name}-variations", plugin_dir_url( dirname( __FILE__ ) ) . 'build/variations.js', $assets['dependencies'], $assets['version'], true );
+			wp_enqueue_style( "{$this->plugin_name}-variations", plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-variations.css', [], $assets['version'] );
 		}
 
 		$hooks_file = plugin_dir_path( dirname( __FILE__ ) ) . 'build/hooks.asset.php';
 		if ( file_exists( $hooks_file ) ) {
 			$assets = include $hooks_file;
-			wp_enqueue_script( "{$this->plugin_name}-hooks", plugin_dir_path( dirname( __FILE__ ) ) . 'build/hooks.js', $assets['dependencies'], $assets['version'], true );
+			wp_enqueue_script( "{$this->plugin_name}-hooks", plugin_dir_url( dirname( __FILE__ ) ) . 'build/hooks.js', $assets['dependencies'], $assets['version'], true );
 		}
 	}
 
