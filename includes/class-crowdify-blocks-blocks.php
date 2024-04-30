@@ -111,15 +111,15 @@ class Crowdify_Blocks_Blocks {
 	 * @since    1.0.0
 	 */
 	public function block_categories( $categories ) {
-		return array_merge(
-			$categories,
-			[
-				[
-					'slug'  => 'crowdify',
-					'title' => __( 'Crowdify', 'crowdify-blocks' ),
-				],
-			]
-		);
+		$custom_category = [
+			'slug'  => 'crowdify',
+			'title' => __( 'Crowdify', 'crowdify-blocks' ),
+		];
+
+		// Add your custom category at the beginning of the array
+		array_unshift( $categories, $custom_category );
+
+		return $categories;
 	}
 
 	/**

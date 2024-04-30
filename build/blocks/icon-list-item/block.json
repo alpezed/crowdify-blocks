@@ -12,6 +12,9 @@
   "description": "Create a list item.",
   "example": {},
   "attributes": {
+    "uniqueId": {
+      "type": "string"
+    },
     "placeholder": {
       "type": "string"
     },
@@ -36,6 +39,35 @@
     "iconSize": {
       "type": "number",
       "default": ""
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "desktop": {
+          "top": "20px",
+          "bottom": "20px",
+          "left": "30px",
+          "right": "30px"
+        }
+      },
+      "desktop": {
+        "top": "20px",
+        "bottom": "20px",
+        "left": "30px",
+        "right": "30px"
+      },
+      "tablet": {
+        "top": "",
+        "bottom": "",
+        "left": "",
+        "right": ""
+      },
+      "mobile": {
+        "top": "",
+        "bottom": "",
+        "left": "",
+        "right": ""
+      }
     }
   },
   "usesContext": [

@@ -8,10 +8,18 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { generateResponsiveCSS } from '~/utils/css';
 
 export default function Save( { attributes } ) {
-	const { iconName, iconColor, iconColorValue, iconSize, horizontalSpace } =
-		attributes;
+	const {
+		uniqueId,
+		padding,
+		iconName,
+		iconColor,
+		iconColorValue,
+		iconSize,
+		horizontalSpace,
+	} = attributes;
 
 	const defaultIconName = !! iconName ? iconName : 'USE_PARENT_DEFAULT_ICON';
 	const defaultHorizontalSpace = !! horizontalSpace
@@ -19,7 +27,10 @@ export default function Save( { attributes } ) {
 		: 'var(--cf-icon-list-default-h-space)';
 
 	const blockProps = useBlockProps.save( {
-		className: 'wp-block-crowdify-icon-list-item',
+		id: uniqueId,
+		className: classnames( 'wp-block-crowdify-icon-list-item', {
+			[ `wp-block-crowdify-icon-list-item-${ uniqueId }` ]: uniqueId,
+		} ),
 		style: {
 			gap: defaultHorizontalSpace,
 		},
@@ -39,20 +50,29 @@ export default function Save( { attributes } ) {
 		[ `has-${ iconColor }-color` ]: iconColor,
 	} );
 
+	const paddingCss = generateResponsiveCSS(
+		`[data-block="${ uniqueId }"]`,
+		padding,
+		'padding'
+	);
+
 	return (
-		<li { ...blockProps }>
-			{ !! defaultIconName && (
-				<span
-					className={ iconClasses }
-					data-icon={ defaultIconName }
-					style={ iconStyle }
+		<>
+			<li { ...blockProps }>
+				{ !! defaultIconName && (
+					<span
+						className={ iconClasses }
+						data-icon={ defaultIconName }
+						style={ iconStyle }
+					/>
+				) }
+				<RichText.Content
+					tagName="span"
+					className="list-item-text"
+					value={ attributes.content }
 				/>
-			) }
-			<RichText.Content
-				tagName="span"
-				className="list-item-text"
-				value={ attributes.content }
-			/>
-		</li>
+			</li>
+			{ paddingCss }
+		</>
 	);
 }

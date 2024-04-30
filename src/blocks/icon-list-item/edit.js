@@ -32,6 +32,8 @@ import './editor.scss';
  */
 import { useIcon } from '~/hooks/use-icon';
 import { IconControl } from '~/components';
+import { ResponsiveBoxControl } from '~/components/responsive-spacing';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Renders the Edit component.
@@ -49,10 +51,12 @@ function Edit( props ) {
 		setIconColor,
 	} = props;
 	const {
-		placeholder,
-		content,
+		padding,
 		icon,
+		uniqueId,
 		iconSize,
+		content,
+		placeholder,
 		iconColorValue,
 		horizontalSpace,
 	} = attributes;
@@ -85,9 +89,17 @@ function Edit( props ) {
 		},
 	} );
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		className: classnames( blockProps.className, {
+			[ `wp-block-crowdify-icon-list-item-${ uniqueId }` ]: uniqueId,
+		} ),
 		renderAppender: false,
 		__unstableDisableDropZone: true,
 	} );
+
+	useEffect( () => {
+		setAttributes( { uniqueId: clientId } );
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ clientId ] );
 
 	const themeIconColor = iconColor ?? fallbackIconColor;
 	const iconClasses = classnames( 'list-item-icon', {
@@ -155,6 +167,13 @@ function Edit( props ) {
 						label={ __( 'Icon', 'crowdify-blocks' ) }
 						onChange={ ( value ) =>
 							setAttributes( { icon: value } )
+						}
+					/>
+					<ResponsiveBoxControl
+						value={ padding }
+						label={ __( 'Padding', 'crowdify-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( { padding: value } )
 						}
 					/>
 					<RangeControl

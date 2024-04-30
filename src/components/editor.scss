@@ -1,0 +1,8 @@
+:root {
+	--crowdify-theme-color: #1570ef;
+}
+
+td.block-editor-list-view-block__contents-cell[aria-selected="true"] svg,
+td.block-editor-list-view-block__contents-cell[aria-selected="true"] svg path {
+	color: white;
+}

@@ -28,7 +28,10 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
-	icon,
+	icon: {
+		src: icon,
+		foreground: 'var(--crowdify-theme-color)',
+	},
 	edit: Edit,
 	save,
 } );

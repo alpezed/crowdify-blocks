@@ -77,7 +77,10 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  icon: _utils_block__WEBPACK_IMPORTED_MODULE_5__.sliderIcon,
+  icon: {
+    src: _utils_block__WEBPACK_IMPORTED_MODULE_5__.sliderIcon,
+    foreground: 'var(--crowdify-theme-color)'
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
@@ -150,7 +153,7 @@ const sliderIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "m6 4.75h12c.6904 0 1.25.55964 1.25 1.25v12c0 .6904-.5596 1.25-1.25 1.25h-12c-.69036 0-1.25-.5596-1.25-1.25v-12c0-.69036.55964-1.25 1.25-1.25z",
   stroke: "currentColor",
-  strokeWidth: "1.5",
+  strokeWidth: "1.8",
   fill: "none"
 }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
   fill: "currentColor"

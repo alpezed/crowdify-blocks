@@ -537,8 +537,8 @@ const icon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
   xmlns: "http://www.w3.org/2000/svg"
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "M21 12L9 12M21 6L9 6M21 18L9 18M5 12C5 12.5523 4.55228 13 4 13C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11C4.55228 11 5 11.4477 5 12ZM5 6C5 6.55228 4.55228 7 4 7C3.44772 7 3 6.55228 3 6C3 5.44772 3.44772 5 4 5C4.55228 5 5 5.44772 5 6ZM5 18C5 18.5523 4.55228 19 4 19C3.44772 19 3 18.5523 3 18C3 17.4477 3.44772 17 4 17C4.55228 17 5 17.4477 5 18Z",
-  stroke: "black",
-  strokeWidth: 1.4,
+  stroke: "currentColor",
+  strokeWidth: 1.8,
   strokeLinecap: "round",
   strokeLinejoin: "round"
 }));
@@ -549,7 +549,10 @@ const icon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
-  icon,
+  icon: {
+    src: icon,
+    foreground: 'var(--crowdify-theme-color)'
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -910,163 +913,6 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ "./src/components/color-picker/controls.js":
-/*!*************************************************!*\
-  !*** ./src/components/color-picker/controls.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   lock: () => (/* binding */ lock),
-/* harmony export */   unlock: () => (/* binding */ unlock)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_private_apis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/private-apis */ "@wordpress/private-apis");
-/* harmony import */ var _wordpress_private_apis__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_private_apis__WEBPACK_IMPORTED_MODULE_5__);
-
-/**
- * External dependencies
- */
-
-
-/**
- * WordPress dependencies
- */
-
-
-
-
-const {
-  lock,
-  unlock
-} = (0,_wordpress_private_apis__WEBPACK_IMPORTED_MODULE_5__.__dangerousOptInToUnstableAPIsOnlyForCoreModules)('I know using unstable features means my theme or plugin will inevitably break in the next version of WordPress.', '@wordpress/block-editor' // Name of the package calling __dangerousOptInToUnstableAPIsOnlyForCoreModules,
-// (not the name of the package whose APIs you want to access)
-);
-const colorsAndGradientKeys = ['colors', 'disableCustomColors', 'gradients', 'disableCustomGradients'];
-const TAB_IDS = {
-  color: 'color',
-  gradient: 'gradient'
-};
-function ColorGradientControlInner({
-  colors,
-  gradients,
-  disableCustomColors,
-  disableCustomGradients,
-  __experimentalIsRenderedInSidebar,
-  className,
-  label,
-  onColorChange,
-  onGradientChange,
-  colorValue,
-  gradientValue,
-  clearable,
-  showTitle = true,
-  enableAlpha,
-  headingLevel
-}) {
-  const canChooseAColor = onColorChange && (colors && colors.length > 0 || !disableCustomColors);
-  const canChooseAGradient = onGradientChange && (gradients && gradients.length > 0 || !disableCustomGradients);
-  if (!canChooseAColor && !canChooseAGradient) {
-    return null;
-  }
-  const tabPanels = {
-    [TAB_IDS.color]: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-      value: colorValue,
-      onChange: canChooseAGradient ? newColor => {
-        onColorChange(newColor);
-        onGradientChange();
-      } : onColorChange,
-      colors,
-      disableCustomColors,
-      __experimentalIsRenderedInSidebar: __experimentalIsRenderedInSidebar,
-      clearable: clearable,
-      enableAlpha: enableAlpha,
-      headingLevel: headingLevel
-    }),
-    [TAB_IDS.gradient]: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.GradientPicker, {
-      value: gradientValue,
-      onChange: canChooseAColor ? newGradient => {
-        onGradientChange(newGradient);
-        onColorChange();
-      } : onGradientChange,
-      gradients,
-      disableCustomGradients,
-      __experimentalIsRenderedInSidebar: __experimentalIsRenderedInSidebar,
-      clearable: clearable,
-      headingLevel: headingLevel
-    })
-  };
-  const renderPanelType = type => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "block-editor-color-gradient-control__panel"
-  }, tabPanels[type]);
-
-  // Unlocking `Tabs` too early causes the `unlock` method to receive an empty
-  // object, due to circular dependencies.
-  // See https://github.com/WordPress/gutenberg/issues/52692
-  const {
-    Tabs
-  } = unlock(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.privateApis);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl, {
-    __nextHasNoMarginBottom: true,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()('block-editor-color-gradient-control', className)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", {
-    className: "block-editor-color-gradient-control__fieldset"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalVStack, {
-    spacing: 1
-  }, showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "block-editor-color-gradient-control__color-indicator"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.BaseControl.VisualLabel, null, label))), canChooseAColor && canChooseAGradient && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs, {
-    defaultTabId: gradientValue ? TAB_IDS.gradient : !!canChooseAColor && TAB_IDS.color
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs.TabList, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs.Tab, {
-    tabId: TAB_IDS.color
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Solid')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs.Tab, {
-    tabId: TAB_IDS.gradient
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Gradient'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs.TabPanel, {
-    tabId: TAB_IDS.color,
-    className: 'block-editor-color-gradient-control__panel',
-    focusable: false
-  }, tabPanels.color), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tabs.TabPanel, {
-    tabId: TAB_IDS.gradient,
-    className: 'block-editor-color-gradient-control__panel',
-    focusable: false
-  }, tabPanels.gradient))), !canChooseAGradient && renderPanelType(TAB_IDS.color), !canChooseAColor && renderPanelType(TAB_IDS.gradient))));
-}
-function ColorGradientControlSelect(props) {
-  const [colors, gradients, customColors, customGradients] = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSettings)('color.palette', 'color.gradients', 'color.custom', 'color.customGradient');
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorGradientControlInner, {
-    colors: colors,
-    gradients: gradients,
-    disableCustomColors: !customColors,
-    disableCustomGradients: !customGradients,
-    ...props
-  });
-}
-function ColorGradientControl(props) {
-  if (colorsAndGradientKeys.every(key => props.hasOwnProperty(key))) {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorGradientControlInner, {
-      ...props
-    });
-  }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorGradientControlSelect, {
-    ...props
-  });
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ColorGradientControl);
-
-/***/ }),
-
 /***/ "./src/components/icon-control/index.js":
 /*!**********************************************!*\
   !*** ./src/components/icon-control/index.js ***!
@@ -1158,16 +1004,15 @@ __webpack_async_result__();
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ColorGradientControl: () => (/* reexport safe */ _color_picker_controls__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   IconControl: () => (/* reexport safe */ _icon_control__WEBPACK_IMPORTED_MODULE_0__.IconControl),
-/* harmony export */   JustifyContentControl: () => (/* reexport safe */ _justify_content_control__WEBPACK_IMPORTED_MODULE_1__.JustifyContentControl),
-/* harmony export */   JustifyToolbar: () => (/* reexport safe */ _justify_content_control__WEBPACK_IMPORTED_MODULE_1__.JustifyToolbar)
+/* harmony export */   IconControl: () => (/* reexport safe */ _icon_control__WEBPACK_IMPORTED_MODULE_1__.IconControl),
+/* harmony export */   JustifyContentControl: () => (/* reexport safe */ _justify_content_control__WEBPACK_IMPORTED_MODULE_2__.JustifyContentControl),
+/* harmony export */   JustifyToolbar: () => (/* reexport safe */ _justify_content_control__WEBPACK_IMPORTED_MODULE_2__.JustifyToolbar)
 /* harmony export */ });
-/* harmony import */ var _icon_control__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./icon-control */ "./src/components/icon-control/index.js");
-/* harmony import */ var _justify_content_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./justify-content-control */ "./src/components/justify-content-control/index.js");
-/* harmony import */ var _color_picker_controls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-picker/controls */ "./src/components/color-picker/controls.js");
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_icon_control__WEBPACK_IMPORTED_MODULE_0__]);
-_icon_control__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editor.scss */ "./src/components/editor.scss");
+/* harmony import */ var _icon_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icon-control */ "./src/components/icon-control/index.js");
+/* harmony import */ var _justify_content_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./justify-content-control */ "./src/components/justify-content-control/index.js");
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_icon_control__WEBPACK_IMPORTED_MODULE_1__]);
+_icon_control__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
@@ -1387,7 +1232,7 @@ const sliderIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "m6 4.75h12c.6904 0 1.25.55964 1.25 1.25v12c0 .6904-.5596 1.25-1.25 1.25h-12c-.69036 0-1.25-.5596-1.25-1.25v-12c0-.69036.55964-1.25 1.25-1.25z",
   stroke: "currentColor",
-  strokeWidth: "1.5",
+  strokeWidth: "1.8",
   fill: "none"
 }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
   fill: "currentColor"
@@ -3334,6 +3179,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./src/blocks/icon-list/style.scss ***!
   \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/components/editor.scss":
+/*!************************************!*\
+  !*** ./src/components/editor.scss ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8509,17 +8367,6 @@ module.exports = window["wp"]["i18n"];
 
 "use strict";
 module.exports = window["wp"]["primitives"];
-
-/***/ }),
-
-/***/ "@wordpress/private-apis":
-/*!*************************************!*\
-  !*** external ["wp","privateApis"] ***!
-  \*************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["privateApis"];
 
 /***/ }),
 

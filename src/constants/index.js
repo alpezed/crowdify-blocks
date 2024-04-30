@@ -1,1 +1,2 @@
 import './variation';
+import './devices';
