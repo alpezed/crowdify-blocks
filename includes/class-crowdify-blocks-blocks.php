@@ -204,6 +204,14 @@ class Crowdify_Blocks_Blocks {
 				$html->set_attribute( 'data-zoom-src', $image_zoom_url );
 			}
 
+			$zoom_background = isset( $block['attrs']['background'] ) ? $block['attrs']['background'] : "#fff";
+			$zoom_margin = isset( $block['attrs']['margin'] ) ? $block['attrs']['margin'] : 0;
+			$zoom_scroll_offset = isset( $block['attrs']['scrollOffset'] ) ? $block['attrs']['scrollOffset'] : 40;
+
+			$html->set_attribute( 'data-zoom-margin', $zoom_margin );
+			$html->set_attribute( 'data-zoom-background', $zoom_background );
+			$html->set_attribute( 'data-zoom-scroll-offset', $zoom_scroll_offset );
+
 			// Remove srcset, width, and height attributes
 			$html->set_attribute( 'srcset', '' );
 			$html->set_attribute( 'width', '' );

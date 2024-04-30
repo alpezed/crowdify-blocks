@@ -14,7 +14,19 @@ __webpack_require__.r(__webpack_exports__);
 // eslint-disable-next-line import/no-extraneous-dependencies
 
 
-(0,medium_zoom_dist_pure__WEBPACK_IMPORTED_MODULE_1__["default"])('[data-zoomable]');
+const zoomableElements = document.querySelectorAll('[data-zoomable]');
+zoomableElements.forEach(element => {
+  const {
+    zoomBackground,
+    zoomMargin,
+    zoomScrollOffset
+  } = element.dataset || {};
+  (0,medium_zoom_dist_pure__WEBPACK_IMPORTED_MODULE_1__["default"])(element, {
+    margin: parseInt(zoomMargin, 0),
+    background: zoomBackground,
+    scrollOffset: parseInt(zoomScrollOffset, 0)
+  });
+});
 
 /***/ }),
 

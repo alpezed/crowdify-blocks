@@ -119,19 +119,8 @@ const icon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
   keywords: ['image', 'zoom'],
   category: _utils_constants__WEBPACK_IMPORTED_MODULE_3__.CATEGORY,
   attributes: {
+    namespace: _constants_variation__WEBPACK_IMPORTED_MODULE_4__.CROWDIFY_IMAGE_ZOOM,
     className: 'image-zoom'
-    // margin: {
-    // 	type: 'number',
-    // 	default: 0,
-    // },
-    // scrollOffset: {
-    // 	type: 'number',
-    // 	default: 0,
-    // },
-    // background: {
-    // 	type: 'string',
-    // 	default: '#fff',
-    // },
   },
   isActive: block => {
     return block?.className?.includes('image-zoom');

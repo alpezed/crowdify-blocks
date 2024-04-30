@@ -44,19 +44,8 @@ registerBlockVariation( 'core/image', {
 	keywords: [ 'image', 'zoom' ],
 	category: CATEGORY,
 	attributes: {
+		namespace: CROWDIFY_IMAGE_ZOOM,
 		className: 'image-zoom',
-		// margin: {
-		// 	type: 'number',
-		// 	default: 0,
-		// },
-		// scrollOffset: {
-		// 	type: 'number',
-		// 	default: 0,
-		// },
-		// background: {
-		// 	type: 'string',
-		// 	default: '#fff',
-		// },
 	},
 	isActive: ( block ) => {
 		return block?.className?.includes( 'image-zoom' );
