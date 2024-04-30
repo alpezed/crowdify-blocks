@@ -20,22 +20,20 @@ export function generateResponsiveCSS( selector, styles, property ) {
 		}
 	}
 
+	return css;
+
 	// Access the editor iframe
-	const editorIframe = document.querySelector( '.editor-canvas__iframe' );
+	// const editorIframe = document.querySelector( '.editor-canvas__iframe' );
 
-	// If the editor iframe exists, access its document and append the style element
-	if ( editorIframe ) {
-		const editorHead = editorIframe.contentDocument.head;
+	// // If the editor iframe exists, access its document and append the style element
+	// if ( editorIframe ) {
+	// 	const editorHead = editorIframe.contentDocument.head;
 
-		// Create style element and append to the editor iframe head
-		const styleElement =
-			editorIframe.contentDocument.createElement( 'style' );
-		styleElement.innerHTML = css;
-		editorHead.appendChild( styleElement );
-	}
+	// 	// Create style element and append to the editor iframe head
+	// 	const styleElement =
+	// 		editorIframe.contentDocument.createElement( 'style' );
 
-	// Create style element and append to the document head
-	// const styleElement = document.createElement( 'style' );
-	// styleElement.innerHTML = css;
-	// document.head.appendChild( styleElement );
+	// 	styleElement.innerHTML = css;
+	// 	editorHead.appendChild( styleElement );
+	// }
 }

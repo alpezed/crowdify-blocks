@@ -20,6 +20,7 @@ import {
 	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients, // eslint-disable-line
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Import styles
@@ -31,9 +32,8 @@ import './editor.scss';
  * Internal Dependencies
  */
 import { useIcon } from '~/hooks/use-icon';
-import { IconControl } from '~/components';
-import { ResponsiveBoxControl } from '~/components/responsive-spacing';
-import { useEffect } from '@wordpress/element';
+import { IconControl, ResponsiveBoxControl } from '~/components';
+import { generateResponsiveCSS } from '~/utils/css';
 
 /**
  * Renders the Edit component.
@@ -83,6 +83,8 @@ function Edit( props ) {
 		hSpace = undefined;
 	}
 
+	const componentId = uniqueId?.substr( 0, 8 );
+
 	const blockProps = useBlockProps( {
 		style: {
 			gap: hSpace,
@@ -90,7 +92,7 @@ function Edit( props ) {
 	} );
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		className: classnames( blockProps.className, {
-			[ `wp-block-crowdify-icon-list-item-${ uniqueId }` ]: uniqueId,
+			[ `list-item-${ componentId }` ]: componentId,
 		} ),
 		renderAppender: false,
 		__unstableDisableDropZone: true,
@@ -232,9 +234,14 @@ function Edit( props ) {
 		</>
 	);
 
+	const targetElement = `[data-block="${ uniqueId }"]`;
+
 	return (
 		<>
 			{ inspectorControls }
+			<style>
+				{ generateResponsiveCSS( targetElement, padding, 'padding' ) }
+			</style>
 			<li { ...innerBlocksProps }>
 				{ icon || fallbackIcon ? (
 					<span className={ iconClasses } style={ iconStyle }>

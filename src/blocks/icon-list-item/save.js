@@ -21,15 +21,17 @@ export default function Save( { attributes } ) {
 		horizontalSpace,
 	} = attributes;
 
+	const componentId = uniqueId?.substr( 0, 8 );
+
 	const defaultIconName = !! iconName ? iconName : 'USE_PARENT_DEFAULT_ICON';
 	const defaultHorizontalSpace = !! horizontalSpace
 		? `${ horizontalSpace }px`
 		: 'var(--cf-icon-list-default-h-space)';
 
 	const blockProps = useBlockProps.save( {
-		id: uniqueId,
+		id: `list-item-${ componentId }`,
 		className: classnames( 'wp-block-crowdify-icon-list-item', {
-			[ `wp-block-crowdify-icon-list-item-${ uniqueId }` ]: uniqueId,
+			[ `list-item-${ componentId }` ]: componentId,
 		} ),
 		style: {
 			gap: defaultHorizontalSpace,
@@ -50,14 +52,13 @@ export default function Save( { attributes } ) {
 		[ `has-${ iconColor }-color` ]: iconColor,
 	} );
 
-	const paddingCss = generateResponsiveCSS(
-		`[data-block="${ uniqueId }"]`,
-		padding,
-		'padding'
-	);
+	const elementId = `.wp-block-crowdify-icon-list-item.list-item-${ componentId }`;
 
 	return (
 		<>
+			<style>
+				{ generateResponsiveCSS( elementId, padding, 'padding' ) }
+			</style>
 			<li { ...blockProps }>
 				{ !! defaultIconName && (
 					<span
@@ -72,7 +73,6 @@ export default function Save( { attributes } ) {
 					value={ attributes.content }
 				/>
 			</li>
-			{ paddingCss }
 		</>
 	);
 }

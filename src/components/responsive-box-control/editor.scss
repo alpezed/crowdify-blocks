@@ -2,24 +2,36 @@
 	.crowdify-responsive-switcher.crowdify-responsive-switcher-desktop,
 .crowdify-device-laptop
 	.crowdify-responsive-switcher.crowdify-responsive-switcher-laptop {
-	height: 2em;
+	height: 1.8em;
 	transform: scale(1);
 	opacity: 1;
+
+	svg {
+		color: var(--crowdify-theme-color);
+	}
 }
 
 .crowdify-device-tablet {
 	.crowdify-responsive-switcher.crowdify-responsive-switcher-tablet {
-		height: 2em;
+		height: 1.8em;
 		transform: scale(1);
 		opacity: 1;
+
+		svg {
+			color: var(--crowdify-theme-color);
+		}
 	}
 }
 
 .crowdify-device-mobile {
 	.crowdify-responsive-switcher.crowdify-responsive-switcher-mobile {
-		height: 2em;
+		height: 1.8em;
 		transform: scale(1);
 		opacity: 1;
+
+		svg {
+			color: var(--crowdify-theme-color);
+		}
 	}
 }
 
@@ -27,21 +39,21 @@
 	--selected-option: 0;
 	--pointer-position: var(--selected-option);
 	position: relative;
-	width: 2em;
-	height: 2em;
-	margin: calc(-2.3em + 12px) 0;
+	width: 2.2em;
+	height: 2.2em;
+	margin: calc(-2.2em + 12px) 0;
 	margin-inline-end: 5px;
 
 	svg {
-		width: 13px;
-		height: 13px;
+		width: 12px;
+		height: 12px;
 	}
 
 	&-open {
 		z-index: 11000;
 
 		.crowdify-control-responsive-switchers__holder {
-			box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+			border-radius: 3px;
 		}
 
 		.crowdify-responsive-switcher {
@@ -55,8 +67,8 @@
 		position: absolute;
 		width: 100%;
 		top: 0px;
-		background-color: #fff;
-		border-radius: 3px;
+		background-color: #f0f0f0;
+		border-radius: 100px;
 		transition: 0.15s;
 		border: 1px solid transparent;
 	}

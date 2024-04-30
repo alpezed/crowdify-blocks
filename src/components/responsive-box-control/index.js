@@ -11,10 +11,10 @@ import { lowerCase } from 'lodash';
  */
 import { __ } from '@wordpress/i18n';
 import {
-	__experimentalHStack as HStack, // eslint-disable-line
+	Tooltip,
 	__experimentalBoxControl as BoxControl, // eslint-disable-line
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 
@@ -28,6 +28,8 @@ export function ResponsiveBoxControl( {
 	onChange,
 } ) {
 	const [ isOpen, setIsOpen ] = useState( false );
+	const containerRef = useRef( null );
+
 	const { deviceType } = useSelect( ( select ) => {
 		const { getDeviceType } = select( editorStore );
 
@@ -38,8 +40,27 @@ export function ResponsiveBoxControl( {
 
 	const { setDeviceType } = useDispatch( editorStore );
 
+	// Function to handle click outside
+	const handleClickOutside = ( event ) => {
+		if (
+			containerRef.current &&
+			! containerRef.current.contains( event.target )
+		) {
+			setIsOpen( false );
+		}
+	};
+
+	// Attach click event listener on component mount
+	useEffect( () => {
+		document.addEventListener( 'click', handleClickOutside );
+		return () => {
+			document.removeEventListener( 'click', handleClickOutside );
+		};
+	}, [] );
+
 	const switchers = (
 		<div
+			ref={ containerRef }
 			className={ classnames( {
 				[ `crowdify-device-${ deviceType?.toLowerCase() }` ]:
 					deviceType,
@@ -57,20 +78,25 @@ export function ResponsiveBoxControl( {
 			>
 				<div className="crowdify-control-responsive-switchers__holder">
 					{ DEVICES.map( ( device ) => (
-						<button
+						<Tooltip
 							key={ `responsive-device-${ device.value }` }
-							className={ `crowdify-responsive-switcher tooltip-target crowdify-responsive-switcher-${ device.value }` }
-							onClick={ () => {
-								setDeviceType( device.label );
-								setIsOpen( ! isOpen );
-							} }
+							text={ device.label }
+							placement="right"
 						>
-							{ device.icon }
+							<button
+								className={ `crowdify-responsive-switcher tooltip-target crowdify-responsive-switcher-${ device.value }` }
+								onClick={ () => {
+									setDeviceType( device.label );
+									setIsOpen( ! isOpen );
+								} }
+							>
+								{ device.icon }
 
-							<span className="crowdify-screen-only">
-								{ device.label }
-							</span>
-						</button>
+								<span className="crowdify-screen-only">
+									{ device.label }
+								</span>
+							</button>
+						</Tooltip>
 					) ) }
 				</div>
 			</div>

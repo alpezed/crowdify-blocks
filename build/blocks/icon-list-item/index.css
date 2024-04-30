@@ -127,46 +127,56 @@ td.block-editor-list-view-block__contents-cell[aria-selected=true] svg path {
   flex-grow: 1;
   justify-content: center;
 }
-/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/responsive-spacing/editor.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/responsive-box-control/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
 .crowdify-device-desktop .crowdify-responsive-switcher.crowdify-responsive-switcher-desktop,
 .crowdify-device-laptop .crowdify-responsive-switcher.crowdify-responsive-switcher-laptop {
-  height: 2em;
+  height: 1.8em;
   transform: scale(1);
   opacity: 1;
+}
+.crowdify-device-desktop .crowdify-responsive-switcher.crowdify-responsive-switcher-desktop svg,
+.crowdify-device-laptop .crowdify-responsive-switcher.crowdify-responsive-switcher-laptop svg {
+  color: var(--crowdify-theme-color);
 }
 
 .crowdify-device-tablet .crowdify-responsive-switcher.crowdify-responsive-switcher-tablet {
-  height: 2em;
+  height: 1.8em;
   transform: scale(1);
   opacity: 1;
 }
+.crowdify-device-tablet .crowdify-responsive-switcher.crowdify-responsive-switcher-tablet svg {
+  color: var(--crowdify-theme-color);
+}
 
 .crowdify-device-mobile .crowdify-responsive-switcher.crowdify-responsive-switcher-mobile {
-  height: 2em;
+  height: 1.8em;
   transform: scale(1);
   opacity: 1;
+}
+.crowdify-device-mobile .crowdify-responsive-switcher.crowdify-responsive-switcher-mobile svg {
+  color: var(--crowdify-theme-color);
 }
 
 .crowdify-control-responsive-switchers {
   --selected-option: 0;
   --pointer-position: var(--selected-option);
   position: relative;
-  width: 2em;
-  height: 2em;
-  margin: calc(-2.3em + 12px) 0;
+  width: 2.2em;
+  height: 2.2em;
+  margin: calc(-2.2em + 12px) 0;
   margin-inline-end: 5px;
 }
 .crowdify-control-responsive-switchers svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 .crowdify-control-responsive-switchers-open {
   z-index: 11000;
 }
 .crowdify-control-responsive-switchers-open .crowdify-control-responsive-switchers__holder {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
 .crowdify-control-responsive-switchers-open .crowdify-responsive-switcher {
   height: 2em;
@@ -177,8 +187,8 @@ td.block-editor-list-view-block__contents-cell[aria-selected=true] svg path {
   position: absolute;
   width: 100%;
   top: 0px;
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: #f0f0f0;
+  border-radius: 100px;
   transition: 0.15s;
   border: 1px solid transparent;
 }
