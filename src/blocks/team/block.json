@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "crowdify/team",
 	"version": "0.1.0",
-	"title": "Team",
+	"title": "Team Member",
 	"category": "crowdify",
 	"icon": "smiley",
 	"description": "Add a team box with name, position, description and social media links.",
