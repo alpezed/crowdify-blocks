@@ -3,6 +3,10 @@
  */
 import { addFilter } from '@wordpress/hooks';
 import { useEffect } from '@wordpress/element';
+
+/**
+ * Internal dependencies
+ */
 import { getUniqueId } from '~/utils/block-id';
 
 /**

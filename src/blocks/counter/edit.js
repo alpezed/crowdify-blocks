@@ -62,7 +62,7 @@ export default function Edit( props ) {
 							setAttributes( { duration: newValue } )
 						}
 						min={ 0 }
-						max={ 10000 }
+						max={ 100 }
 					/>
 				</ToolsPanelItem>
 				<ToolsPanelItem

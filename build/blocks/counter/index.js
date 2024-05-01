@@ -83,7 +83,7 @@ function Edit(props) {
       duration: newValue
     }),
     min: 0,
-    max: 10000
+    max: 100
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToolsPanelItem, {
     hasValue: () => !!startVal,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Start Value'),
@@ -728,7 +728,7 @@ module.exports = window["wp"]["i18n"];
   \***************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/counter","version":"0.1.0","title":"Counter","category":"crowdify","icon":"smiley","description":"Counter block create animations that display numerical data in a more interesting way.","example":{},"attributes":{"counterNumber":{"type":"string","default":100},"prefix":{"type":"string","default":""},"suffix":{"type":"string","default":"+"},"duration":{"type":"number"},"startVal":{"type":"number"}},"supports":{"html":false,"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"text":true,"background":true,"__experimentalDefaultControls":{"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":true,"padding":true}},"__experimentalBorder":{"color":true,"style":true,"width":true,"radius":true,"__experimentalDefaultControls":{"color":true,"style":true,"width":true,"radius":true}}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScriptModule":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"crowdify/counter","version":"0.1.0","title":"Counter","category":"crowdify","icon":"smiley","description":"Counter block create animations that display numerical data in a more interesting way.","example":{},"attributes":{"counterNumber":{"type":"string","default":100},"prefix":{"type":"string","default":""},"suffix":{"type":"string","default":"+"},"duration":{"type":"number"},"startVal":{"type":"number"}},"supports":{"html":false,"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}},"color":{"text":true,"background":true,"__experimentalDefaultControls":{"text":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"margin":true,"padding":true}},"__experimentalBorder":{"color":true,"style":true,"width":true,"radius":true,"__experimentalDefaultControls":{"color":true,"style":true,"width":true,"radius":true}}},"textdomain":"crowdify-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

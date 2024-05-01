@@ -2,8 +2,6 @@
 /**
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
 */
-// echo '<pre>' . print_r( $attributes, true ) . '</pre>';
-
 $counter_number = isset( $attributes['counterNumber'] ) ? (int) $attributes['counterNumber'] : 0;
 $start_value = isset( $attributes['startVal'] ) ? (int) $attributes['startVal'] : null;
 $suffix = isset( $attributes['suffix'] ) ? $attributes['suffix'] : "";

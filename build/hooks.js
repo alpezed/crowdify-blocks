@@ -852,6 +852,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * Internal dependencies
+ */
+
 
 /**
  * Add the default attribute needed for the block.

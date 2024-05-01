@@ -1,4 +1,4 @@
-import { CountUp } from 'countup.js';
+import { CountUp } from 'countup.js/dist/countUp.umd';
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	const containers = document.querySelectorAll(
@@ -23,7 +23,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			return;
 		}
 
-		const countUp = new CountUp( element, options.counterNumber, options );
-		countUp.start();
+		new CountUp( element, options.counterNumber, {
+			...options,
+			enableScrollSpy: true,
+			scrollSpyOnce: true,
+		} );
 	} );
 } );
