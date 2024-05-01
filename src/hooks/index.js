@@ -4,3 +4,4 @@ import './core/query';
 import './core/image';
 
 import './image-zoom';
+import './plugin/blocks';

@@ -88,8 +88,6 @@ function withControls( BlockEdit ) {
 				return <BlockEdit { ...props } />;
 			}
 
-			console.log( { props } );
-
 			const { gradientValue, setGradient } = __experimentalUseGradient();
 
 			const colorGradientSettings = useMultipleOriginColorsAndGradients();

@@ -53,19 +53,13 @@ class Crowdify_Blocks_Blocks {
 	 * @since    1.0.0
 	 */
 	public function register_block_type() {
-		$block_paths = [
-			'icon',
-			'slider',
-			'slide',
-			'filters',
-			'icon-list',
-			'icon-list-item',
-			'team'
-		];
+
+		$block_paths = glob( plugin_dir_path( dirname( __FILE__ ) ) . 'build/blocks/*', GLOB_ONLYDIR );
 
 		foreach ( $block_paths as $path ) {
-			register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/blocks/' . $path );
+			register_block_type( $path );
 		}
+
 	}
 
 	/**

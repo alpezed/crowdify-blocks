@@ -1,3 +1,5 @@
+import CountUp, { useCountUp } from 'react-countup';
+
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -15,10 +17,17 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function Save() {
+	// useCountUp( {
+	// 	ref: 'counter',
+	// 	end: 1234567,
+	// 	enableScrollSpy: true,
+	// 	scrollSpyDelay: 1000,
+	// } );
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Counter – hello from the saved content!' }
-		</p>
+		<div { ...useBlockProps.save() }>
+			<span id="counter" />
+		</div>
 	);
 }

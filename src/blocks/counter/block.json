@@ -6,14 +6,75 @@
 	"title": "Counter",
 	"category": "crowdify",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Counter block create animations that display numerical data in a more interesting way.",
 	"example": {},
-	"supports": {
-		"html": false
+	"attributes": {
+		"counterNumber": {
+			"type": "string",
+			"default": 100
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"suffix": {
+			"type": "string",
+			"default": "+"
+		},
+		"duration": {
+			"type": "number"
+		},
+		"startVal": {
+			"type": "number"
+		}
 	},
-	"textdomain": "counter",
+	"supports": {
+		"html": false,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"color": {
+			"text": true,
+			"background": true,
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": true,
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"style": true,
+			"width": true,
+			"radius": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"style": true,
+				"width": true,
+				"radius": true
+			}
+		}
+	},
+	"textdomain": "crowdify-blocks",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
 }

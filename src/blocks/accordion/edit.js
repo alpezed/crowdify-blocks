@@ -29,7 +29,8 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( props ) {
+	console.log( props );
 	return (
 		<p { ...useBlockProps() }>
 			{ __( 'Accordion – hello from the editor!', 'accordion' ) }
