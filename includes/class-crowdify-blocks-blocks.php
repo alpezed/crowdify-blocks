@@ -94,6 +94,11 @@ class Crowdify_Blocks_Blocks {
 			wp_enqueue_script( "{$this->plugin_name}-image-zoom", plugin_dir_url( dirname( __FILE__ ) ) . 'build/image-zoom.js', $assets['dependencies'], $assets['version'], true );
 			wp_enqueue_style( "{$this->plugin_name}-image-zoom", plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-image-zoom.css', [], $assets['version'] );
 		}
+
+		$variations_file = plugin_dir_path( dirname( __FILE__ ) ) . 'build/variations.asset.php';
+		if ( file_exists( $variations_file ) ) {
+			wp_enqueue_style( "{$this->plugin_name}-variations", plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-variations.css', [], $assets['version'] );
+		}
 	}
 
 	/**
@@ -240,21 +245,39 @@ class Crowdify_Blocks_Blocks {
 	 * @since    1.0.0
 	 */
 	public function spacer_block_wrapper( $block_content, $block ) {
+		$breakpoints = [
+			'desktop' => '(min-width: 1024px)',
+			'tablet' => '(min-width: 768px) and (max-width: 1023px)',
+			'mobile' => '(max-width: 767px)'
+		];
+
+		$css = new Crowdify_Blocks_Block_CSS( $breakpoints );
+
 		/**
 		 * Processes the block content to add Swiper classes and attributes.
 		 */
 		$tag_processor = new WP_HTML_Tag_Processor( $block_content );
 
 		// Check if the block is a Crowdify block with a carousel layout, otherwise return the original content.
-		if ( ( isset ( $block[ 'attrs' ][ 'namespace' ] ) && $block[ 'attrs' ][ 'namespace' ] !== 'crowdify/separator' ) ) {
+		if ( ! isset ( $block[ 'attrs' ][ 'namespace' ] ) || ( isset ( $block[ 'attrs' ][ 'namespace' ] ) && $block[ 'attrs' ][ 'namespace' ] !== 'crowdify/separator' ) ) {
 			return $block_content;
 		}
 
 		$unique_id = isset( $block[ 'attrs' ][ 'uniqueId' ] ) ? $block[ 'attrs' ][ 'uniqueId' ] : '';
+		$width = isset( $block[ 'attrs' ][ 'width' ] ) ? $block[ 'attrs' ][ 'width' ] : null;
+		$horizontal_alignment = isset( $block[ 'attrs' ][ 'horizontalAlignment' ] ) ? $block[ 'attrs' ][ 'horizontalAlignment' ] : null;
 		$wrapper_id = preg_replace( '/core/', 'crowdify', $unique_id );
 
 		// Build the Separator wrapper.
-		$content = '<div id="' . $wrapper_id . '">';
+		$content = '<style>';
+		$content .= $css->generate_responsive_css( '#' . $wrapper_id . ' .wp-block-separator', [
+			'width' => $width
+		] );
+		$content .= $css->generate_responsive_css( '#' . $wrapper_id, [
+			'justify-content' => $horizontal_alignment
+		] );
+		$content .= '</style>';
+		$content .= '<div class="crowdify-separator" id="' . $wrapper_id . '">';
 		$content .= $tag_processor->get_updated_html();
 		$content .= '</div>';
 

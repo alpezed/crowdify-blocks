@@ -5,4 +5,12 @@
   margin-top: 0 !important;
 }
 
+.crowdify-separator {
+  display: flex;
+  justify-content: start;
+}
+.crowdify-separator .wp-block-separator {
+  margin-inline: 0;
+}
+
 /*# sourceMappingURL=style-variations.css.map*/

@@ -1120,6 +1120,7 @@ function AlignContentUI(props) {
   // call onChange( undefined )
   const handleClick = next => {
     const newValue = {
+      ...value,
       [(0,lodash__WEBPACK_IMPORTED_MODULE_1__.lowerCase)(deviceType)]: next
     };
     if (next === value[(0,lodash__WEBPACK_IMPORTED_MODULE_1__.lowerCase)(deviceType)]) {
@@ -1759,6 +1760,13 @@ function ResponsiveRangeControl({
     };
     onChange(updatedValues);
   };
+  const handleInputChange = newValue => {
+    const newValues = {
+      ...value,
+      [(0,lodash__WEBPACK_IMPORTED_MODULE_1__.lowerCase)(deviceType)]: newValue
+    };
+    onChange(newValues);
+  };
   const handleUnitChange = newUnit => {
     // Attempt to smooth over differences between currentUnit and newUnit.
     // This should slightly improve the experience of switching between unit types.
@@ -1789,7 +1797,7 @@ function ResponsiveRangeControl({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalUnitControl, {
     value: value[(0,lodash__WEBPACK_IMPORTED_MODULE_1__.lowerCase)(deviceType)],
     units: units,
-    onChange: onChange,
+    onChange: handleInputChange,
     onUnitChange: handleUnitChange,
     min: 0,
     size: '__unstable-large',
@@ -2040,6 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   counterIcon: () => (/* binding */ counterIcon),
 /* harmony export */   iconListIcon: () => (/* binding */ iconListIcon),
+/* harmony export */   separatorIcon: () => (/* binding */ separatorIcon),
 /* harmony export */   sliderIcon: () => (/* binding */ sliderIcon)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -2099,6 +2108,31 @@ const counterIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", 
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "M10.101 4C11.3636 2.76281 13.0927 2 15 2C18.866 2 22 5.13401 22 9C22 10.9073 21.2372 12.6365 19.9999 13.899M7.5 13L9 12V17.5M7.5 17.5H10.5M16 15C16 18.866 12.866 22 9 22C5.13401 22 2 18.866 2 15C2 11.134 5.13401 8 9 8C12.866 8 16 11.134 16 15Z",
   fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+}));
+const separatorIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+}), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z",
   stroke: "currentColor",
   strokeWidth: 1.8,
   strokeLinecap: "round",
@@ -2340,6 +2374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   flattenIconsArray: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.flattenIconsArray),
 /* harmony export */   iconListIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.iconListIcon),
 /* harmony export */   parseIcon: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.parseIcon),
+/* harmony export */   separatorIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.separatorIcon),
 /* harmony export */   simplifyCategories: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.simplifyCategories),
 /* harmony export */   sliderIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.sliderIcon)
 /* harmony export */ });

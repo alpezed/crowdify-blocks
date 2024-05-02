@@ -102,6 +102,15 @@ export function ResponsiveRangeControl( {
 		onChange( updatedValues );
 	};
 
+	const handleInputChange = ( newValue ) => {
+		const newValues = {
+			...value,
+			[ lowerCase( deviceType ) ]: newValue,
+		};
+
+		onChange( newValues );
+	};
+
 	const handleUnitChange = ( newUnit ) => {
 		// Attempt to smooth over differences between currentUnit and newUnit.
 		// This should slightly improve the experience of switching between unit types.
@@ -168,7 +177,7 @@ export function ResponsiveRangeControl( {
 						<UnitControl
 							value={ value[ lowerCase( deviceType ) ] }
 							units={ units }
-							onChange={ onChange }
+							onChange={ handleInputChange }
 							onUnitChange={ handleUnitChange }
 							min={ 0 }
 							size={ '__unstable-large' }

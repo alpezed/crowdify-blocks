@@ -13,7 +13,7 @@ import {
  * Internal dependencies
  */
 import { CROWDIFY_SEPARATOR } from '~/constants/variation';
-import { ResponsiveRangeControl } from '~/components';
+import { AlignContentControl, ResponsiveRangeControl } from '~/components';
 import { generateResponsiveCSS2 } from '~/utils/css';
 import { useEffect } from '@wordpress/element';
 import { getUniqueId } from '~/utils/block-id';
@@ -43,6 +43,24 @@ function addAttributes( settings ) {
 				desktop: '100%',
 			},
 			desktop: '',
+			tablet: '',
+			mobile: '',
+		},
+		verticalAlignment: {
+			type: 'object',
+			default: {
+				desktop: 'center',
+			},
+			desktop: 'center',
+			tablet: '',
+			mobile: '',
+		},
+		horizontalAlignment: {
+			type: 'object',
+			default: {
+				desktop: 'left',
+			},
+			desktop: 'left',
 			tablet: '',
 			mobile: '',
 		},
@@ -87,7 +105,7 @@ const isCrowdifySeparator = ( props ) => {
 function withControls( BlockEdit ) {
 	return ( props ) => {
 		const { attributes, setAttributes, clientId, name } = props;
-		const { width } = attributes;
+		const { width, horizontalAlignment } = attributes;
 
 		useEffect( () => {
 			setAttributes( {
@@ -110,7 +128,7 @@ function withControls( BlockEdit ) {
 					<ToolsPanel label={ __( 'Settings' ) }>
 						<ToolsPanelItem
 							hasValue={ () => !! width }
-							label={ __( 'Counter Number' ) }
+							label={ __( 'Width' ) }
 							isShownByDefault
 							onDeselect={ () =>
 								setAttributes( { width: undefined } )
@@ -123,6 +141,27 @@ function withControls( BlockEdit ) {
 									setAttributes( { width: value } )
 								}
 								allowReset={ false }
+							/>
+						</ToolsPanelItem>
+						<ToolsPanelItem
+							hasValue={ () => !! width }
+							label={ __( 'Width' ) }
+							isShownByDefault
+							onDeselect={ () =>
+								setAttributes( { width: undefined } )
+							}
+						>
+							<AlignContentControl
+								value={ horizontalAlignment }
+								label={ __(
+									'Horizontal Alignment',
+									'crowdify-blocks'
+								) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										horizontalAlignment: value,
+									} )
+								}
 							/>
 						</ToolsPanelItem>
 					</ToolsPanel>
@@ -154,10 +193,16 @@ function addClasses( BlockListBlock ) {
 			<>
 				<style>
 					{ generateResponsiveCSS2( `#${ blockId }`, {
-						width: attributes?.width,
+						'justify-content': attributes?.horizontalAlignment,
 					} ) }
+					{ generateResponsiveCSS2(
+						`#${ blockId } .wp-block-separator`,
+						{
+							width: attributes?.width,
+						}
+					) }
 				</style>
-				<div id={ blockId }>
+				<div className="crowdify-separator" id={ blockId }>
 					<BlockListBlock { ...props } />
 				</div>
 			</>
@@ -188,17 +233,19 @@ function wrapSeparatorBlockInContainer( element, blockType, attributes ) {
 	return (
 		<>
 			<style>
-				{ generateResponsiveCSS2( `#${ blockId }`, {
+				{ generateResponsiveCSS2( `#${ blockId } .wp-block-separator`, {
 					width: attributes?.width,
 				} ) }
 			</style>
-			<div id={ blockId }>{ element }</div>
+			<div className="crowdify-separator" id={ blockId }>
+				{ element }
+			</div>
 		</>
 	);
 }
 
-addFilter(
-	'blocks.getSaveElement',
-	'crowdify/wrap-spacer-block-in-container',
-	wrapSeparatorBlockInContainer
-);
+// addFilter(
+// 	'blocks.getSaveElement',
+// 	'crowdify/wrap-spacer-block-in-container',
+// 	wrapSeparatorBlockInContainer
+// );

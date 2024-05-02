@@ -57,7 +57,7 @@ function AlignContentUI( props ) {
 	// again on the control to deselect the item, so we
 	// call onChange( undefined )
 	const handleClick = ( next ) => {
-		const newValue = { [ lowerCase( deviceType ) ]: next };
+		const newValue = { ...value, [ lowerCase( deviceType ) ]: next };
 
 		if ( next === value[ lowerCase( deviceType ) ] ) {
 			onChange( undefined );

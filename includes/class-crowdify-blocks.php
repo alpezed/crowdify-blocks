@@ -128,6 +128,8 @@ class Crowdify_Blocks {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-blocks-blocks.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-block-css.php';
+
 		$this->loader = new Crowdify_Blocks_Loader();
 
 	}

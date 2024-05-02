@@ -5,3 +5,12 @@
 		}
 	}
 }
+
+.crowdify-separator {
+	display: flex;
+	justify-content: start;
+
+	.wp-block-separator {
+		margin-inline: 0;
+	}
+}
