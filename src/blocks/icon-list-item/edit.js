@@ -14,7 +14,7 @@ import {
 	useInnerBlocksProps,
 	useBlockProps,
 	InspectorControls,
-	ContrastChecker, // eslint-disable-line
+	ContrastChecker,
 	withColors,
 	__experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown, // eslint-disable-line
 	__experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients, // eslint-disable-line
@@ -32,8 +32,8 @@ import './editor.scss';
  * Internal Dependencies
  */
 import { useIcon } from '~/hooks/use-icon';
-import { IconControl, ResponsiveBoxControl } from '~/components';
-import { generateResponsiveCSS } from '~/utils/css';
+import { IconControl } from '~/components';
+// import { generateResponsiveCSS } from '~/utils/css';
 
 /**
  * Renders the Edit component.
@@ -51,7 +51,6 @@ function Edit( props ) {
 		setIconColor,
 	} = props;
 	const {
-		padding,
 		icon,
 		uniqueId,
 		iconSize,
@@ -171,13 +170,13 @@ function Edit( props ) {
 							setAttributes( { icon: value } )
 						}
 					/>
-					<ResponsiveBoxControl
+					{ /* <ResponsiveBoxControl
 						value={ padding }
 						label={ __( 'Padding', 'crowdify-blocks' ) }
 						onChange={ ( value ) =>
 							setAttributes( { padding: value } )
 						}
-					/>
+					/> */ }
 					<RangeControl
 						label={ __( 'Icon Size', 'crowdify-blocks' ) }
 						value={ iconSize }
@@ -234,13 +233,13 @@ function Edit( props ) {
 		</>
 	);
 
-	const targetElement = `[data-block="${ uniqueId }"]`;
+	// const targetElement = `[data-block="${ clientId }"]`;
 
 	return (
 		<>
 			{ inspectorControls }
 			<style>
-				{ generateResponsiveCSS( targetElement, padding, 'padding' ) }
+				{ /* { generateResponsiveCSS( targetElement, padding, 'padding' ) } */ }
 			</style>
 			<li { ...innerBlocksProps }>
 				{ icon || fallbackIcon ? (

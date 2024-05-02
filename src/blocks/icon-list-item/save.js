@@ -8,12 +8,10 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { generateResponsiveCSS } from '~/utils/css';
 
 export default function Save( { attributes } ) {
 	const {
 		uniqueId,
-		padding,
 		iconName,
 		iconColor,
 		iconColorValue,
@@ -52,12 +50,12 @@ export default function Save( { attributes } ) {
 		[ `has-${ iconColor }-color` ]: iconColor,
 	} );
 
-	const elementId = `.wp-block-crowdify-icon-list-item.list-item-${ componentId }`;
+	// const elementId = `.wp-block-crowdify-icon-list-item.list-item-${ componentId }`;
 
 	return (
 		<>
 			<style>
-				{ generateResponsiveCSS( elementId, padding, 'padding' ) }
+				{ /* { generateResponsiveCSS( elementId, padding, 'padding' ) } */ }
 			</style>
 			<li { ...blockProps }>
 				{ !! defaultIconName && (

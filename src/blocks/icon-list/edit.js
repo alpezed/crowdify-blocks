@@ -38,7 +38,13 @@ import './editor.scss';
  * Internal dependencies
  *
  */
-import { IconControl, JustifyToolbar } from '~/components';
+import {
+	IconControl,
+	ResponsiveRangeControl,
+	JustifyToolbar,
+	AlignContentControl,
+} from '~/components';
+import { generateResponsiveCSS2 } from '~/utils/css';
 
 const DEFAULT_BLOCK = {
 	name: 'crowdify/icon-list-item',
@@ -58,6 +64,9 @@ function Edit( props ) {
 		layout,
 		iconBackgroundColorValue,
 		iconColorValue,
+		iconVerticalPosition,
+		iconVerticalAlign,
+		iconHorizontalAlign,
 	} = attributes;
 
 	const blockProps = useBlockProps( {
@@ -225,6 +234,34 @@ function Edit( props ) {
 							setAttributes( { iconLineWidth: value } )
 						}
 					/>
+					<AlignContentControl
+						value={ iconHorizontalAlign }
+						label={ __(
+							'Horizontal Alignment',
+							'crowdify-blocks'
+						) }
+						onChange={ ( value ) =>
+							setAttributes( { iconHorizontalAlign: value } )
+						}
+					/>
+					<AlignContentControl
+						value={ iconVerticalAlign }
+						label={ __( 'Vertical Alignment', 'crowdify-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( { iconVerticalAlign: value } )
+						}
+						isVertical
+					/>
+					<ResponsiveRangeControl
+						value={ iconVerticalPosition }
+						label={ __( 'Vertical Position', 'crowdify-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( { iconVerticalPosition: value } )
+						}
+						allowReset={ false }
+						min={ -15 }
+						max={ 15 }
+					/>
 				</PanelBody>
 			</InspectorControls>
 			{ hasColorsOrGradients && (
@@ -270,8 +307,20 @@ function Edit( props ) {
 		</>
 	);
 
+	const targetIconElement = `[data-block="${ clientId }"] .list-item-icon`;
+	const targetListElement = `[data-block="${ clientId }"] .wp-block-crowdify-icon-list-item`;
+
 	return (
 		<>
+			<style>
+				{ generateResponsiveCSS2( targetIconElement, {
+					top: iconVerticalPosition,
+				} ) }
+				{ generateResponsiveCSS2( targetListElement, {
+					'align-items': iconVerticalAlign,
+					'justify-content': iconHorizontalAlign,
+				} ) }
+			</style>
 			{ blockControls }
 			{ inspectorControls }
 			<ul { ...innerBlocksProps } />

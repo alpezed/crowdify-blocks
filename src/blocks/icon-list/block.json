@@ -51,6 +51,33 @@
 			"type": "number",
 			"default": ""
 		},
+		"iconVerticalPosition": {
+			"type": "object",
+			"default": {
+				"desktop": ""
+			},
+			"desktop": "",
+			"tablet": "",
+			"mobile": ""
+		},
+		"iconVerticalAlign": {
+			"type": "object",
+			"default": {
+				"desktop": "center"
+			},
+			"desktop": "center",
+			"tablet": "",
+			"mobile": ""
+		},
+		"iconHorizontalAlign": {
+			"type": "object",
+			"default": {
+				"desktop": "left"
+			},
+			"desktop": "left",
+			"tablet": "",
+			"mobile": ""
+		},
 		"align": {
 			"type": "string"
 		},

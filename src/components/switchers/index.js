@@ -3,28 +3,19 @@
  *
  */
 import classnames from 'classnames';
-import { lowerCase } from 'lodash';
 
 /**
  * Wordpress Dependencies
  *
  */
-import { __ } from '@wordpress/i18n';
-import {
-	Tooltip,
-	__experimentalBoxControl as BoxControl, // eslint-disable-line
-} from '@wordpress/components';
+import { Tooltip } from '@wordpress/components';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 
 import { DEVICES } from '~/constants/devices';
 
-export function ResponsiveBoxControl( {
-	value,
-	label = __( 'Spacing' ),
-	onChange,
-} ) {
+export function Switchers() {
 	const [ isOpen, setIsOpen ] = useState( false );
 	const containerRef = useRef( null );
 
@@ -56,7 +47,7 @@ export function ResponsiveBoxControl( {
 		};
 	}, [] );
 
-	const switchers = (
+	return (
 		<div
 			ref={ containerRef }
 			className={ classnames( {
@@ -98,28 +89,6 @@ export function ResponsiveBoxControl( {
 					) ) }
 				</div>
 			</div>
-		</div>
-	);
-
-	const onChangeBoxControl = ( newValues ) => {
-		const newPadding = { ...value, [ lowerCase( deviceType ) ]: newValues };
-		onChange( newPadding );
-	};
-
-	return (
-		<div className="crowdify-responsive-control">
-			<BoxControl
-				label={
-					<div className="crowdify-responsive-label">
-						<span className="crowdify-responsive-label__title">
-							{ label }
-						</span>
-						{ switchers }
-					</div>
-				}
-				values={ value[ lowerCase( deviceType ) ] }
-				onChange={ onChangeBoxControl }
-			/>
 		</div>
 	);
 }
