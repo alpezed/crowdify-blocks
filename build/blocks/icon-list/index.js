@@ -2037,6 +2037,24 @@ __webpack_async_result__();
 
 /***/ }),
 
+/***/ "./src/utils/block-id.js":
+/*!*******************************!*\
+  !*** ./src/utils/block-id.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getUniqueId: () => (/* binding */ getUniqueId)
+/* harmony export */ });
+function getUniqueId(prefix, uniqueId) {
+  const componentId = uniqueId?.substr(0, 8);
+  return `${prefix}-${componentId}`;
+}
+
+/***/ }),
+
 /***/ "./src/utils/block.js":
 /*!****************************!*\
   !*** ./src/utils/block.js ***!
@@ -2387,6 +2405,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TEXT_DOMAIN: () => (/* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
 /* harmony export */   counterIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.counterIcon),
 /* harmony export */   flattenIconsArray: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.flattenIconsArray),
+/* harmony export */   generateResponsiveCSS: () => (/* reexport safe */ _css__WEBPACK_IMPORTED_MODULE_3__.generateResponsiveCSS),
+/* harmony export */   generateResponsiveCSS2: () => (/* reexport safe */ _css__WEBPACK_IMPORTED_MODULE_3__.generateResponsiveCSS2),
+/* harmony export */   getUniqueId: () => (/* reexport safe */ _block_id__WEBPACK_IMPORTED_MODULE_4__.getUniqueId),
 /* harmony export */   iconListIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.iconListIcon),
 /* harmony export */   parseIcon: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.parseIcon),
 /* harmony export */   pricingIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.pricingIcon),
@@ -2397,6 +2418,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block */ "./src/utils/block.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/utils/constants.js");
 /* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons */ "./src/utils/icons.js");
+/* harmony import */ var _css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css */ "./src/utils/css.js");
+/* harmony import */ var _block_id__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block-id */ "./src/utils/block-id.js");
+
+
 
 
 

@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { CATEGORY } from '../utils/constants';
+import { CATEGORY } from '~/utils/constants';
 import { CROWDIFY_POSTS } from '~/constants/variation';
 
 import './style.scss';

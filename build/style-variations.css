@@ -5,6 +5,10 @@
   margin-top: 0 !important;
 }
 
+.wp-block-image.is-force-full-width {
+  width: 100% !important;
+}
+
 .crowdify-separator {
   display: flex;
   justify-content: start;

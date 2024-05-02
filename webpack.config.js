@@ -11,6 +11,7 @@ module.exports = {
 	entry: {
 		...getWebpackEntryPoints(),
 		hooks: './src/hooks/index.js',
+		filters: './src/filters/index.js',
 		variations: './src/variations/index.js',
 		constants: './src/constants/index.js',
 		'image-zoom': './src/blocks/image-zoom/index.js',

@@ -1961,6 +1961,24 @@ __webpack_async_result__();
 
 /***/ }),
 
+/***/ "./src/utils/block-id.js":
+/*!*******************************!*\
+  !*** ./src/utils/block-id.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getUniqueId: () => (/* binding */ getUniqueId)
+/* harmony export */ });
+function getUniqueId(prefix, uniqueId) {
+  const componentId = uniqueId?.substr(0, 8);
+  return `${prefix}-${componentId}`;
+}
+
+/***/ }),
+
 /***/ "./src/utils/block.js":
 /*!****************************!*\
   !*** ./src/utils/block.js ***!
@@ -2094,6 +2112,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const TEXT_DOMAIN = 'crowdify-blocks';
 const CATEGORY = 'crowdify';
+
+/***/ }),
+
+/***/ "./src/utils/css.js":
+/*!**************************!*\
+  !*** ./src/utils/css.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateResponsiveCSS: () => (/* binding */ generateResponsiveCSS),
+/* harmony export */   generateResponsiveCSS2: () => (/* binding */ generateResponsiveCSS2)
+/* harmony export */ });
+// Define breakpoints for different screen sizes
+const breakpoints = {
+  desktop: '(min-width: 992px)',
+  tablet: '(min-width: 768px) and (max-width: 991.98px)',
+  mobile: '(max-width: 767.98px)'
+};
+function generateResponsiveCSS(selector, styles, property) {
+  // Create CSS for each breakpoint
+  let css = '';
+  for (const breakpoint in breakpoints) {
+    if (styles[breakpoint]) {
+      css += `@media ${breakpoints[breakpoint]} {`;
+      css += `${selector} {`;
+      if (typeof styles[breakpoint] !== 'object') {
+        css += `${property}: ${typeof styles[breakpoint] === 'number' ? styles[breakpoint] + 'px' : styles[breakpoint]}; `;
+      } else {
+        for (const subProperty in styles[breakpoint]) {
+          css += `${property}-${subProperty}: ${styles[breakpoint][subProperty]}; `;
+        }
+      }
+      css += '}';
+      css += '}';
+    }
+  }
+  return css;
+}
+function generateResponsiveCSS2(selector, styles) {
+  // Create CSS for each breakpoint
+  let css = '';
+  for (const breakpoint in breakpoints) {
+    const cssValues = Object.values(styles); // [{ "desktop": "" }, { "desktop": "" }]
+    if (Object.keys(styles)?.length > 0 && cssValues.some(obj => obj[breakpoint])) {
+      css += `@media ${breakpoints[breakpoint]} {`;
+      css += `${selector} {`;
+      Object.keys(styles).forEach(cssProperty => {
+        if (styles[cssProperty][breakpoint] === undefined) {
+          return;
+        }
+        if (typeof styles[cssProperty][breakpoint] !== 'object') {
+          css += `${cssProperty}: ${styles[cssProperty][breakpoint]}; `;
+        } else {
+          for (const subProperty in styles[cssProperty][breakpoint]) {
+            css += `${cssProperty}-${subProperty}: ${styles[cssProperty][breakpoint][subProperty]}; `;
+          }
+        }
+      });
+      css += '}';
+      css += '}';
+    }
+  }
+  return css;
+}
 
 /***/ }),
 
@@ -2244,6 +2329,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TEXT_DOMAIN: () => (/* reexport safe */ _constants__WEBPACK_IMPORTED_MODULE_1__.TEXT_DOMAIN),
 /* harmony export */   counterIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.counterIcon),
 /* harmony export */   flattenIconsArray: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.flattenIconsArray),
+/* harmony export */   generateResponsiveCSS: () => (/* reexport safe */ _css__WEBPACK_IMPORTED_MODULE_3__.generateResponsiveCSS),
+/* harmony export */   generateResponsiveCSS2: () => (/* reexport safe */ _css__WEBPACK_IMPORTED_MODULE_3__.generateResponsiveCSS2),
+/* harmony export */   getUniqueId: () => (/* reexport safe */ _block_id__WEBPACK_IMPORTED_MODULE_4__.getUniqueId),
 /* harmony export */   iconListIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.iconListIcon),
 /* harmony export */   parseIcon: () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_2__.parseIcon),
 /* harmony export */   pricingIcon: () => (/* reexport safe */ _block__WEBPACK_IMPORTED_MODULE_0__.pricingIcon),
@@ -2254,6 +2342,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block */ "./src/utils/block.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/utils/constants.js");
 /* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icons */ "./src/utils/icons.js");
+/* harmony import */ var _css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css */ "./src/utils/css.js");
+/* harmony import */ var _block_id__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block-id */ "./src/utils/block-id.js");
+
+
 
 
 
