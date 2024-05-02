@@ -199,6 +199,7 @@ class Crowdify_Blocks {
 
 		$this->loader->add_filter( 'render_block_core/post-template', $plugin_blocks, 'slider_block_wrapper', 10, 2 );
 		$this->loader->add_filter( 'render_block_core/image', $plugin_blocks, 'core_image_block_force_full_width', 10, 2 );
+		$this->loader->add_filter( 'render_block_core/separator', $plugin_blocks, 'spacer_block_wrapper', 10, 2 );
 
 	}
 

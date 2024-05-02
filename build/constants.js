@@ -79,10 +79,12 @@ const DEVICES = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CROWDIFY_IMAGE_ZOOM: () => (/* binding */ CROWDIFY_IMAGE_ZOOM),
-/* harmony export */   CROWDIFY_POSTS: () => (/* binding */ CROWDIFY_POSTS)
+/* harmony export */   CROWDIFY_POSTS: () => (/* binding */ CROWDIFY_POSTS),
+/* harmony export */   CROWDIFY_SEPARATOR: () => (/* binding */ CROWDIFY_SEPARATOR)
 /* harmony export */ });
 const CROWDIFY_IMAGE_ZOOM = 'crowdify/image-zoom';
 const CROWDIFY_POSTS = 'crowdify/posts';
+const CROWDIFY_SEPARATOR = 'crowdify/separator';
 
 /***/ }),
 

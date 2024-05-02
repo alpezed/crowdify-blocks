@@ -1,0 +1,229 @@
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+:root {
+  --crowdify-theme-color: #1570ef;
+}
+
+td.block-editor-list-view-block__contents-cell[aria-selected=true] svg,
+td.block-editor-list-view-block__contents-cell[aria-selected=true] svg path {
+  color: white;
+}
+
+.crowdify-device-desktop .crowdify-responsive-switcher.crowdify-responsive-switcher-desktop,
+.crowdify-device-laptop .crowdify-responsive-switcher.crowdify-responsive-switcher-laptop {
+  height: 1.85em;
+  transform: scale(1);
+  opacity: 1;
+}
+.crowdify-device-desktop .crowdify-responsive-switcher.crowdify-responsive-switcher-desktop svg,
+.crowdify-device-laptop .crowdify-responsive-switcher.crowdify-responsive-switcher-laptop svg {
+  color: var(--crowdify-theme-color);
+}
+
+.crowdify-device-tablet .crowdify-responsive-switcher.crowdify-responsive-switcher-tablet {
+  height: 1.85em;
+  transform: scale(1);
+  opacity: 1;
+}
+.crowdify-device-tablet .crowdify-responsive-switcher.crowdify-responsive-switcher-tablet svg {
+  color: var(--crowdify-theme-color);
+}
+
+.crowdify-device-mobile .crowdify-responsive-switcher.crowdify-responsive-switcher-mobile {
+  height: 1.85em;
+  transform: scale(1);
+  opacity: 1;
+}
+.crowdify-device-mobile .crowdify-responsive-switcher.crowdify-responsive-switcher-mobile svg {
+  color: var(--crowdify-theme-color);
+}
+
+.crowdify-control-responsive-switchers {
+  position: relative;
+  width: 1.85em;
+  height: 1.85em;
+  margin: calc(-2.3em + 12px) 0;
+  margin-inline-end: 5px;
+}
+.crowdify-control-responsive-switchers svg {
+  width: 12px;
+  height: 12px;
+}
+.crowdify-control-responsive-switchers-open {
+  z-index: 11000;
+}
+.crowdify-control-responsive-switchers-open .crowdify-control-responsive-switchers__holder {
+  border-radius: 3px;
+}
+.crowdify-control-responsive-switchers-open .crowdify-responsive-switcher {
+  height: 2em;
+  transform: scale(1);
+  opacity: 1;
+}
+.crowdify-control-responsive-switchers__holder {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  background-color: #f0f0f0;
+  border-radius: 100px;
+  transition: 0.15s;
+  border: 1px solid transparent;
+}
+
+.crowdify-responsive-switcher {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  height: 0;
+  width: 100%;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.15s;
+  font-size: 12px;
+  color: inherit;
+}
+
+.crowdify-responsive-label {
+  display: flex;
+  align-items: center;
+}
+.crowdify-responsive-label__title {
+  margin-inline-end: 5px;
+}
+
+.crowdify-screen-only {
+  position: absolute;
+  top: -10000em;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.crowdify-responsive-control {
+  margin-bottom: 24px;
+}
+.crowdify-responsive-control .components-input-control,
+.crowdify-responsive-control .components-range-control {
+  margin-bottom: 0 !important;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/icon-control/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.editor-icon-control {
+  padding: 0;
+}
+
+.editor-icon-control .components-spinner {
+  left: 50%;
+  margin-left: -9px;
+  margin-top: -9px;
+  position: absolute;
+  top: 50%;
+}
+
+.editor-icon-control .components-responsive-wrapper__content {
+  max-width: 100%;
+  width: auto;
+}
+
+.editor-icon-control__container {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.editor-icon-control__container:focus .editor-icon-control__actions,
+.editor-icon-control__container:focus-within .editor-icon-control__actions,
+.editor-icon-control__container:hover .editor-icon-control__actions {
+  opacity: 1;
+}
+
+.editor-icon-control__preview,
+.editor-icon-control__toggle {
+  box-shadow: 0 0 0 0 var(--wp-admin-theme-color);
+  display: flex;
+  justify-content: center;
+  max-height: 120px;
+  overflow: hidden;
+  padding: 0;
+  transition: all 0.1s ease-out;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editor-icon-control__preview,
+  .editor-icon-control__toggle {
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+.editor-icon-control__preview {
+  height: 150px;
+  box-shadow: 0 0 0 0 var(--wp-admin-theme-color);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  transition: all 0.1s ease-out;
+  width: 100%;
+  background: #f0f0f0;
+}
+.editor-icon-control__preview svg {
+  width: 80px;
+  height: 80px;
+  fill: none;
+}
+.editor-icon-control__preview svg path {
+  stroke: currentColor !important;
+}
+
+.editor-icon-control__preview .components-responsive-wrapper {
+  background: #f0f0f0;
+  width: 100%;
+}
+
+.editor-icon-control__toggle {
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  line-height: 20px;
+  min-height: 90px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.editor-icon-control__toggle:hover {
+  background: #ddd;
+  color: #1e1e1e;
+}
+
+.editor-icon-control__actions {
+  bottom: 0;
+  opacity: 0;
+  padding: 8px;
+  position: absolute;
+  transition: opacity 50ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editor-icon-control__actions {
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+.editor-icon-control__action {
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.7490196078);
+  flex-grow: 1;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=hooks.css.map*/

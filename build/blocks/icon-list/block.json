@@ -65,18 +65,18 @@
     "iconVerticalAlign": {
       "type": "object",
       "default": {
-        "desktop": ""
+        "desktop": "center"
       },
-      "desktop": "",
+      "desktop": "center",
       "tablet": "",
       "mobile": ""
     },
     "iconHorizontalAlign": {
       "type": "object",
       "default": {
-        "desktop": ""
+        "desktop": "left"
       },
-      "desktop": "",
+      "desktop": "left",
       "tablet": "",
       "mobile": ""
     },

@@ -229,4 +229,36 @@ class Crowdify_Blocks_Blocks {
 		return $content;
 	}
 
+
+	/**
+	 * Wraps the given block content with a Swiper wrapper if the block is a Crowdify block with a carousel layout.
+	 *
+	 * @param string $block_content The content of the block.
+	 * @param array $block The block data.
+	 * @return string The wrapped block content.
+	 *
+	 * @since    1.0.0
+	 */
+	public function spacer_block_wrapper( $block_content, $block ) {
+		/**
+		 * Processes the block content to add Swiper classes and attributes.
+		 */
+		$tag_processor = new WP_HTML_Tag_Processor( $block_content );
+
+		// Check if the block is a Crowdify block with a carousel layout, otherwise return the original content.
+		if ( ( isset ( $block[ 'attrs' ][ 'namespace' ] ) && $block[ 'attrs' ][ 'namespace' ] !== 'crowdify/separator' ) ) {
+			return $block_content;
+		}
+
+		$unique_id = isset( $block[ 'attrs' ][ 'uniqueId' ] ) ? $block[ 'attrs' ][ 'uniqueId' ] : '';
+		$wrapper_id = preg_replace( '/core/', 'crowdify', $unique_id );
+
+		// Build the Separator wrapper.
+		$content = '<div id="' . $wrapper_id . '">';
+		$content .= $tag_processor->get_updated_html();
+		$content .= '</div>';
+
+		return $content;
+	}
+
 }

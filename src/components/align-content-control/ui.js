@@ -11,14 +11,7 @@ import {
 	__experimentalToggleGroupControl as ToggleGroupControl, // eslint-disable-line
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon, // eslint-disable-line
 } from '@wordpress/components';
-import {
-	justifyLeft,
-	justifyCenter,
-	justifyRight,
-	arrowUp,
-	arrowRight,
-	arrowDown,
-} from '@wordpress/icons';
+import { justifyLeft, justifyCenter, justifyRight } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
@@ -27,6 +20,7 @@ import { store as editorStore } from '@wordpress/editor';
  * Internal dependencies
  */
 import { Switchers } from '../switchers';
+import { alignTop, alignCenter, alignBottom } from './icons';
 
 function AlignContentUI( props ) {
 	const {
@@ -50,9 +44,11 @@ function AlignContentUI( props ) {
 	}, [] );
 
 	const icons = {
-		[ isVertical ? 'start' : 'left' ]: isVertical ? arrowUp : justifyLeft,
-		center: isVertical ? arrowRight : justifyCenter,
-		[ isVertical ? 'end' : 'right' ]: isVertical ? arrowDown : justifyRight,
+		[ isVertical ? 'start' : 'left' ]: isVertical ? alignTop : justifyLeft,
+		center: isVertical ? alignCenter : justifyCenter,
+		[ isVertical ? 'end' : 'right' ]: isVertical
+			? alignBottom
+			: justifyRight,
 	};
 
 	const currentValue = value[ lowerCase( deviceType ) ];
@@ -74,21 +70,21 @@ function AlignContentUI( props ) {
 	const allControls = [
 		{
 			name: isVertical ? 'start' : 'left',
-			icon: isVertical ? arrowUp : justifyLeft,
+			icon: isVertical ? alignTop : justifyLeft,
 			title: isVertical ? __( 'Start' ) : __( 'Left' ),
 			isActive: isVertical ? 'start' === value : 'left' === value,
 			onClick: () => handleClick( isVertical ? 'start' : 'left' ),
 		},
 		{
 			name: 'center',
-			icon: isVertical ? arrowRight : justifyCenter,
+			icon: isVertical ? alignCenter : justifyCenter,
 			title: __( 'Center' ),
 			isActive: 'center' === value,
 			onClick: () => handleClick( 'center' ),
 		},
 		{
 			name: isVertical ? 'end' : 'right',
-			icon: isVertical ? arrowDown : justifyRight,
+			icon: isVertical ? alignBottom : justifyRight,
 			title: isVertical ? __( 'End' ) : __( 'Right' ),
 			isActive: isVertical ? 'end' === value : 'right' === value,
 			onClick: () => handleClick( isVertical ? 'end' : 'right' ),

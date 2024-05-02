@@ -9,7 +9,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { CATEGORY } from '../utils/constants';
-import { CROWDIFY_POSTS } from '~/constants/variation';
+import { CROWDIFY_SEPARATOR } from '~/constants/variation';
 
 import './style.scss';
 
@@ -53,16 +53,16 @@ const icon = (
 	</svg>
 );
 
-registerBlockVariation( 'core/query', {
-	name: CROWDIFY_POSTS,
+registerBlockVariation( 'core/separator', {
+	name: CROWDIFY_SEPARATOR,
 	icon: {
 		src: icon,
 		foreground: 'var(--crowdify-theme-color)',
 	},
-	title: __( 'Posts', 'crowdify-blocks' ),
+	title: __( 'Separator', 'crowdify-blocks' ),
 	category: CATEGORY,
 	attributes: {
-		namespace: CROWDIFY_POSTS,
+		namespace: CROWDIFY_SEPARATOR,
 	},
 	isActive: [ 'namespace' ],
 	scope: [ 'inserter', 'transform' ],
