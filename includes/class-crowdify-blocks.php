@@ -79,7 +79,6 @@ class Crowdify_Blocks {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->register_blocks();
-
 	}
 
 	/**
@@ -104,34 +103,33 @@ class Crowdify_Blocks {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-blocks-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-crowdify-blocks-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-blocks-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-crowdify-blocks-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-crowdify-blocks-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-crowdify-blocks-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-crowdify-blocks-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-crowdify-blocks-public.php';
 
 		/**
 		 * The class responsible for defining all blocks configuration
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-blocks-blocks.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-crowdify-blocks-blocks.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-crowdify-block-css.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-crowdify-block-css.php';
 
 		$this->loader = new Crowdify_Blocks_Loader();
-
 	}
 
 	/**
@@ -148,7 +146,6 @@ class Crowdify_Blocks {
 		$plugin_i18n = new Crowdify_Blocks_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -164,7 +161,6 @@ class Crowdify_Blocks {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -180,7 +176,6 @@ class Crowdify_Blocks {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -202,7 +197,6 @@ class Crowdify_Blocks {
 		$this->loader->add_filter( 'render_block_core/post-template', $plugin_blocks, 'slider_block_wrapper', 10, 2 );
 		$this->loader->add_filter( 'render_block_core/image', $plugin_blocks, 'core_image_block_force_full_width', 10, 2 );
 		$this->loader->add_filter( 'render_block_core/separator', $plugin_blocks, 'spacer_block_wrapper', 10, 2 );
-
 	}
 
 	/**
@@ -244,5 +238,4 @@ class Crowdify_Blocks {
 	public function get_version() {
 		return $this->version;
 	}
-
 }
